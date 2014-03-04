@@ -1,0 +1,567 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C985B64318C57088009BEE3B /* AddCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C985B64218C57088009BEE3B /* AddCourseViewController.m */; };
+		C985B64618C570FC009BEE3B /* AddWagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C985B64518C570FC009BEE3B /* AddWagerViewController.m */; };
+		C985B64918C57153009BEE3B /* ViewCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C985B64818C57153009BEE3B /* ViewCourseViewController.m */; };
+		C985B64C18C57FA1009BEE3B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C985B64B18C57FA1009BEE3B /* User.m */; };
+		C985B64F18C583CC009BEE3B /* NeedsToCheckInView.m in Sources */ = {isa = PBXBuildFile; fileRef = C985B64E18C583CC009BEE3B /* NeedsToCheckInView.m */; };
+		C988120918C2E924001E184A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C988120818C2E924001E184A /* Foundation.framework */; };
+		C988120B18C2E924001E184A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C988120A18C2E924001E184A /* CoreGraphics.framework */; };
+		C988120D18C2E924001E184A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C988120C18C2E924001E184A /* UIKit.framework */; };
+		C988121318C2E924001E184A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C988121118C2E924001E184A /* InfoPlist.strings */; };
+		C988121518C2E924001E184A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C988121418C2E924001E184A /* main.m */; };
+		C988121918C2E924001E184A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C988121818C2E924001E184A /* AppDelegate.m */; };
+		C988121C18C2E924001E184A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C988121A18C2E924001E184A /* Main.storyboard */; };
+		C988121F18C2E924001E184A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C988121E18C2E924001E184A /* ViewController.m */; };
+		C988122118C2E924001E184A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C988122018C2E924001E184A /* Images.xcassets */; };
+		C988122818C2E924001E184A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C988122718C2E924001E184A /* XCTest.framework */; };
+		C988122918C2E924001E184A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C988120818C2E924001E184A /* Foundation.framework */; };
+		C988122A18C2E924001E184A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C988120C18C2E924001E184A /* UIKit.framework */; };
+		C988123218C2E924001E184A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C988123018C2E924001E184A /* InfoPlist.strings */; };
+		C988123418C2E924001E184A /* Lecture_LootTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C988123318C2E924001E184A /* Lecture_LootTests.m */; };
+		C988124218C2EBD5001E184A /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C988124118C2EBD5001E184A /* DashboardViewController.m */; };
+		C988124518C2EBE8001E184A /* WagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C988124418C2EBE8001E184A /* WagerViewController.m */; };
+		C988124818C2EBF4001E184A /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C988124718C2EBF4001E184A /* ScheduleViewController.m */; };
+		C988124B18C2EC08001E184A /* Meeting.m in Sources */ = {isa = PBXBuildFile; fileRef = C988124A18C2EC08001E184A /* Meeting.m */; };
+		C988124E18C2EC13001E184A /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = C988124D18C2EC13001E184A /* Course.m */; };
+		C988125118C2EC1B001E184A /* Wager.m in Sources */ = {isa = PBXBuildFile; fileRef = C988125018C2EC1B001E184A /* Wager.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C988122B18C2E924001E184A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C98811FD18C2E923001E184A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C988120418C2E924001E184A;
+			remoteInfo = "Lecture Loot";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C985B64118C57088009BEE3B /* AddCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCourseViewController.h; sourceTree = "<group>"; };
+		C985B64218C57088009BEE3B /* AddCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCourseViewController.m; sourceTree = "<group>"; };
+		C985B64418C570FC009BEE3B /* AddWagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddWagerViewController.h; sourceTree = "<group>"; };
+		C985B64518C570FC009BEE3B /* AddWagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddWagerViewController.m; sourceTree = "<group>"; };
+		C985B64718C57153009BEE3B /* ViewCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewCourseViewController.h; sourceTree = "<group>"; };
+		C985B64818C57153009BEE3B /* ViewCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewCourseViewController.m; sourceTree = "<group>"; };
+		C985B64A18C57FA1009BEE3B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		C985B64B18C57FA1009BEE3B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		C985B64D18C583CC009BEE3B /* NeedsToCheckInView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeedsToCheckInView.h; sourceTree = "<group>"; };
+		C985B64E18C583CC009BEE3B /* NeedsToCheckInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NeedsToCheckInView.m; sourceTree = "<group>"; };
+		C988120518C2E924001E184A /* Lecture Loot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lecture Loot.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C988120818C2E924001E184A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C988120A18C2E924001E184A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C988120C18C2E924001E184A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C988121018C2E924001E184A /* Lecture Loot-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Lecture Loot-Info.plist"; sourceTree = "<group>"; };
+		C988121218C2E924001E184A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C988121418C2E924001E184A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C988121618C2E924001E184A /* Lecture Loot-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lecture Loot-Prefix.pch"; sourceTree = "<group>"; };
+		C988121718C2E924001E184A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C988121818C2E924001E184A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C988121B18C2E924001E184A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C988121D18C2E924001E184A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		C988121E18C2E924001E184A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C988122018C2E924001E184A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C988122618C2E924001E184A /* Lecture LootTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lecture LootTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C988122718C2E924001E184A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		C988122F18C2E924001E184A /* Lecture LootTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Lecture LootTests-Info.plist"; sourceTree = "<group>"; };
+		C988123118C2E924001E184A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C988123318C2E924001E184A /* Lecture_LootTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Lecture_LootTests.m; sourceTree = "<group>"; };
+		C988124018C2EBD5001E184A /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
+		C988124118C2EBD5001E184A /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
+		C988124318C2EBE8001E184A /* WagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WagerViewController.h; sourceTree = "<group>"; };
+		C988124418C2EBE8001E184A /* WagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WagerViewController.m; sourceTree = "<group>"; };
+		C988124618C2EBF4001E184A /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
+		C988124718C2EBF4001E184A /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
+		C988124918C2EC08001E184A /* Meeting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Meeting.h; sourceTree = "<group>"; };
+		C988124A18C2EC08001E184A /* Meeting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Meeting.m; sourceTree = "<group>"; };
+		C988124C18C2EC13001E184A /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
+		C988124D18C2EC13001E184A /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
+		C988124F18C2EC1B001E184A /* Wager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wager.h; sourceTree = "<group>"; };
+		C988125018C2EC1B001E184A /* Wager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wager.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C988120218C2E924001E184A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C988120B18C2E924001E184A /* CoreGraphics.framework in Frameworks */,
+				C988120D18C2E924001E184A /* UIKit.framework in Frameworks */,
+				C988120918C2E924001E184A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C988122318C2E924001E184A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C988122818C2E924001E184A /* XCTest.framework in Frameworks */,
+				C988122A18C2E924001E184A /* UIKit.framework in Frameworks */,
+				C988122918C2E924001E184A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C98811FC18C2E923001E184A = {
+			isa = PBXGroup;
+			children = (
+				C988120E18C2E924001E184A /* Lecture Loot */,
+				C988122D18C2E924001E184A /* Lecture LootTests */,
+				C988120718C2E924001E184A /* Frameworks */,
+				C988120618C2E924001E184A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C988120618C2E924001E184A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C988120518C2E924001E184A /* Lecture Loot.app */,
+				C988122618C2E924001E184A /* Lecture LootTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C988120718C2E924001E184A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C988120818C2E924001E184A /* Foundation.framework */,
+				C988120A18C2E924001E184A /* CoreGraphics.framework */,
+				C988120C18C2E924001E184A /* UIKit.framework */,
+				C988122718C2E924001E184A /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C988120E18C2E924001E184A /* Lecture Loot */ = {
+			isa = PBXGroup;
+			children = (
+				C988123F18C2E955001E184A /* Models */,
+				C988123E18C2E94A001E184A /* View Controllers */,
+				C988123D18C2E943001E184A /* Views */,
+				C988121718C2E924001E184A /* AppDelegate.h */,
+				C988121818C2E924001E184A /* AppDelegate.m */,
+				C988121A18C2E924001E184A /* Main.storyboard */,
+				C988121D18C2E924001E184A /* ViewController.h */,
+				C988121E18C2E924001E184A /* ViewController.m */,
+				C988122018C2E924001E184A /* Images.xcassets */,
+				C988120F18C2E924001E184A /* Supporting Files */,
+			);
+			path = "Lecture Loot";
+			sourceTree = "<group>";
+		};
+		C988120F18C2E924001E184A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C988121018C2E924001E184A /* Lecture Loot-Info.plist */,
+				C988121118C2E924001E184A /* InfoPlist.strings */,
+				C988121418C2E924001E184A /* main.m */,
+				C988121618C2E924001E184A /* Lecture Loot-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C988122D18C2E924001E184A /* Lecture LootTests */ = {
+			isa = PBXGroup;
+			children = (
+				C988123318C2E924001E184A /* Lecture_LootTests.m */,
+				C988122E18C2E924001E184A /* Supporting Files */,
+			);
+			path = "Lecture LootTests";
+			sourceTree = "<group>";
+		};
+		C988122E18C2E924001E184A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C988122F18C2E924001E184A /* Lecture LootTests-Info.plist */,
+				C988123018C2E924001E184A /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C988123D18C2E943001E184A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C985B64D18C583CC009BEE3B /* NeedsToCheckInView.h */,
+				C985B64E18C583CC009BEE3B /* NeedsToCheckInView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		C988123E18C2E94A001E184A /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C988124018C2EBD5001E184A /* DashboardViewController.h */,
+				C988124118C2EBD5001E184A /* DashboardViewController.m */,
+				C988124318C2EBE8001E184A /* WagerViewController.h */,
+				C988124418C2EBE8001E184A /* WagerViewController.m */,
+				C988124618C2EBF4001E184A /* ScheduleViewController.h */,
+				C988124718C2EBF4001E184A /* ScheduleViewController.m */,
+				C985B64118C57088009BEE3B /* AddCourseViewController.h */,
+				C985B64218C57088009BEE3B /* AddCourseViewController.m */,
+				C985B64418C570FC009BEE3B /* AddWagerViewController.h */,
+				C985B64518C570FC009BEE3B /* AddWagerViewController.m */,
+				C985B64718C57153009BEE3B /* ViewCourseViewController.h */,
+				C985B64818C57153009BEE3B /* ViewCourseViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		C988123F18C2E955001E184A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C988124918C2EC08001E184A /* Meeting.h */,
+				C988124A18C2EC08001E184A /* Meeting.m */,
+				C988124C18C2EC13001E184A /* Course.h */,
+				C988124D18C2EC13001E184A /* Course.m */,
+				C988124F18C2EC1B001E184A /* Wager.h */,
+				C988125018C2EC1B001E184A /* Wager.m */,
+				C985B64A18C57FA1009BEE3B /* User.h */,
+				C985B64B18C57FA1009BEE3B /* User.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C988120418C2E924001E184A /* Lecture Loot */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C988123718C2E924001E184A /* Build configuration list for PBXNativeTarget "Lecture Loot" */;
+			buildPhases = (
+				C988120118C2E924001E184A /* Sources */,
+				C988120218C2E924001E184A /* Frameworks */,
+				C988120318C2E924001E184A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Lecture Loot";
+			productName = "Lecture Loot";
+			productReference = C988120518C2E924001E184A /* Lecture Loot.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C988122518C2E924001E184A /* Lecture LootTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C988123A18C2E924001E184A /* Build configuration list for PBXNativeTarget "Lecture LootTests" */;
+			buildPhases = (
+				C988122218C2E924001E184A /* Sources */,
+				C988122318C2E924001E184A /* Frameworks */,
+				C988122418C2E924001E184A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C988122C18C2E924001E184A /* PBXTargetDependency */,
+			);
+			name = "Lecture LootTests";
+			productName = "Lecture LootTests";
+			productReference = C988122618C2E924001E184A /* Lecture LootTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C98811FD18C2E923001E184A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = CashU;
+				TargetAttributes = {
+					C988122518C2E924001E184A = {
+						TestTargetID = C988120418C2E924001E184A;
+					};
+				};
+			};
+			buildConfigurationList = C988120018C2E923001E184A /* Build configuration list for PBXProject "Lecture Loot" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C98811FC18C2E923001E184A;
+			productRefGroup = C988120618C2E924001E184A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C988120418C2E924001E184A /* Lecture Loot */,
+				C988122518C2E924001E184A /* Lecture LootTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C988120318C2E924001E184A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C988122118C2E924001E184A /* Images.xcassets in Resources */,
+				C988121318C2E924001E184A /* InfoPlist.strings in Resources */,
+				C988121C18C2E924001E184A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C988122418C2E924001E184A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C988123218C2E924001E184A /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C988120118C2E924001E184A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C985B64C18C57FA1009BEE3B /* User.m in Sources */,
+				C985B64918C57153009BEE3B /* ViewCourseViewController.m in Sources */,
+				C988121F18C2E924001E184A /* ViewController.m in Sources */,
+				C985B64F18C583CC009BEE3B /* NeedsToCheckInView.m in Sources */,
+				C985B64318C57088009BEE3B /* AddCourseViewController.m in Sources */,
+				C988124818C2EBF4001E184A /* ScheduleViewController.m in Sources */,
+				C988121918C2E924001E184A /* AppDelegate.m in Sources */,
+				C988125118C2EC1B001E184A /* Wager.m in Sources */,
+				C988124B18C2EC08001E184A /* Meeting.m in Sources */,
+				C988124E18C2EC13001E184A /* Course.m in Sources */,
+				C988121518C2E924001E184A /* main.m in Sources */,
+				C988124218C2EBD5001E184A /* DashboardViewController.m in Sources */,
+				C985B64618C570FC009BEE3B /* AddWagerViewController.m in Sources */,
+				C988124518C2EBE8001E184A /* WagerViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C988122218C2E924001E184A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C988123418C2E924001E184A /* Lecture_LootTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C988122C18C2E924001E184A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C988120418C2E924001E184A /* Lecture Loot */;
+			targetProxy = C988122B18C2E924001E184A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C988121118C2E924001E184A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C988121218C2E924001E184A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C988121A18C2E924001E184A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C988121B18C2E924001E184A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C988123018C2E924001E184A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C988123118C2E924001E184A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C988123518C2E924001E184A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C988123618C2E924001E184A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C988123818C2E924001E184A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Lecture Loot/Lecture Loot-Prefix.pch";
+				INFOPLIST_FILE = "Lecture Loot/Lecture Loot-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C988123918C2E924001E184A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Lecture Loot/Lecture Loot-Prefix.pch";
+				INFOPLIST_FILE = "Lecture Loot/Lecture Loot-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C988123B18C2E924001E184A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Lecture Loot.app/Lecture Loot";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Lecture Loot/Lecture Loot-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Lecture LootTests/Lecture LootTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		C988123C18C2E924001E184A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Lecture Loot.app/Lecture Loot";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Lecture Loot/Lecture Loot-Prefix.pch";
+				INFOPLIST_FILE = "Lecture LootTests/Lecture LootTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C988120018C2E923001E184A /* Build configuration list for PBXProject "Lecture Loot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C988123518C2E924001E184A /* Debug */,
+				C988123618C2E924001E184A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C988123718C2E924001E184A /* Build configuration list for PBXNativeTarget "Lecture Loot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C988123818C2E924001E184A /* Debug */,
+				C988123918C2E924001E184A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C988123A18C2E924001E184A /* Build configuration list for PBXNativeTarget "Lecture LootTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C988123B18C2E924001E184A /* Debug */,
+				C988123C18C2E924001E184A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C98811FD18C2E923001E184A /* Project object */;
+}
