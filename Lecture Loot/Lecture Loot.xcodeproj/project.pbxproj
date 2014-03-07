@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C91409FA18CA23A100D603E5 /* WagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C91409F918CA23A100D603E5 /* WagerCell.m */; };
+		C91409FD18CA294D00D603E5 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C91409FC18CA294D00D603E5 /* Utilities.m */; };
 		C97B508E18C9ADBB0046D844 /* UserNeedsToCheckInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C97B508C18C9ADBB0046D844 /* UserNeedsToCheckInViewController.m */; };
 		C97B508F18C9ADBB0046D844 /* UserNeedsToCheckInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C97B508D18C9ADBB0046D844 /* UserNeedsToCheckInViewController.xib */; };
 		C985B64318C57088009BEE3B /* AddCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C985B64218C57088009BEE3B /* AddCourseViewController.m */; };
 		C985B64618C570FC009BEE3B /* AddWagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C985B64518C570FC009BEE3B /* AddWagerViewController.m */; };
-		C985B64C18C57FA1009BEE3B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C985B64B18C57FA1009BEE3B /* User.m */; };
 		C988120918C2E924001E184A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C988120818C2E924001E184A /* Foundation.framework */; };
 		C988120B18C2E924001E184A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C988120A18C2E924001E184A /* CoreGraphics.framework */; };
 		C988120D18C2E924001E184A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C988120C18C2E924001E184A /* UIKit.framework */; };
@@ -45,6 +46,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C91409F818CA23A100D603E5 /* WagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WagerCell.h; sourceTree = "<group>"; };
+		C91409F918CA23A100D603E5 /* WagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WagerCell.m; sourceTree = "<group>"; };
+		C91409FB18CA294D00D603E5 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		C91409FC18CA294D00D603E5 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		C97B508B18C9ADBB0046D844 /* UserNeedsToCheckInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserNeedsToCheckInViewController.h; sourceTree = "<group>"; };
 		C97B508C18C9ADBB0046D844 /* UserNeedsToCheckInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserNeedsToCheckInViewController.m; sourceTree = "<group>"; };
 		C97B508D18C9ADBB0046D844 /* UserNeedsToCheckInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserNeedsToCheckInViewController.xib; sourceTree = "<group>"; };
@@ -53,7 +58,6 @@
 		C985B64418C570FC009BEE3B /* AddWagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddWagerViewController.h; sourceTree = "<group>"; };
 		C985B64518C570FC009BEE3B /* AddWagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddWagerViewController.m; sourceTree = "<group>"; };
 		C985B64A18C57FA1009BEE3B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		C985B64B18C57FA1009BEE3B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		C988120518C2E924001E184A /* Lecture Loot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lecture Loot.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C988120818C2E924001E184A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C988120A18C2E924001E184A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -111,6 +115,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C91409F718CA236C00D603E5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C91409F818CA23A100D603E5 /* WagerCell.h */,
+				C91409F918CA23A100D603E5 /* WagerCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		C97B508018C9A3190046D844 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,9 +182,10 @@
 		C988120E18C2E924001E184A /* Lecture Loot */ = {
 			isa = PBXGroup;
 			children = (
-				C97B508118C9AABB0046D844 /* UIs */,
 				C97B508018C9A3190046D844 /* iPad */,
 				C988123F18C2E955001E184A /* Models */,
+				C97B508118C9AABB0046D844 /* UIs */,
+				C91409F718CA236C00D603E5 /* Views */,
 				C988123E18C2E94A001E184A /* View Controllers */,
 				C988121718C2E924001E184A /* AppDelegate.h */,
 				C988121818C2E924001E184A /* AppDelegate.m */,
@@ -179,6 +193,8 @@
 				C988121E18C2E924001E184A /* ViewController.m */,
 				C988122018C2E924001E184A /* Images.xcassets */,
 				C988120F18C2E924001E184A /* Supporting Files */,
+				C91409FB18CA294D00D603E5 /* Utilities.h */,
+				C91409FC18CA294D00D603E5 /* Utilities.m */,
 			);
 			path = "Lecture Loot";
 			sourceTree = "<group>";
@@ -240,7 +256,6 @@
 				C988124F18C2EC1B001E184A /* Wager.h */,
 				C988125018C2EC1B001E184A /* Wager.m */,
 				C985B64A18C57FA1009BEE3B /* User.h */,
-				C985B64B18C57FA1009BEE3B /* User.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -343,7 +358,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C985B64C18C57FA1009BEE3B /* User.m in Sources */,
 				C988121F18C2E924001E184A /* ViewController.m in Sources */,
 				C985B64318C57088009BEE3B /* AddCourseViewController.m in Sources */,
 				C988124818C2EBF4001E184A /* ScheduleViewController.m in Sources */,
@@ -351,6 +365,8 @@
 				C97B508E18C9ADBB0046D844 /* UserNeedsToCheckInViewController.m in Sources */,
 				C988125118C2EC1B001E184A /* Wager.m in Sources */,
 				C988124B18C2EC08001E184A /* Meeting.m in Sources */,
+				C91409FA18CA23A100D603E5 /* WagerCell.m in Sources */,
+				C91409FD18CA294D00D603E5 /* Utilities.m in Sources */,
 				C988124E18C2EC13001E184A /* Course.m in Sources */,
 				C988121518C2E924001E184A /* main.m in Sources */,
 				C988124218C2EBD5001E184A /* DashboardViewController.m in Sources */,

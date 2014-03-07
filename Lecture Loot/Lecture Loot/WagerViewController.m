@@ -7,9 +7,13 @@
 //
 
 #import "WagerViewController.h"
+#import "WagerCell.h"
+#import "Wager.h"
 
 @interface WagerViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (weak, nonatomic) NSMutableArray *wagers;
 
 - (IBAction)addWager:(id)sender;
 - (IBAction)editWagers:(id)sender;
@@ -31,12 +35,34 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
 }
 
-- (void)didReceiveMemoryWarning
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //get a new or recycled table cell
+    WagerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"wagerCell"];
+    
+    //populate with the information in the wager to the cell
+    
+    //get the wagers mutable array from the user
+    //get the wager at indexPath.row
+    //set the information
+    
+    //cell.weekOfLabel.text = @"Week: %i", indexPath.row;
+    //cell.wagerAmountLabel.text = @"
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (IBAction)addWager:(id)sender {

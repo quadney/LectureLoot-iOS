@@ -10,4 +10,7 @@
 
 @interface Wager : NSObject
 
+@property (nonatomic) NSInteger *wagerAmount;
+@property (nonatomic, strong) NSDate *weekOfDate;
+
 @end

@@ -9,6 +9,10 @@
 #import "UserNeedsToCheckInViewController.h"
 
 @interface UserNeedsToCheckInViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *countdownLabel;
+@property (weak, nonatomic) IBOutlet UILabel *courseLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+- (IBAction)checkIn:(id)sender;
 
 @end
 
@@ -35,4 +39,6 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)checkIn:(id)sender {
+}
 @end

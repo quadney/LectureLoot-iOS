@@ -9,6 +9,8 @@
 #import "AddWagerViewController.h"
 
 @interface AddWagerViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *wagerAmountLabel;
+@property (weak, nonatomic) IBOutlet UIStepper *stepper;
 
 @end
 

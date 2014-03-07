@@ -22,7 +22,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="tni-IH-mki">
             <objects>
-                <tabBarController definesPresentationContext="YES" id="eXQ-wp-SKJ" sceneMemberID="viewController">
+                <tabBarController definesPresentationContext="YES" id="eXQ-wp-SKJ" customClass="TabBarController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="ed2-CD-syu"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Fcr-WX-U4v">
@@ -218,7 +218,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Lya-hO-Lyv" detailTextLabel="2fS-p9-c8F" rowHeight="60" style="IBUITableViewCellStyleValue1" id="eLQ-te-JeR">
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="wagerCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Lya-hO-Lyv" detailTextLabel="2fS-p9-c8F" rowHeight="60" style="IBUITableViewCellStyleValue1" id="eLQ-te-JeR" customClass="WagerCell">
                                         <rect key="frame" x="0.0" y="86" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eLQ-te-JeR" id="wvd-8p-dGv">
@@ -242,6 +242,8 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="wagerAmountLabel" destination="2fS-p9-c8F" id="biS-wL-en5"/>
+                                            <outlet property="weekOfLabel" destination="Lya-hO-Lyv" id="Byl-pq-OAb"/>
                                             <segue destination="sny-1j-2oL" kind="push" id="DZo-pA-Ra3"/>
                                         </connections>
                                     </tableViewCell>
@@ -303,6 +305,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="View/Edit Wager" id="9Dy-rx-tfM"/>
+                    <connections>
+                        <outlet property="stepper" destination="cHp-SQ-j8X" id="pEc-3Y-dRw"/>
+                        <outlet property="wagerAmountLabel" destination="Hwh-oD-mNq" id="brI-0k-zcr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lhZ-8Z-fup" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

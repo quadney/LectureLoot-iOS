@@ -18,6 +18,15 @@
 @property (weak, nonatomic) IBOutlet UIView *day5View;
 @property (weak, nonatomic) IBOutlet UIView *userCheckInStateView;
 
+@property(weak, nonatomic) NSTimer *timer;
+
+enum  UserCheckInState : NSInteger{
+    UserCheckInStateNeedsToCheckIn = 0,
+    UserCheckInStateHasUpcomingMeeting = 1,
+    UserCheckInStateIsDoneForDay = 2
+};
+typedef NSInteger UserCheckInState;
+
 @end
 
 @implementation DashboardViewController
