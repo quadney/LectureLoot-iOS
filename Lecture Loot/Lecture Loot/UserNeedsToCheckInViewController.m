@@ -1,18 +1,18 @@
 //
-//  ViewCourseViewController.m
+//  UserNeedsToCheckInViewController.m
 //  Lecture Loot
 //
-//  Created by Sydney Richardson on 3/3/14.
+//  Created by Sydney Richardson on 3/7/14.
 //  Copyright (c) 2014 CashU. All rights reserved.
 //
 
-#import "ViewCourseViewController.h"
+#import "UserNeedsToCheckInViewController.h"
 
-@interface ViewCourseViewController ()
+@interface UserNeedsToCheckInViewController ()
 
 @end
 
-@implementation ViewCourseViewController
+@implementation UserNeedsToCheckInViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning

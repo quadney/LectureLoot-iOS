@@ -9,6 +9,14 @@
 #import "DashboardViewController.h"
 
 @interface DashboardViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *userProfileImage;
+@property (weak, nonatomic) IBOutlet UILabel *userPointsLabel;
+@property (weak, nonatomic) IBOutlet UIView *day1View;
+@property (weak, nonatomic) IBOutlet UIView *day2View;
+@property (weak, nonatomic) IBOutlet UIView *day3View;
+@property (weak, nonatomic) IBOutlet UIView *day4View;
+@property (weak, nonatomic) IBOutlet UIView *day5View;
+@property (weak, nonatomic) IBOutlet UIView *userCheckInStateView;
 
 @end
 

@@ -9,6 +9,9 @@
 #import "ScheduleViewController.h"
 
 @interface ScheduleViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+- (IBAction)editSchedule:(id)sender;
+- (IBAction)addCourse:(id)sender;
 
 @end
 
@@ -35,4 +38,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)editSchedule:(id)sender {
+}
+
+- (IBAction)addCourse:(id)sender {
+}
 @end

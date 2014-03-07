@@ -9,8 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface DashboardViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIImageView *userImage;
-@property (weak, nonatomic) IBOutlet UILabel *userPointsLabel;
-@property (weak, nonatomic) IBOutlet UIView *checkInContainer;
 
 @end

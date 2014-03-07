@@ -9,6 +9,10 @@
 #import "WagerViewController.h"
 
 @interface WagerViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+- (IBAction)addWager:(id)sender;
+- (IBAction)editWagers:(id)sender;
 
 @end
 
@@ -35,4 +39,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)addWager:(id)sender {
+}
+
+- (IBAction)editWagers:(id)sender {
+}
 @end
