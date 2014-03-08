@@ -10,8 +10,7 @@
 
 @interface WagerCell : UITableViewCell
 
-@property (nonatomic, weak) IBOutlet UILabel
- *weekOfLabel;
+@property (nonatomic, weak) IBOutlet UILabel *weekOfLabel;
 @property (nonatomic, weak) IBOutlet UILabel *wagerAmountLabel;
 
 @end

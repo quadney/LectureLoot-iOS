@@ -7,8 +7,9 @@
 //
 
 #import "AddCourseViewController.h"
+#import "Course.h"
 
-@interface AddCourseViewController ()
+@interface AddCourseViewController () <UINavigationBarDelegate>
 
 @end
 

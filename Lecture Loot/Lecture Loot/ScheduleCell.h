@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ScheduleCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *CourseCodeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *SectionNumberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *CreditsLabel;
 
 @end
