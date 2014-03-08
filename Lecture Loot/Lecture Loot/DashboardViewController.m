@@ -7,6 +7,7 @@
 //
 
 #import "DashboardViewController.h"
+#import "Meeting.h"
 
 @interface DashboardViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *userProfileImage;
@@ -16,16 +17,24 @@
 @property (weak, nonatomic) IBOutlet UIView *day3View;
 @property (weak, nonatomic) IBOutlet UIView *day4View;
 @property (weak, nonatomic) IBOutlet UIView *day5View;
-@property (weak, nonatomic) IBOutlet UIView *userCheckInStateView;
 
-@property(weak, nonatomic) NSTimer *timer;
+@property (weak, nonatomic) IBOutlet UIView *checkInStateContainer;
+@property (weak, nonatomic) IBOutlet UIButton *checkInButton;
+@property (weak, nonatomic) IBOutlet UILabel *countdownLabel;
+@property (weak, nonatomic) IBOutlet UILabel *courseLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (weak, nonatomic) NSTimer *timer;
+@property (strong, nonatomic) Meeting *upcomingMeeting;
 
-enum  UserCheckInState : NSInteger{
-    UserCheckInStateNeedsToCheckIn = 0,
-    UserCheckInStateHasUpcomingMeeting = 1,
-    UserCheckInStateIsDoneForDay = 2
-};
-typedef NSInteger UserCheckInState;
+- (IBAction)checkIn:(id)sender;
+
+typedef enum  {
+    UserNeedsToCheckIn = 0,
+    UserHasUpcomingMeeting = 1,
+    UserIsDoneForDay = 2,
+    UserCheckedIn = 3
+} UserCheckInState;
+@property (nonatomic) UserCheckInState checkInState;
 
 @end
 
@@ -46,12 +55,109 @@ typedef NSInteger UserCheckInState;
 	// Do any additional setup after loading the view.
     
     //userCheckInStateView
+    self.checkInState = UserNeedsToCheckIn;
+    
+    
 }
 
-- (void)didReceiveMemoryWarning
+- (IBAction)checkIn:(id)sender {
+    
+    // get the user's location
+    // check with the database if it's right
+    // if check in was good, enable user checked in
+    // else display a message to the user that something went wrong
+
+    [self enableUserCheckedInView];
+}
+
+- (IBAction)toggleCheckInStateForTesting:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    switch (self.checkInState) {
+        case UserNeedsToCheckIn:
+            self.checkInState = UserHasUpcomingMeeting;
+            break;
+        case UserHasUpcomingMeeting:
+            self.checkInState = UserIsDoneForDay;
+            break;
+        case UserIsDoneForDay:
+            self.checkInState = UserCheckedIn;
+            break;
+        case UserCheckedIn:
+            self.checkInState = UserNeedsToCheckIn;
+            break;
+        default:
+            break;
+    }
+    [self updateUI];
+}
+
+- (void)updateUI
+{
+    switch (self.checkInState) {
+        case UserNeedsToCheckIn:
+            [self enableNeedsToCheckInView];
+            break;
+        case UserCheckedIn:
+            [self enableUserCheckedInView];
+            break;
+        case UserHasUpcomingMeeting:
+            [self enableHasUpcomingMeetingView];
+            break;
+        case UserIsDoneForDay:
+            [self enableUserIsDoneForDayView];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)enableNeedsToCheckInView
+{
+    //background red and the countdown label is red bold
+    self.checkInStateContainer.backgroundColor = [[UIColor alloc] initWithRed:1.0
+                                                                        green:0.86
+                                                                         blue:0.9137
+                                                                        alpha:1.0];
+    [self.checkInButton setHidden:NO];
+    [self.countdownLabel setHidden:NO];
+    [self.countdownLabel setTextColor:[UIColor redColor]];
+    [self.countdownLabel setFont:[UIFont boldSystemFontOfSize:44]];
+    
+    [self.courseLabel setHidden:NO];
+    [self.locationLabel setHidden:NO];
+}
+
+- (void)enableHasUpcomingMeetingView
+{
+    self.checkInStateContainer.backgroundColor = [UIColor clearColor];
+    [self.checkInButton setHidden:YES];
+    [self.countdownLabel setHidden:NO];
+    [self.countdownLabel setTextColor:[UIColor blackColor]];
+    [self.countdownLabel setFont:[UIFont systemFontOfSize:44]];
+    
+    [self.courseLabel setHidden:NO];
+    [self.locationLabel setHidden:NO];
+}
+
+- (void)enableUserIsDoneForDayView
+{
+    self.checkInStateContainer.backgroundColor = [UIColor clearColor];
+    [self.checkInButton setHidden:YES];
+    [self.countdownLabel setHidden:YES];
+    [self.courseLabel setHidden:YES];
+    [self.locationLabel setHidden:YES];
+}
+
+- (void)enableUserCheckedInView
+{
+    self.checkInStateContainer.backgroundColor = [[UIColor alloc] initWithRed:0.5294
+                                                                        green:0.894
+                                                                         blue:0.5843
+                                                                        alpha:1.0];
+    [self.checkInButton setHidden:YES];
+    [self.countdownLabel setHidden:YES];
+    [self.courseLabel setHidden:YES];
+    [self.locationLabel setHidden:YES];
 }
 
 @end

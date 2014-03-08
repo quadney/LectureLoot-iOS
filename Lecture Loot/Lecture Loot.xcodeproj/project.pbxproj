@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		C91409FA18CA23A100D603E5 /* WagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C91409F918CA23A100D603E5 /* WagerCell.m */; };
 		C91409FD18CA294D00D603E5 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C91409FC18CA294D00D603E5 /* Utilities.m */; };
-		C97B508E18C9ADBB0046D844 /* UserNeedsToCheckInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C97B508C18C9ADBB0046D844 /* UserNeedsToCheckInViewController.m */; };
-		C97B508F18C9ADBB0046D844 /* UserNeedsToCheckInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C97B508D18C9ADBB0046D844 /* UserNeedsToCheckInViewController.xib */; };
 		C985B64318C57088009BEE3B /* AddCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C985B64218C57088009BEE3B /* AddCourseViewController.m */; };
 		C985B64618C570FC009BEE3B /* AddWagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C985B64518C570FC009BEE3B /* AddWagerViewController.m */; };
 		C988120918C2E924001E184A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C988120818C2E924001E184A /* Foundation.framework */; };
@@ -20,7 +18,6 @@
 		C988121518C2E924001E184A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C988121418C2E924001E184A /* main.m */; };
 		C988121918C2E924001E184A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C988121818C2E924001E184A /* AppDelegate.m */; };
 		C988121C18C2E924001E184A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C988121A18C2E924001E184A /* Main.storyboard */; };
-		C988121F18C2E924001E184A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C988121E18C2E924001E184A /* ViewController.m */; };
 		C988122118C2E924001E184A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C988122018C2E924001E184A /* Images.xcassets */; };
 		C988122818C2E924001E184A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C988122718C2E924001E184A /* XCTest.framework */; };
 		C988122918C2E924001E184A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C988120818C2E924001E184A /* Foundation.framework */; };
@@ -53,9 +50,6 @@
 		C91409F918CA23A100D603E5 /* WagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WagerCell.m; sourceTree = "<group>"; };
 		C91409FB18CA294D00D603E5 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		C91409FC18CA294D00D603E5 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
-		C97B508B18C9ADBB0046D844 /* UserNeedsToCheckInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserNeedsToCheckInViewController.h; sourceTree = "<group>"; };
-		C97B508C18C9ADBB0046D844 /* UserNeedsToCheckInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserNeedsToCheckInViewController.m; sourceTree = "<group>"; };
-		C97B508D18C9ADBB0046D844 /* UserNeedsToCheckInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserNeedsToCheckInViewController.xib; sourceTree = "<group>"; };
 		C985B64118C57088009BEE3B /* AddCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCourseViewController.h; sourceTree = "<group>"; };
 		C985B64218C57088009BEE3B /* AddCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCourseViewController.m; sourceTree = "<group>"; };
 		C985B64418C570FC009BEE3B /* AddWagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddWagerViewController.h; sourceTree = "<group>"; };
@@ -72,8 +66,6 @@
 		C988121718C2E924001E184A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C988121818C2E924001E184A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C988121B18C2E924001E184A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		C988121D18C2E924001E184A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		C988121E18C2E924001E184A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		C988122018C2E924001E184A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C988122618C2E924001E184A /* Lecture LootTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lecture LootTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C988122718C2E924001E184A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -149,16 +141,6 @@
 			name = UIs;
 			sourceTree = "<group>";
 		};
-		C97B508718C9ACD90046D844 /* CheckInViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				C97B508B18C9ADBB0046D844 /* UserNeedsToCheckInViewController.h */,
-				C97B508C18C9ADBB0046D844 /* UserNeedsToCheckInViewController.m */,
-				C97B508D18C9ADBB0046D844 /* UserNeedsToCheckInViewController.xib */,
-			);
-			name = CheckInViewControllers;
-			sourceTree = "<group>";
-		};
 		C98811FC18C2E923001E184A = {
 			isa = PBXGroup;
 			children = (
@@ -199,8 +181,6 @@
 				C988123E18C2E94A001E184A /* View Controllers */,
 				C988121718C2E924001E184A /* AppDelegate.h */,
 				C988121818C2E924001E184A /* AppDelegate.m */,
-				C988121D18C2E924001E184A /* ViewController.h */,
-				C988121E18C2E924001E184A /* ViewController.m */,
 				C988122018C2E924001E184A /* Images.xcassets */,
 				C988120F18C2E924001E184A /* Supporting Files */,
 				C91409FB18CA294D00D603E5 /* Utilities.h */,
@@ -241,7 +221,6 @@
 		C988123E18C2E94A001E184A /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C97B508718C9ACD90046D844 /* CheckInViewControllers */,
 				C988124018C2EBD5001E184A /* DashboardViewController.h */,
 				C988124118C2EBD5001E184A /* DashboardViewController.m */,
 				C988124318C2EBE8001E184A /* WagerViewController.h */,
@@ -349,7 +328,6 @@
 			files = (
 				C988122118C2E924001E184A /* Images.xcassets in Resources */,
 				C988121318C2E924001E184A /* InfoPlist.strings in Resources */,
-				C97B508F18C9ADBB0046D844 /* UserNeedsToCheckInViewController.xib in Resources */,
 				C9FEFD1C18CAEE450018DBDA /* AddWagerViewController.xib in Resources */,
 				C9FEFD1718CA69970018DBDA /* login.storyboard in Resources */,
 				C988121C18C2E924001E184A /* Main.storyboard in Resources */,
@@ -371,11 +349,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C988121F18C2E924001E184A /* ViewController.m in Sources */,
 				C985B64318C57088009BEE3B /* AddCourseViewController.m in Sources */,
 				C988124818C2EBF4001E184A /* ScheduleViewController.m in Sources */,
 				C988121918C2E924001E184A /* AppDelegate.m in Sources */,
-				C97B508E18C9ADBB0046D844 /* UserNeedsToCheckInViewController.m in Sources */,
 				C988125118C2EC1B001E184A /* Wager.m in Sources */,
 				C988124B18C2EC08001E184A /* Meeting.m in Sources */,
 				C91409FA18CA23A100D603E5 /* WagerCell.m in Sources */,
