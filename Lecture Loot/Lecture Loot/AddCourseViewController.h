@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class Course;
+
 @interface AddCourseViewController : UIViewController
+
+@property (strong, nonatomic) Course *course;
+@property (strong, nonatomic) void (^dismissBlock)(void);
+
+- (instancetype)initForNewItem:(BOOL)isNew;
 
 @end
