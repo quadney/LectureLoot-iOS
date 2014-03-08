@@ -44,6 +44,8 @@ typedef NSInteger UserCheckInState;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    //userCheckInStateView
 }
 
 - (void)didReceiveMemoryWarning

@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class Wager;
+
 @interface AddWagerViewController : UIViewController
+
+@property (nonatomic, strong) Wager *wager;
+@property (nonatomic, copy) void (^dismissBlock)(void);
+
+- (instancetype)initForNewItem:(BOOL)isNew;
 
 @end

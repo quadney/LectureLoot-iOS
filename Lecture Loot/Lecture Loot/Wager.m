@@ -8,6 +8,13 @@
 
 #import "Wager.h"
 
+@interface Wager()
+
+@property (nonatomic) NSInteger *totalWagerAmount;
+
+@end
+
 @implementation Wager
+
 
 @end

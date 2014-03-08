@@ -1,28 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="UIZ-JF-klH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eXQ-wp-SKJ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="6Ry-C3-hZY">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="UIZ-JF-klH" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ohu-N1-0cI">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="eXQ-wp-SKJ" kind="relationship" relationship="rootViewController" id="Fyi-Kn-ZT2"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rLG-gX-wnb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5" y="297"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="tni-IH-mki">
             <objects>
-                <tabBarController definesPresentationContext="YES" id="eXQ-wp-SKJ" customClass="TabBarController" sceneMemberID="viewController">
+                <tabBarController definesPresentationContext="YES" id="eXQ-wp-SKJ" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="ed2-CD-syu"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Fcr-WX-U4v">
@@ -31,14 +16,46 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="E04-oD-qBX" kind="relationship" relationship="viewControllers" id="AAI-bt-Biv"/>
-                        <segue destination="eWj-Ze-gRA" kind="relationship" relationship="viewControllers" id="o7I-ec-q1n"/>
-                        <segue destination="m6x-OE-7Cg" kind="relationship" relationship="viewControllers" id="ZCF-KD-MOx"/>
+                        <segue destination="QtP-Bx-xeX" kind="relationship" relationship="viewControllers" id="C05-jt-SJO"/>
+                        <segue destination="GPg-9P-wZz" kind="relationship" relationship="viewControllers" id="GRo-it-REx"/>
+                        <segue destination="eHm-7U-p5n" kind="relationship" relationship="viewControllers" id="gzR-dT-b13"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FiM-Tw-uYt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="528" y="297"/>
+            <point key="canvasLocation" x="180" y="297"/>
+        </scene>
+        <!--Navigation Controller - Dashboard-->
+        <scene sceneID="vBT-Em-rdR">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="GPg-9P-wZz" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Dashboard" id="d6V-hP-L5d"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qo9-YH-nY1">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="eWj-Ze-gRA" kind="relationship" relationship="rootViewController" id="J3T-kt-E6g"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kqC-sh-lZV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="815" y="297"/>
+        </scene>
+        <!--Navigation Controller - Schedule-->
+        <scene sceneID="8rW-Wn-Dc3">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="QtP-Bx-xeX" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Schedule" id="83I-fg-wvs"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="s4Y-w7-gxk">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="E04-oD-qBX" kind="relationship" relationship="rootViewController" id="Ldy-o6-akr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l1i-Hr-bn3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="815" y="-411"/>
         </scene>
         <!--Schedule View Controller - Schedule-->
         <scene sceneID="LOk-Dd-Lnh">
@@ -53,11 +70,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="SHp-KL-P1x">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Oqz-zZ-Uv6">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="scheduleCell" id="Oqz-zZ-Uv6" customClass="ScheduleCell">
                                         <rect key="frame" x="0.0" y="86" width="320" height="75"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Oqz-zZ-Uv6" id="vKU-yu-FYd">
@@ -75,14 +92,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Schedule" id="fk4-0v-5Aa"/>
                     <navigationItem key="navigationItem" title="Schedule" id="aFe-2T-f2P">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="7WI-AD-KLF">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="HSZ-Qd-yd0">
                             <connections>
-                                <action selector="editSchedule:" destination="E04-oD-qBX" id="ZgT-tw-IRk"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ND8-AA-bRR">
-                            <connections>
-                                <action selector="addCourse:" destination="E04-oD-qBX" id="Qf3-cN-Fw2"/>
+                                <action selector="addCourse:" destination="E04-oD-qBX" id="IME-4g-DOD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -201,9 +213,26 @@
             </objects>
             <point key="canvasLocation" x="1250" y="297"/>
         </scene>
+        <!--Navigation Controller - Wagers-->
+        <scene sceneID="cpI-WY-86W">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="eHm-7U-p5n" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Wagers" id="4R0-tR-z3P"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="w0r-uN-2FG">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="m6x-OE-7Cg" kind="relationship" relationship="rootViewController" id="Ce7-kb-vqK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HKj-Zc-a9b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="815" y="1004"/>
+        </scene>
         <!--Wager View Controller - Wagers-->
         <scene sceneID="Me9-0K-R3s">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R0F-0G-vWq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="m6x-OE-7Cg" customClass="WagerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3by-Ep-gth"/>
@@ -214,26 +243,26 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="QLr-1Q-r0g">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="wagerCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Lya-hO-Lyv" detailTextLabel="2fS-p9-c8F" rowHeight="60" style="IBUITableViewCellStyleValue1" id="eLQ-te-JeR" customClass="WagerCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="WagerTableViewCell" textLabel="Lya-hO-Lyv" detailTextLabel="2fS-p9-c8F" rowHeight="60" style="IBUITableViewCellStyleValue1" id="eLQ-te-JeR" customClass="WagerCell">
                                         <rect key="frame" x="0.0" y="86" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eLQ-te-JeR" id="wvd-8p-dGv">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Week" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lya-hO-Lyv">
-                                                    <rect key="frame" x="15" y="19" width="43" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Week Of" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lya-hO-Lyv">
+                                                    <rect key="frame" x="15" y="19" width="66" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Wager amount" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2fS-p9-c8F">
-                                                    <rect key="frame" x="173" y="19" width="112" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Wager amount per class" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2fS-p9-c8F">
+                                                    <rect key="frame" x="98" y="19" width="187" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
@@ -244,7 +273,6 @@
                                         <connections>
                                             <outlet property="wagerAmountLabel" destination="2fS-p9-c8F" id="biS-wL-en5"/>
                                             <outlet property="weekOfLabel" destination="Lya-hO-Lyv" id="Byl-pq-OAb"/>
-                                            <segue destination="sny-1j-2oL" kind="push" id="DZo-pA-Ra3"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -254,65 +282,18 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Wagers" id="5ew-jZ-qEF"/>
                     <navigationItem key="navigationItem" title="Wagers" id="JVI-Hz-B9x">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="KtZ-7h-roO">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="oSx-ip-GGf">
                             <connections>
-                                <action selector="editWagers:" destination="m6x-OE-7Cg" id="MU9-XT-Odz"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="DAJ-Jg-mUM">
-                            <connections>
-                                <action selector="addWager:" destination="m6x-OE-7Cg" id="i1a-ao-CeE"/>
+                                <action selector="addWager:" destination="m6x-OE-7Cg" id="Fut-yH-2ae"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="QLr-1Q-r0g" id="hBP-qJ-Pf6"/>
+                        <outlet property="tableView" destination="QLr-1Q-r0g" id="dka-Gt-FZ7"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="R0F-0G-vWq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1250" y="1004"/>
-        </scene>
-        <!--Add Wager View Controller - View/Edit Wager-->
-        <scene sceneID="FS6-uK-KYF">
-            <objects>
-                <viewController id="sny-1j-2oL" customClass="AddWagerViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="9VS-BC-ASh"/>
-                        <viewControllerLayoutGuide type="bottom" id="Bbk-eb-jpn"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="LuG-lT-5Sl">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="cHp-SQ-j8X">
-                                <rect key="frame" x="113" y="335" width="94" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </stepper>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Week Of:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CEA-hE-cEH">
-                                <rect key="frame" x="20" y="126" width="70" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hwh-oD-mNq">
-                                <rect key="frame" x="113" y="287" width="94" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="View/Edit Wager" id="9Dy-rx-tfM"/>
-                    <connections>
-                        <outlet property="stepper" destination="cHp-SQ-j8X" id="pEc-3Y-dRw"/>
-                        <outlet property="wagerAmountLabel" destination="Hwh-oD-mNq" id="brI-0k-zcr"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lhZ-8Z-fup" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1791" y="1004"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="S1Q-Mb-RSr">
@@ -322,7 +303,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s0L-Fr-5eR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1772" y="611"/>
+            <point key="canvasLocation" x="1811" y="511"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
