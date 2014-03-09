@@ -23,10 +23,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *countdownLabel;
 @property (weak, nonatomic) IBOutlet UILabel *courseLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
-@property (weak, nonatomic) NSTimer *timer;
+
 @property (strong, nonatomic) Meeting *upcomingMeeting;
+@property (weak, nonatomic) CLLocation *currentLocation;
+
+@property (weak, nonatomic) IBOutlet UIButton *getLocationButton;
 
 - (IBAction)checkIn:(id)sender;
+- (IBAction)getLocation:(id)sender;
 
 typedef enum  {
     UserNeedsToCheckIn = 0,
@@ -44,6 +48,7 @@ typedef enum  {
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        NSLog(@"Hello, init");
         // Custom initialization
     }
     return self;
@@ -57,7 +62,11 @@ typedef enum  {
     //userCheckInStateView
     self.checkInState = UserNeedsToCheckIn;
     
-    
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+
 }
 
 - (IBAction)checkIn:(id)sender {
@@ -66,8 +75,20 @@ typedef enum  {
     // check with the database if it's right
     // if check in was good, enable user checked in
     // else display a message to the user that something went wrong
+    BOOL checkedIn = false;
+    if (checkedIn) {
+        [self enableUserCheckedInView];
+    }
+    else
+        [self displayCheckInUnsuccessfulAlert:NO];
+}
 
-    [self enableUserCheckedInView];
+- (IBAction)getLocation:(id)sender {
+    self.getLocationButton.titleLabel.text = @"getting location";
+    [self.locationManager startUpdatingLocation];
+    self.currentLocation = [self.locationManager location];
+    [self.getLocationButton setTitle:[NSString stringWithFormat:@"%f , %f",self.currentLocation.coordinate.latitude, self.currentLocation.coordinate.longitude] forState:UIControlStateNormal];
+    [self.locationManager stopUpdatingLocation];
 }
 
 - (IBAction)toggleCheckInStateForTesting:(id)sender
@@ -158,6 +179,21 @@ typedef enum  {
     [self.countdownLabel setHidden:YES];
     [self.courseLabel setHidden:YES];
     [self.locationLabel setHidden:YES];
+}
+
+- (void)displayCheckInUnsuccessfulAlert:(BOOL)successful
+{
+    if (!successful) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Check In Unsuccessful"
+                                                        message:@"Something went wrong"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Oh No :("
+                                              otherButtonTitles:nil, nil];
+        [alert show];
+        
+    } else {
+        NSLog(@"Failure :( ");
+    }
 }
 
 @end

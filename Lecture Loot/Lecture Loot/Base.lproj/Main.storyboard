@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eXQ-wp-SKJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eXQ-wp-SKJ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -242,13 +242,14 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aih-N6-SeY">
-                                <rect key="frame" x="82" y="470" width="156" height="30"/>
+                                <rect key="frame" x="20" y="446" width="280" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Toggle Check in states">
+                                <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <state key="normal" title="Location">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="toggleCheckInStateForTesting:" destination="eWj-Ze-gRA" eventType="touchUpInside" id="Gvf-kV-wbj"/>
+                                    <action selector="getLocation:" destination="eWj-Ze-gRA" eventType="touchUpInside" id="njy-eK-yt4"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -266,6 +267,7 @@
                         <outlet property="day3View" destination="9i7-VI-Rbd" id="OKI-d5-mOe"/>
                         <outlet property="day4View" destination="kbM-qH-fMn" id="Q6J-Fe-Vgl"/>
                         <outlet property="day5View" destination="qqY-dV-DE4" id="kmP-Mz-dRV"/>
+                        <outlet property="getLocationButton" destination="aih-N6-SeY" id="kYU-TT-P5v"/>
                         <outlet property="locationLabel" destination="XVh-Z4-pTM" id="XI1-hG-9Ee"/>
                         <outlet property="userPointsLabel" destination="Pyp-cq-y3d" id="yhb-uK-jV6"/>
                         <outlet property="userProfileImage" destination="upq-6t-kYz" id="MA5-Mb-SKt"/>

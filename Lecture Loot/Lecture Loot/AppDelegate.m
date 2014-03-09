@@ -18,6 +18,8 @@
     
     self.window.rootViewController = [storyboard instantiateInitialViewController];
     
+    [self.window.rootViewController.tabBarController setSelectedIndex:1];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 
