@@ -13,6 +13,7 @@
 @property int meetingId;
 @property int courseId;
 @property (strong, nonatomic) NSString *buildingCode;
+@property (strong, nonatomic) NSString *roomNumber;
 @property (strong, nonatomic) NSString *meetingDay;
 @property (strong, nonatomic) NSString *period;
 @property long time;

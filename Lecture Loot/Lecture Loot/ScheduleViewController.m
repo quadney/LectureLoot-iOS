@@ -8,8 +8,10 @@
 
 #import "ScheduleViewController.h"
 #import "Course.h"
+#import "Meeting.h"
 #import "ScheduleCell.h"
 #import "AddCourseViewController.h"
+#import "CourseDetailsViewController.h"
 
 @interface ScheduleViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -21,14 +23,14 @@
 
 @implementation ScheduleViewController
 
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//{
-//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//    if (self) {
-//        // Custom initialization
-//    }
-//    return self;
-//}
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -47,6 +49,16 @@
         [newCourse setInstructor:@"Bermudez, Manuel E."];
         [newCourse setCourseTitle:@"Intro Software Engineering"];
         [newCourse setSectionNumber:@"5842"];
+        
+        for (int j = 1; j < 4; j++){
+            Meeting *newMeeting = [[Meeting alloc] init];
+            [newMeeting setMeetingId:j];
+            [newMeeting setBuildingCode:@"LIT"];
+            [newMeeting setRoomNumber:@"109"];
+            [newMeeting setMeetingDay:@"M"];
+            
+            [newCourse.meetings addObject:newMeeting];
+        }
         
         [self.courses addObject:newCourse];
     }
@@ -74,9 +86,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    AddCourseViewController *newCourseVC = [[AddCourseViewController alloc] init];
+    CourseDetailsViewController *newCourseVC = [[CourseDetailsViewController alloc] init];
     Course *selectedCourse = self.courses[indexPath.row];
-//    [newCourseVC ]
+    [newCourseVC setCourse:selectedCourse];
     
     [self.navigationController pushViewController:newCourseVC animated:YES];
     

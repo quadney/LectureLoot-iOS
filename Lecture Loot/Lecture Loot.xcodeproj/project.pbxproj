@@ -36,6 +36,7 @@
 		C9FEFD1718CA69970018DBDA /* login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9FEFD1618CA69970018DBDA /* login.storyboard */; };
 		C9FEFD1A18CA6B5A0018DBDA /* ScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FEFD1918CA6B5A0018DBDA /* ScheduleCell.m */; };
 		C9FEFD1C18CAEE450018DBDA /* AddWagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9FEFD1B18CAEE450018DBDA /* AddWagerViewController.xib */; };
+		FF390DB818CD0C3500FE8C44 /* CourseDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF390DB718CD0C3500FE8C44 /* CourseDetailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,8 @@
 		C9FEFD1818CA6B5A0018DBDA /* ScheduleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleCell.h; sourceTree = "<group>"; };
 		C9FEFD1918CA6B5A0018DBDA /* ScheduleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleCell.m; sourceTree = "<group>"; };
 		C9FEFD1B18CAEE450018DBDA /* AddWagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddWagerViewController.xib; sourceTree = "<group>"; };
+		FF390DB618CD0C3500FE8C44 /* CourseDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailsViewController.h; sourceTree = "<group>"; };
+		FF390DB718CD0C3500FE8C44 /* CourseDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +245,8 @@
 			isa = PBXGroup;
 			children = (
 				C97B508718C9ACD90046D844 /* CheckInViewControllers */,
+				FF390DB618CD0C3500FE8C44 /* CourseDetailsViewController.h */,
+				FF390DB718CD0C3500FE8C44 /* CourseDetailsViewController.m */,
 				C988124018C2EBD5001E184A /* DashboardViewController.h */,
 				C988124118C2EBD5001E184A /* DashboardViewController.m */,
 				C988124318C2EBE8001E184A /* WagerViewController.h */,
@@ -385,6 +390,7 @@
 				C988121518C2E924001E184A /* main.m in Sources */,
 				C988124218C2EBD5001E184A /* DashboardViewController.m in Sources */,
 				C985B64618C570FC009BEE3B /* AddWagerViewController.m in Sources */,
+				FF390DB818CD0C3500FE8C44 /* CourseDetailsViewController.m in Sources */,
 				C988124518C2EBE8001E184A /* WagerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
