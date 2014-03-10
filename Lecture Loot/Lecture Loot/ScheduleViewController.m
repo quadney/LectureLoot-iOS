@@ -23,14 +23,7 @@
 
 @implementation ScheduleViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+
 
 - (void)viewDidLoad
 {
@@ -41,30 +34,106 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.courses = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 3; i++) {
-        Course *newCourse = [[Course alloc] init];
-        [newCourse setCourseCode:@"CEN3031"];
-        [newCourse setCourseId:0];
-        [newCourse setCredits:@"3"];
-        [newCourse setInstructor:@"Bermudez, Manuel E."];
-        [newCourse setCourseTitle:@"Intro Software Engineering"];
-        [newCourse setSectionNumber:@"5842"];
-        
-        for (int j = 1; j < 4; j++){
-            Meeting *newMeeting = [[Meeting alloc] init];
-            [newMeeting setMeetingId:j];
-            [newMeeting setBuildingCode:@"LIT"];
-            [newMeeting setRoomNumber:@"109"];
-            [newMeeting setMeetingDay:@"M"];
-            
-            [newCourse.meetings addObject:newMeeting];
-        }
-        
-        [self.courses addObject:newCourse];
-    }
     
+    
+        Course *newCourse1 = [[Course alloc] init];
+        [newCourse1 setCourseCode:@"CEN3031"];
+        [newCourse1 setCourseId:0];
+        [newCourse1 setCredits:@"3"];
+        [newCourse1 setInstructor:@"Bermudez, Manuel E."];
+        [newCourse1 setCourseTitle:@"Intro Software Engineering"];
+        [newCourse1 setSectionNumber:@"5842"];
+        
+        newCourse1.meetings = [[NSMutableArray alloc] init];
+        
+        Meeting *newMeeting1 = [[Meeting alloc] init];
+        [newMeeting1 setMeetingId:0];
+        [newMeeting1 setBuildingCode:@"LIT"];
+        [newMeeting1 setRoomNumber:@"109"];
+        [newMeeting1 setMeetingDay:@"M"];
+        [newMeeting1 setPeriod:@"6"];
+        
+        [newCourse1.meetings addObject:newMeeting1];
+        
+        Meeting *newMeeting2 = [[Meeting alloc] init];
+        [newMeeting2 setMeetingId:1];
+        [newMeeting2 setBuildingCode:@"LIT"];
+        [newMeeting2 setRoomNumber:@"109"];
+        [newMeeting2 setMeetingDay:@"W"];
+        [newMeeting2 setPeriod:@"6"];
+        
+        [newCourse1.meetings addObject:newMeeting2];
+        
+        Meeting *newMeeting3 = [[Meeting alloc] init];
+        [newMeeting3 setMeetingId:2];
+        [newMeeting3 setBuildingCode:@"LIT"];
+        [newMeeting3 setRoomNumber:@"109"];
+        [newMeeting3 setMeetingDay:@"F"];
+        [newMeeting3 setPeriod:@"6"];
+        
+        [newCourse1.meetings addObject:newMeeting3];
+        
+        Meeting *newMeeting4 = [[Meeting alloc] init];
+        [newMeeting4 setMeetingId:3];
+        [newMeeting4 setBuildingCode:@"CSE"];
+        [newMeeting4 setRoomNumber:@"E115"];
+        [newMeeting4 setMeetingDay:@"W"];
+        [newMeeting4 setPeriod:@"7"];
+        
+        [newCourse1.meetings addObject:newMeeting4];
+        
+        
+        [self.courses addObject:newCourse1];
+    
+    
+    
+    Course *newCourse2 = [[Course alloc] init];
+    [newCourse2 setCourseCode:@"MAS4203"];
+    [newCourse2 setCourseId:1];
+    [newCourse2 setCredits:@"3"];
+    [newCourse2 setInstructor:@"Shen, Li"];
+    [newCourse2 setCourseTitle:@"Intro Number Theory"];
+    [newCourse2 setSectionNumber:@"8430"];
+    
+    newCourse2.meetings = [[NSMutableArray alloc] init];
+    
+    Meeting *numTheoryMeeting1 = [[Meeting alloc] init];
+    [numTheoryMeeting1 setMeetingId:0];
+    [numTheoryMeeting1 setBuildingCode:@"LIT"];
+    [numTheoryMeeting1 setRoomNumber:@"219"];
+    [numTheoryMeeting1 setMeetingDay:@"M"];
+    [numTheoryMeeting1 setPeriod:@"4"];
+    
+    [newCourse2.meetings addObject:numTheoryMeeting1];
+    
+    Meeting *numTheoryMeeting2 = [[Meeting alloc] init];
+    [numTheoryMeeting2 setMeetingId:1];
+    [numTheoryMeeting2 setBuildingCode:@"LIT"];
+    [numTheoryMeeting2 setRoomNumber:@"219"];
+    [numTheoryMeeting2 setMeetingDay:@"W"];
+    [numTheoryMeeting2 setPeriod:@"4"];
+    
+    [newCourse2.meetings addObject:numTheoryMeeting2];
+    
+    Meeting *numTheoryMeeting3 = [[Meeting alloc] init];
+    [numTheoryMeeting3 setMeetingId:2];
+    [numTheoryMeeting3 setBuildingCode:@"LIT"];
+    [numTheoryMeeting3 setRoomNumber:@"219"];
+    [numTheoryMeeting3 setMeetingDay:@"F"];
+    [numTheoryMeeting3 setPeriod:@"4"];
+    
+    [newCourse2.meetings addObject:numTheoryMeeting3];
+    
+    [self.courses addObject:newCourse2];
+
     [self.tableView reloadData];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableview numberOfRowsInSection:(NSInteger)section
@@ -77,27 +146,34 @@
     ScheduleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"courseCell" forIndexPath:indexPath];
     
     Course *currentCourse = [self.courses objectAtIndex:indexPath.row];
-    cell.CourseCodeLabel.text = [currentCourse courseCode];
-    cell.SectionNumberLabel.text = [currentCourse sectionNumber];
-    cell.CreditsLabel.text = [currentCourse credits];
+    cell.CourseCodeLabel.text = [NSString stringWithFormat:@"%@ (Section %@)",currentCourse.courseCode,currentCourse.sectionNumber];
+//    cell.SectionNumberLabel.text = [NSString stringWithFormat:@"Section: %@",currentCourse.sectionNumber];
+    cell.CreditsLabel.text = [NSString stringWithFormat:@"Credits: %@",currentCourse.credits];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CourseDetailsViewController *newCourseVC = [[CourseDetailsViewController alloc] init];
-    Course *selectedCourse = self.courses[indexPath.row];
-    [newCourseVC setCourse:selectedCourse];
-    
-    [self.navigationController pushViewController:newCourseVC animated:YES];
+    //    CourseDetailsViewController *newCourseVC = [[CourseDetailsViewController alloc] initWithNibName:nil bundle:nil];
+    //    Course *selectedCourse = self.courses[indexPath.row];
+    //    [[newCourseVC setCourse:selectedCourse];
+    //    [self.navigationController pushViewController:newCourseVC animated:YES];
     
 }
 
-- (void)didReceiveMemoryWarning
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    if ([segue.identifier isEqualToString:@"courseDetailsSegue"]) {
+        //        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        //        CourseDetailsViewController *newCourseDetailsViewController = (CourseDetailsViewController *)navController.topViewController;
+        //        NSIndexPath *index = [self.tableView indexPathForSelectedRow];
+        //        newCourseDetailsViewController.course = self.courses[index.row];
+        
+        CourseDetailsViewController *ctrl = (CourseDetailsViewController *)segue.destinationViewController;
+        ctrl.course = self.courses[[self.tableView indexPathForSelectedRow].row];
+    }
 }
 
 - (IBAction)addCourse:(id)sender {
