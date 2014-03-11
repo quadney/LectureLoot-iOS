@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LLParentViewController.h"
 
 @class Wager;
 
-@interface AddWagerViewController : UIViewController
+@interface AddWagerViewController : LLParentViewController
 
 @property (nonatomic, strong) Wager *wager;
 @property (nonatomic, copy) void (^dismissBlock)(void);

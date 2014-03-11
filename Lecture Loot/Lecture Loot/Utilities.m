@@ -16,13 +16,6 @@
     
 }
 
-+ (id<User>)currentUser
-{
-    //get the current user from somewhere. Need to do more research
-    
-    return nil;
-}
-
 #pragma mark - Singleton
 
 + (instancetype)sharedUtilities
@@ -38,5 +31,22 @@
 }
 
 #pragma mark - API definition goes here
+
+// getting user from the database and setting it as the currentUser
++ (void)setUserInformationWithUsername:(NSString *)username
+                              password:(NSString *)password
+{
+    //after get all the information from the datbase
+    //create the current user
+}
+
+//creating a new user
++ (void)createAndSetUserInformationWithFirstName:(NSString *)firstName
+                                        lastName:(NSString *)lastName
+                                        username:(NSString *)username
+                                        password:(NSString *)password
+{
+    
+}
 
 @end

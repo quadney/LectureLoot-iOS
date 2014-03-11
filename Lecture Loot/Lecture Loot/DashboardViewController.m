@@ -26,11 +26,15 @@
 
 @property (strong, nonatomic) Meeting *upcomingMeeting;
 @property (weak, nonatomic) CLLocation *currentLocation;
+@property (strong, nonatomic) NSTimer *timer;
+@property NSTimeInterval timeLeft;
 
 @property (weak, nonatomic) IBOutlet UIButton *getLocationButton;
 
 - (IBAction)checkIn:(id)sender;
 - (IBAction)getLocation:(id)sender;
+
+@property (strong, nonatomic) NSDate *timeUntilNextMeeting;
 
 typedef enum  {
     UserNeedsToCheckIn = 0,
@@ -57,15 +61,21 @@ typedef enum  {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     
-    //userCheckInStateView
-    self.checkInState = UserNeedsToCheckIn;
+    self.timeLeft = 30*60;
+    self.timeUntilNextMeeting = [[NSDate alloc] initWithTimeIntervalSinceNow:self.timeLeft];
+	
+    // Do any additional setup after loading the view.
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
+    //userCheckInStateView
+    self.checkInState = UserHasUpcomingMeeting;
+    [self updateTimerLabel:nil];
+    [self updateUI];
 
 }
 
@@ -75,12 +85,15 @@ typedef enum  {
     // check with the database if it's right
     // if check in was good, enable user checked in
     // else display a message to the user that something went wrong
-    BOOL checkedIn = false;
+    BOOL checkedIn = true;
     if (checkedIn) {
         [self enableUserCheckedInView];
+        //stop the timer
+        [self killTimer];
     }
-    else
+    else {
         [self displayCheckInUnsuccessfulAlert:NO];
+    }
 }
 
 - (IBAction)getLocation:(id)sender {
@@ -117,12 +130,25 @@ typedef enum  {
     switch (self.checkInState) {
         case UserNeedsToCheckIn:
             [self enableNeedsToCheckInView];
+            //initialize timer for the time left
+            self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                          target:self
+                                                        selector:@selector(updateTimerLabel:)
+                                                        userInfo:nil
+                                                         repeats:YES];
             break;
         case UserCheckedIn:
             [self enableUserCheckedInView];
+            //make sure timer has stopped
             break;
         case UserHasUpcomingMeeting:
             [self enableHasUpcomingMeetingView];
+            //start the timer for the next meeting
+            self.timer = [NSTimer scheduledTimerWithTimeInterval:60.0
+                                                          target:self
+                                                        selector:@selector(updateTimerLabel:)
+                                                        userInfo:nil
+                                                         repeats:YES];
             break;
         case UserIsDoneForDay:
             [self enableUserIsDoneForDayView];
@@ -194,6 +220,39 @@ typedef enum  {
     } else {
         NSLog(@"Failure :( ");
     }
+}
+
+- (NSTimeInterval)calculateRemainingTime:(NSDate *)futureTime
+{
+    NSTimeInterval seconds = [futureTime timeIntervalSinceNow];
+    NSLog(@"Time Interval: %f", seconds);
+    return seconds;
+}
+
+- (void)updateTimerLabel:(id)sender
+{
+    NSTimeInterval secondsLeft = [self.timeUntilNextMeeting timeIntervalSinceNow];
+    NSTimeInterval minutesLeft = (int)secondsLeft / 60;
+    secondsLeft = (int)secondsLeft % 60;
+    
+    if(minutesLeft <= 15) {
+        //red background, need to update every second
+        //NSLog(@"Updating Timer %@", self.timeUntilNextMeeting.description);
+        self.countdownLabel.text = [NSString stringWithFormat:@"%i:%i", (int)minutesLeft, (int)secondsLeft];
+    }
+    else {
+        //not as important, update every minute
+        self.countdownLabel.text = [NSString stringWithFormat:@"%i mins", (int)minutesLeft];
+    }
+}
+
+- (void)killTimer{
+    NSLog(@"stopping timer...");
+	if(self.timer){
+		[self.timer invalidate];
+		self.timer = nil;
+        NSLog(@"timer stopped. ");
+	}
 }
 
 @end
