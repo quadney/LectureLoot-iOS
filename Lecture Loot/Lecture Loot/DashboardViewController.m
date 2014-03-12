@@ -32,7 +32,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *getLocationButton;
 
 - (IBAction)checkIn:(id)sender;
-- (IBAction)getLocation:(id)sender;
 
 @property (strong, nonatomic) NSDate *timeUntilNextMeeting;
 
@@ -88,6 +87,7 @@ typedef enum  {
     BOOL checkedIn = true;
     if (checkedIn) {
         [self enableUserCheckedInView];
+        [self getLocation];
         //stop the timer
         [self killTimer];
     }
@@ -96,11 +96,10 @@ typedef enum  {
     }
 }
 
-- (IBAction)getLocation:(id)sender {
-    self.getLocationButton.titleLabel.text = @"getting location";
+- (void)getLocation
+{
     [self.locationManager startUpdatingLocation];
     self.currentLocation = [self.locationManager location];
-    [self.getLocationButton setTitle:[NSString stringWithFormat:@"%f , %f",self.currentLocation.coordinate.latitude, self.currentLocation.coordinate.longitude] forState:UIControlStateNormal];
     [self.locationManager stopUpdatingLocation];
 }
 

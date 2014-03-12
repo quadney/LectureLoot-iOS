@@ -33,6 +33,7 @@
     self.tableView.dataSource = self;
     self.tableView.separatorStyle =  UITableViewCellSeparatorStyleNone;
     self.currentUser = [[Utilities sharedUtilities] currentUser];
+    NSLog(@"Current user: %@", self.currentUser);
     
     if (!self.dateFormatter) {
         self.dateFormatter = [[NSDateFormatter alloc] init];

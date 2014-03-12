@@ -15,29 +15,53 @@
 
 @implementation LLTabBarController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
-        // Custom initialization
+        NSLog(@"init Tab Controller");
+        // This is for developement only, until we get the login stuff completed
+        [[Utilities sharedUtilities] createAndSetUserInformationWithFirstName:@"FirstName"
+                                                                     lastName:@"LastName"
+                                                                     username:@"username"
+                                                                        email:@"someone@example.com"
+                                                                     password:@"password"];
+        [self setSelectedIndex:1];
     }
     return self;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super init];
+    if (self) {
+        NSLog(@"Init with nib tab bar controller");
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        NSLog(@"init with coder Tab Controller");
+        // This is for developement only, until we get the login stuff completed
+        [[Utilities sharedUtilities] createAndSetUserInformationWithFirstName:@"FirstName"
+                                                                     lastName:@"LastName"
+                                                                     username:@"username"
+                                                                        email:@"someone@example.com"
+                                                                     password:@"password"];
+        [self setSelectedIndex:1];
+    }
+    return self;
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    NSLog(@"View did load Nav controller");
     
-    if (![[Utilities sharedUtilities] currentUser]) {
-        
-        // TODO
-//        UINavigationController *signUpNav = [[UIStoryboard storyboardWithName:@"login" bundle:nil] instantiateInitialViewController];
-//        
-//        [self presentViewController:signUpNav animated:YES completion:nil];
-    }
-    else {
-        [self setSelectedIndex:1];
-    }
 }
 
 @end
