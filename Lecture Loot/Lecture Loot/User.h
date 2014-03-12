@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+@class Wager;
+@class Course;
+
 @interface User : NSObject
 
 @property (nonatomic, copy) NSString *firstName;
@@ -18,6 +21,8 @@
 @property (nonatomic, strong) NSURL *profileImageUrl;
 @property (nonatomic, strong) UIImage *profileImage;
 @property (nonatomic) int points;
+@property (nonatomic) NSMutableArray *courses;
+@property (nonatomic) NSMutableArray *wagers;
 
 + (instancetype)currentUser;
 
@@ -27,5 +32,15 @@
                            emailAddress:(NSString *)email
                                password:(NSString *)password
                                  points:(int) points;
+
+- (Wager *)createWager;
+- (void)removeWager:(Wager *)wagerToRemove;
+- (NSArray *)allWagers;
+- (Wager *)createWagerWithAmount:(int)wagerAmount startingDate:(NSDate *)startingDate;
+
+- (Course *)createCourse;
+- (NSArray *)allCourses;
+- (void)removeCourse:(Course *)courseToRemove;
+
 
 @end

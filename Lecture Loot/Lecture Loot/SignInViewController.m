@@ -7,10 +7,12 @@
 //
 
 #import "SignInViewController.h"
+#import "Utilities.h"
 
 @interface SignInViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *userEmailField;
 @property (weak, nonatomic) IBOutlet UITextField *userPasswordField;
+- (IBAction)logInUser:(id)sender;
 
 @end
 
@@ -31,10 +33,21 @@
 	// Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)logInUser:(id)sender {
+    // validate that there's stuff in the text fields
+    if (!self.userEmailField.text.length ||
+        !self.userPasswordField.text.length) {
+        UIAlertView *formValidationAlert = [[UIAlertView alloc] initWithTitle:@"Missing Fields"
+                                                                      message:@"Bro, all fields are required."
+                                                                     delegate:nil
+                                                            cancelButtonTitle:@"Fine. I'll do it"
+                                                            otherButtonTitles:nil];
+        [formValidationAlert show];
+        return;
+    }
+    //[Utilities sharedUtilities]
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
-
 @end

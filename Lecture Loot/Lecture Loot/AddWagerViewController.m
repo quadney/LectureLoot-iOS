@@ -8,6 +8,7 @@
 
 #import "AddWagerViewController.h"
 #import "Wager.h"
+#import "User.h"
 
 @interface AddWagerViewController () <UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *wagerAmountLabel;
@@ -28,9 +29,7 @@
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         if (isNew) {
-            UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                                      target:self
-                                                                                      action:@selector(save:)];
+            UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(save:)];
             self.navigationItem.rightBarButtonItem = doneItem;
             
             UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
@@ -100,8 +99,7 @@
 - (void)cancel:(id)sender
 {
     // If the user cancelled, then remove the wager
-    // TODO
-    //[[BNRItemStore sharedStore] removeItem:self.item];
+    [[User currentUser] removeWager:self.wager];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:self.dismissBlock];
 }
 

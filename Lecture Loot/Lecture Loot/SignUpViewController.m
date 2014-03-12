@@ -36,19 +36,18 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [self.signUpButton setEnabled:NO];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)enableSignUpButton:(id)sender {
+    [self.signUpButton setEnabled:YES];
 }
 
 - (IBAction)signUpNewUser:(id)sender {
     
     // validate that there's stuff in the text fields
     if (!self.usernameField.text.length ||
-        !self.usernameField.text.length ||
+        !self.emailField.text.length ||
         !self.passwordField.text.length ||
         !self.firstNameField.text.length ||
         !self.lastNameField.text.length) {
@@ -61,6 +60,9 @@
         return;
     }
     
+    //[Utilities sharedUtilities] create
     
+    [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 @end

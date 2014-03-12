@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C91409FA18CA23A100D603E5 /* WagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C91409F918CA23A100D603E5 /* WagerCell.m */; };
 		C91409FD18CA294D00D603E5 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C91409FC18CA294D00D603E5 /* Utilities.m */; };
+		C92A58D918CFEC6C000129A7 /* LLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92A58D818CFEC6C000129A7 /* LLTabBarController.m */; };
 		C95CEBC918CED50F004A8D1F /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CEBC818CED50F004A8D1F /* SignInViewController.m */; };
 		C95CEBCC18CED52B004A8D1F /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CEBCB18CED52B004A8D1F /* SignUpViewController.m */; };
 		C95CEBCF18CED610004A8D1F /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CEBCE18CED610004A8D1F /* InitialViewController.m */; };
@@ -55,6 +56,8 @@
 		C91409F918CA23A100D603E5 /* WagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WagerCell.m; sourceTree = "<group>"; };
 		C91409FB18CA294D00D603E5 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		C91409FC18CA294D00D603E5 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		C92A58D718CFEC6C000129A7 /* LLTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLTabBarController.h; sourceTree = "<group>"; };
+		C92A58D818CFEC6C000129A7 /* LLTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLTabBarController.m; sourceTree = "<group>"; };
 		C95CEBC718CED50F004A8D1F /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		C95CEBC818CED50F004A8D1F /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		C95CEBCA18CED52B004A8D1F /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
@@ -251,6 +254,8 @@
 			children = (
 				C9CE6BB018CF7116003038E6 /* LLParentViewController.h */,
 				C9CE6BB118CF7116003038E6 /* LLParentViewController.m */,
+				C92A58D718CFEC6C000129A7 /* LLTabBarController.h */,
+				C92A58D818CFEC6C000129A7 /* LLTabBarController.m */,
 				C95CEBD018CED706004A8D1F /* Login/Signup Controllers */,
 				C988124018C2EBD5001E184A /* DashboardViewController.h */,
 				C988124118C2EBD5001E184A /* DashboardViewController.m */,
@@ -394,6 +399,7 @@
 				C988124E18C2EC13001E184A /* Course.m in Sources */,
 				C988121518C2E924001E184A /* main.m in Sources */,
 				C95CEBCF18CED610004A8D1F /* InitialViewController.m in Sources */,
+				C92A58D918CFEC6C000129A7 /* LLTabBarController.m in Sources */,
 				C95CEBCC18CED52B004A8D1F /* SignUpViewController.m in Sources */,
 				C988124218C2EBD5001E184A /* DashboardViewController.m in Sources */,
 				C985B64618C570FC009BEE3B /* AddWagerViewController.m in Sources */,

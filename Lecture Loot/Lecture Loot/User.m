@@ -13,9 +13,6 @@
 
 @interface User()
 
-@property (nonatomic) NSMutableArray *courses;
-@property (nonatomic) NSMutableArray *wagers;
-
 @end
 
 @implementation User
@@ -70,14 +67,28 @@
 
 #pragma Wager add remove get update
 
-- (void)addWager:(Wager *)newWager
+- (Wager *)createWager
 {
+    Wager *newWager = [[Wager alloc] init];
     [self.wagers addObject:newWager];
+    
+    return newWager;
 }
 
 - (void)removeWager:(Wager *)wagerToRemove
 {
     [self.wagers removeObjectIdenticalTo:wagerToRemove];
+}
+
+- (Wager *)createWagerWithAmount:(int)wagerAmount startingDate:(NSDate *)startingDate
+{
+    Wager *newWager = [[Wager alloc] init];
+    newWager.wagerAmountPerMeeting = wagerAmount;
+    newWager.weekOfDate = startingDate;
+    
+    [self.wagers addObject:newWager];
+    
+    return newWager;
 }
 
 - (NSArray *)allWagers
@@ -87,9 +98,9 @@
 
 #pragma Course add remove get update
 
-- (void)addCourse:(Course *)newCourse
+- (Course *)createCourse
 {
-    [self.courses addObject:newCourse];
+    return nil;
 }
 
 - (void)removeCourse:(Course *)courseToRemove

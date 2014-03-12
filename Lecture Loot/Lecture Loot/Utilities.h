@@ -25,13 +25,14 @@
 #pragma mark - API calls
 
 // getting user from the database and setting it as the currentUser
-+ (void)setUserInformationWithUsername:(NSString *)username
+- (void)setUserInformationWithUsername:(NSString *)username
                               password:(NSString *)password;
 
 //creating a new user
-+ (void)createAndSetUserInformationWithFirstName:(NSString *)firstName
+- (void)createAndSetUserInformationWithFirstName:(NSString *)firstName
                                         lastName:(NSString *)lastName
                                         username:(NSString *)username
+                                           email:(NSString *)email
                                         password:(NSString *)password;
 
 

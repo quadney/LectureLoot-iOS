@@ -10,11 +10,13 @@
 #import "AddWagerViewController.h"
 #import "WagerCell.h"
 #import "Wager.h"
+#import "User.h"
+#import "Utilities.h"
 
 @interface WagerViewController () <UITableViewDelegate, UITableViewDataSource>
-@property (strong, nonatomic) NSMutableArray *wagers;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
+@property (strong, nonatomic) User *currentUser;
 
 @end
 
@@ -30,25 +32,13 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle =  UITableViewCellSeparatorStyleNone;
+    self.currentUser = [[Utilities sharedUtilities] currentUser];
     
     if (!self.dateFormatter) {
         self.dateFormatter = [[NSDateFormatter alloc] init];
         self.dateFormatter.dateStyle = NSDateFormatterMediumStyle;
         self.dateFormatter.timeStyle = NSDateFormatterNoStyle;
     }
-
-    
-    self.wagers = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 3; i++) {
-        Wager *newWager = [[Wager alloc] init];
-        [newWager setWagerAmountPerMeeting:((i+1)*10)];
-        [newWager setWeekOfDate:[NSDate date]];
-        
-        [self.wagers addObject:newWager];
-    }
-    
-    //[self.tableView registerClass:[WagerCell class] forCellReuseIdentifier:@"WagerTableViewCell"];
-    [self.tableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -60,14 +50,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.wagers count];
+    return [[self.currentUser allWagers] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //get a new or recycled table cell
     WagerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WagerTableViewCell" forIndexPath:indexPath];
-    Wager *currentWager = [self.wagers objectAtIndex:indexPath.row];
+    NSArray *wagers = [self.currentUser allWagers];
+    Wager *currentWager = wagers[indexPath.row];
     
     //populate with the information in the wager to the cell
     
@@ -85,7 +76,9 @@
 {
     AddWagerViewController *newWagerVC = [[AddWagerViewController alloc] initForNewItem:NO];
     
-    Wager *selectedWager = self.wagers[indexPath.row];
+    NSArray *wagers = [self.currentUser allWagers];
+    Wager *selectedWager = wagers[indexPath.row];
+
     [newWagerVC setWager:selectedWager];
     
     [self.navigationController pushViewController:newWagerVC animated:YES];
@@ -93,12 +86,12 @@
 
 - (IBAction)addWager:(id)sender {
     
-    Wager *newWager = [[Wager alloc] init];
-    [newWager setWagerAmountPerMeeting:20];
-    AddWagerViewController *newWagerVC = [[AddWagerViewController alloc] initForNewItem:YES];
+    // create a new wager, this also adds the new wager to the wager list
+    Wager *newWager = [self.currentUser createWager];
+    newWager.wagerAmountPerMeeting = 5;
     
+    AddWagerViewController *newWagerVC = [[AddWagerViewController alloc] initForNewItem:YES];
     newWagerVC.wager = newWager;
-    [self.wagers addObject:newWager];
     newWagerVC.dismissBlock = ^{
         [self.tableView reloadData];
     };
@@ -107,6 +100,6 @@
     
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
     [self presentViewController:navController animated:YES completion:nil];
-    
+
 }
 @end

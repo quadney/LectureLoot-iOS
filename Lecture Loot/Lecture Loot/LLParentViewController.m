@@ -35,6 +35,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)enableBackgroundTapToDismissKeyboard
+{
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                 action:@selector(backgroundWasTapped:)];
+    [self.view addGestureRecognizer:tapGesture];
+}
+
 - (void)backgroundWasTapped:(UITapGestureRecognizer *)tapGesture
 {
     [self.view endEditing:YES];

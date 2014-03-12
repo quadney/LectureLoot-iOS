@@ -7,6 +7,8 @@
 //
 
 #import "InitialViewController.h"
+#import "SignInViewController.h"
+#import "SignUpViewController.h"
 
 @interface InitialViewController ()
 - (IBAction)registerWithFacebook:(id)sender;
@@ -31,12 +33,16 @@
 	// Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)registerWithFacebook:(id)sender {
+    
 }
 
-- (IBAction)registerWithFacebook:(id)sender {
+- (IBAction)registerWithEmail:(id)sender {
+    SignUpViewController *signUpVC = [[SignUpViewController alloc] init];
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:signUpVC];
+    
+    [self presentViewController:navController animated:YES completion:nil];
 }
+
 @end

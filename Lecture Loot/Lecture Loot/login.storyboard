@@ -7,6 +7,7 @@
         <!--Initial View Controller-->
         <scene sceneID="DME-Z2-722">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JLa-3Y-MuI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="r0V-Cb-4kD" customClass="InitialViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JCH-LQ-GhA"/>
@@ -39,7 +40,8 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="0yC-Jk-qC7" kind="push" id="z0D-wJ-VVo"/>
+                                    <action selector="registerWithEmail:" destination="r0V-Cb-4kD" eventType="touchUpInside" id="xM4-Ca-wub"/>
+                                    <segue destination="0yC-Jk-qC7" kind="push" id="FRC-ye-pDR"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tsx-bQ-WvH">
@@ -72,13 +74,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JLa-3Y-MuI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="308" y="-13"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="fui-zu-6MX">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="196-pA-Nei" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="nog-at-G84" customClass="SignInViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tHi-1V-hl3"/>
@@ -116,6 +118,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="logInUser:" destination="nog-at-G84" eventType="touchUpInside" id="csg-dI-xm1"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -126,13 +131,13 @@
                         <outlet property="userPasswordField" destination="jZU-tP-abZ" id="MpW-dI-LPd"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="196-pA-Nei" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="850" y="313"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="hNu-8Y-TVL">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="feF-qb-zLr" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="0yC-Jk-qC7" customClass="SignUpViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mzv-KI-taf"/>
@@ -179,6 +184,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="enableSignUpButton:" destination="0yC-Jk-qC7" eventType="touchUpInside" id="XIO-ts-6rr"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MFn-rW-AU2">
                                 <rect key="frame" x="20" y="247" width="280" height="30"/>
@@ -198,12 +206,13 @@
                     <navigationItem key="navigationItem" id="YTj-0V-gU1"/>
                     <connections>
                         <outlet property="emailField" destination="RLK-Fs-qwD" id="krk-Cs-zgp"/>
+                        <outlet property="firstNameField" destination="SpO-Oe-q7V" id="QrA-w8-m0f"/>
+                        <outlet property="lastNameField" destination="MFn-rW-AU2" id="rIk-yE-sTf"/>
                         <outlet property="passwordField" destination="SUF-FO-phn" id="Mwd-Ha-xtr"/>
                         <outlet property="signUpButton" destination="pQU-gm-ErS" id="4I4-WU-cYI"/>
                         <outlet property="usernameField" destination="hTI-EP-gBQ" id="fXL-5H-Lld"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="feF-qb-zLr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="850" y="-367"/>
         </scene>
