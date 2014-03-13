@@ -9,7 +9,7 @@
 #import "AddCourseViewController.h"
 #import "Course.h"
 
-@interface AddCourseViewController () <UINavigationBarDelegate>
+@interface AddCourseViewController () <UINavigationControllerDelegate>
 
 @end
 
@@ -19,7 +19,15 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        UIBarButtonItem *doneItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem: UIBarButtonSystemItemDone
+                                                                                 target:self action:@selector(save:)];
+        self.navigationItem.rightBarButtonItem = doneItem;
+        
+        UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                                                    target:self action:@selector(cancel:)];
+        self.navigationItem.leftBarButtonItem = cancelItem;
+        
+//        [self.coursePicker.num  ;
     }
     return self;
 }
@@ -27,13 +35,31 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    [self updateUI];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    // return the number of components required
+    return 3;
 }
+
+- (void)updateUI
+{
+    
+}
+
+- (void)save:(id)sender
+{
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:self.dismissBlock];
+}
+
+- (void)cancel:(id)sender
+{
+    // If the user cancelled, then remove the course from the store
+    //[[BNRItemStore sharedStore] removeItem:self.item];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:self.dismissBlock];
+}
+
+
 
 @end
