@@ -11,11 +11,12 @@
 
 @interface Utilities : NSObject
 
+@property (nonatomic, strong) User *currentUser;
+
 // this is the initialization of the app.
 // Background services such as api calls are outlined here
 
 + (void)initializeLectureLootApp;
-+ (id<User>)currentUser;
 
 #pragma mark - Singleton
 
@@ -23,6 +24,17 @@
 
 #pragma mark - API calls
 
-// do this later once we get everything set up in the interface
+// getting user from the database and setting it as the currentUser
+- (void)setUserInformationWithUsername:(NSString *)username
+                              password:(NSString *)password;
+
+//creating a new user
+- (void)createAndSetUserInformationWithFirstName:(NSString *)firstName
+                                        lastName:(NSString *)lastName
+                                        username:(NSString *)username
+                                           email:(NSString *)email
+                                        password:(NSString *)password;
+
+
 
 @end

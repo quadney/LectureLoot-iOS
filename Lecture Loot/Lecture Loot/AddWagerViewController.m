@@ -8,6 +8,7 @@
 
 #import "AddWagerViewController.h"
 #import "Wager.h"
+#import "User.h"
 
 @interface AddWagerViewController () <UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *wagerAmountLabel;
@@ -26,18 +27,14 @@
 - (instancetype)initForNewItem:(BOOL)isNew
 {
     self = [super initWithNibName:nil bundle:nil];
-    NSLog(@"Aloha");
     if (self) {
         if (isNew) {
-            UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                                      target:self
-                                                                                      action:@selector(save:)];
+            UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(save:)];
             self.navigationItem.rightBarButtonItem = doneItem;
             
             UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
             
             self.navigationItem.leftBarButtonItem = cancelItem;
-            NSLog(@"Hello");
         }
     }
     return self;
@@ -54,7 +51,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.datePicker.datePickerMode = UIDatePickerModeDateAndTime;
     self.stepper.value = self.wager.wagerAmountPerMeeting;
     self.wager.weekOfDate = self.datePicker.date;
     
@@ -72,9 +68,7 @@
 - (IBAction)wagerValueChanged:(id)sender {
     //increment or decrement the wager amount label
     // and change the amount of the total amount wagering
-    NSLog(@"%i", (int)self.stepper.value);
     [self.wager setWagerAmountPerMeeting:(int)self.stepper.value];
-    NSLog(@"%i", self.wager.wagerAmountPerMeeting);
     
     [self updateUI];
 }
@@ -97,11 +91,6 @@
     self.totalAmountWageringLabel.text = [NSString stringWithFormat:@"%i points total", self.wager.wagerAmountPerMeeting*15];
 }
 
-- (void)setWager:(Wager *)wager
-{
-    _wager = wager;
-}
-
 - (void)save:(id)sender
 {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:self.dismissBlock];
@@ -109,8 +98,8 @@
 
 - (void)cancel:(id)sender
 {
-    // If the user cancelled, then remove the wager from the store
-    //[[BNRItemStore sharedStore] removeItem:self.item];
+    // If the user cancelled, then remove the wager
+    [[User currentUser] removeWager:self.wager];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:self.dismissBlock];
 }
 
