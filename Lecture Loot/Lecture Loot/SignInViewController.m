@@ -46,15 +46,11 @@
         return;
     }
     
-    // for testing purposes
-    [[Utilities sharedUtilities] createAndSetUserInformationWithFirstName:@"Test"
-                                                                 lastName:@"Example"
-                                                                 username:@"squidkneeIsAwesome"
-                                                                    email:self.userEmailField.text
-                                                                 password:self.userPasswordField.text];
-
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [[Utilities sharedUtilities] loginUserWithEmail:self.userEmailField.text
+                                           password:self.userPasswordField.text
+     completion:^{
+         [self dismissViewControllerAnimated:YES completion:nil];
+     }];
     
 }
 @end

@@ -8,10 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "User.h"
+#import "Meeting.h"
+
+typedef void (^DismissBlock)(void);
 
 @interface Utilities : NSObject
 
 @property (nonatomic, strong) User *currentUser;
+
 
 // this is the initialization of the app.
 // Background services such as api calls are outlined here
@@ -25,23 +29,36 @@
 #pragma mark - API calls
 
 // getting user from the database and setting it as the currentUser
-- (void)setUserInformationWithUsername:(NSString *)username
-                              password:(NSString *)password;
+- (void)loginUserWithEmail:(NSString *)email
+                  password:(NSString *)password
+                completion:(DismissBlock)completionBlock;
 
 //creating a new user
 - (void)createAndSetUserInformationWithFirstName:(NSString *)firstName
                                         lastName:(NSString *)lastName
-                                        username:(NSString *)username
                                            email:(NSString *)email
-                                        password:(NSString *)password;
+                                        password:(NSString *)password
+                                      completion:(DismissBlock)completionBlock;
+
+// fetch all of user's wagers, courses and meetings
+- (void)fetchUserData;
 
 // create new wager
+- (void)addWagerToUserWithWager:(Wager *)newWager;
 
 // remove wager for user
+- (void)removeUsersWagerWithWager:(Wager *)wagerToDelete;
 
-// create new course for user
+// add new course to user
+- (void)addCourseToUsersSchedule:(Course *)courseToAdd;
 
-// remove course for user
+// drop course for user
+- (void)dropCourseFromUsersSchedule:(Course *)courseToDrop;
+
+// check in user
+- (void)checkUserIntoMeeting:(Meeting *)currentMeeting
+        wasCheckInSuccessful:(BOOL)userCheckedIn;
+
 
 
 @end

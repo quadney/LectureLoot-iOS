@@ -13,7 +13,6 @@
 @interface SignUpViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *firstNameField;
 @property (weak, nonatomic) IBOutlet UITextField *lastNameField;
-@property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UIButton *signUpButton;
@@ -47,8 +46,7 @@
 - (IBAction)signUpNewUser:(id)sender {
     
     // validate that there's stuff in the text fields
-    if (!self.usernameField.text.length ||
-        !self.emailField.text.length ||
+    if (!self.emailField.text.length ||
         !self.passwordField.text.length ||
         !self.firstNameField.text.length ||
         !self.lastNameField.text.length) {
@@ -64,11 +62,13 @@
     // for testing purposes
     [[Utilities sharedUtilities] createAndSetUserInformationWithFirstName:self.firstNameField.text
                                                                  lastName:self.lastNameField.text
-                                                                 username:self.usernameField.text
                                                                     email:self.emailField.text
-                                                                 password:self.passwordField.text];
+                                                                 password:self.passwordField.text
+                                                               completion:^{
+                                                                   [self dismissViewControllerAnimated:YES completion:nil];
+                                                               }];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
 
 }
 @end
