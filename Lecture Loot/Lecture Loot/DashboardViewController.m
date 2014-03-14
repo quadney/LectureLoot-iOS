@@ -29,8 +29,6 @@
 @property (strong, nonatomic) NSTimer *timer;
 @property NSTimeInterval timeLeft;
 
-@property (weak, nonatomic) IBOutlet UIButton *getLocationButton;
-
 - (IBAction)checkIn:(id)sender;
 
 @property (strong, nonatomic) NSDate *timeUntilNextMeeting;

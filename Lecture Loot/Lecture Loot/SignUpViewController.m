@@ -36,6 +36,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    NSLog(@"Sign up view controller view did load");
     [self.signUpButton setEnabled:NO];
 }
 
@@ -60,7 +61,12 @@
         return;
     }
     
-    //[Utilities sharedUtilities] create
+    // for testing purposes
+    [[Utilities sharedUtilities] createAndSetUserInformationWithFirstName:self.firstNameField.text
+                                                                 lastName:self.lastNameField.text
+                                                                 username:self.usernameField.text
+                                                                    email:self.emailField.text
+                                                                 password:self.passwordField.text];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 

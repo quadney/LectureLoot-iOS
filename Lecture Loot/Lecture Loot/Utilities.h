@@ -35,6 +35,13 @@
                                            email:(NSString *)email
                                         password:(NSString *)password;
 
+// create new wager
+
+// remove wager for user
+
+// create new course for user
+
+// remove course for user
 
 
 @end

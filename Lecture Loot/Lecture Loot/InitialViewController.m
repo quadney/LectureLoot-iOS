@@ -31,18 +31,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    NSLog(@"view did load, initial view controller");
 }
 
 - (IBAction)registerWithFacebook:(id)sender {
     
 }
 
-- (IBAction)registerWithEmail:(id)sender {
-    SignUpViewController *signUpVC = [[SignUpViewController alloc] init];
-    
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:signUpVC];
-    
-    [self presentViewController:navController animated:YES completion:nil];
-}
+
 
 @end
