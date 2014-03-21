@@ -7,8 +7,11 @@
 //
 
 #import "CourseDetailsViewController.h"
+#import "ScheduleViewController.h"
 #import "Course.h"
 #import "Meeting.h"
+#import "User.h"
+#import "Utilities.h"
 
 @interface CourseDetailsViewController () <UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UINavigationItem *navTitle;
@@ -24,12 +27,16 @@
 @property (weak, nonatomic) IBOutlet UILabel *room2Label;
 @property (weak, nonatomic) IBOutlet UILabel *room3Label;
 @property (strong, nonatomic) NSString *scheduleMapURL;
+@property (strong, nonatomic) User *currentUser;
 - (IBAction)mapButton:(UIButton *)sender;
+- (IBAction)dropCourseButton:(id)sender;
+- (BOOL)dropCourse:(Course *)courseToBeDropped;
 
 
 @end
 
 @implementation CourseDetailsViewController
+Course *selectedCourse;
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,10 +60,55 @@
     [[UIApplication sharedApplication] openURL:myURL];
 }
 
+- (IBAction)dropCourseButton:(id)sender {
+    
+    
+    UIAlertView *confirmDropourseAlertView = [[UIAlertView alloc] init];
+    [confirmDropourseAlertView setTitle:@"Confirm"];
+    [confirmDropourseAlertView setMessage:[NSString stringWithFormat:@"Are you sure you want to drop %@ from your schedule?",self.course.courseCode]];
+    [confirmDropourseAlertView setDelegate:self];
+    [confirmDropourseAlertView addButtonWithTitle:@"Yes"];
+    [confirmDropourseAlertView addButtonWithTitle:@"No"];
+    [confirmDropourseAlertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([[alertView title] isEqualToString:@"Confirm"]) {
+        if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Yes"])
+        {
+            // Yes Selected
+            //drop the selected course from the user's schedule
+            BOOL result = [self dropCourse:self.course];
+            if (result == YES) {
+                [self.currentUser.courses removeObjectIdenticalTo:self.course];
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            } else {
+                UIAlertView *rejectedCourseDrop = [[UIAlertView alloc] init];
+                [rejectedCourseDrop setTitle:@"Error"];
+                [rejectedCourseDrop setMessage:[NSString stringWithFormat:@"%@ could not be dropped due to an internal server error",self.course.courseCode]];
+                [rejectedCourseDrop setDelegate:self];
+                [rejectedCourseDrop addButtonWithTitle:@"OK"];
+                [rejectedCourseDrop show];
+            }
+            
+        }
+        else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"No"])
+        {
+            // No Selected
+            //Do Nothing Here
+        }
+    }
+}
+
 - (void)viewDidLoad
 {
     NSLog(@"CourseDetailsViewController viewDidLoad enter");
     [super viewDidLoad];
+    self.currentUser = [[Utilities sharedUtilities] currentUser];
+    self.currentUser.userId = 1;//TODO this needs to be set dynamically
+    self.currentUser.authorizationToken = @"fRkaPSt5JgwjQP7DggybHxZ0J8OLfKo2eLhhEEF6";
+    NSLog(@"Current user: %@", self.currentUser);
     [self updateUI];
     NSLog(@"CourseDetailsViewController viewDidLoad exit");
     
@@ -94,14 +146,19 @@
         meetings = self.course.meetings;
         meetings = [self groupMeetingsDays:meetings];
         //        NSLog([NSString stringWithFormat:@"meetings count = %lu",(unsigned long)[meetings count]]);
-        
-        Meeting *meeting1 = [meetings objectAtIndex:0];
+        NSLog(@"%@",meetings);
+        Meeting *meeting1 = ([meetings count] > 0) ? [meetings objectAtIndex:0] : nil;
         Meeting *meeting2 = ([meetings count] > 1)? [meetings objectAtIndex:1] : nil;
         Meeting *meeting3 = [meetings count] > 2 ? [meetings objectAtIndex:2] : nil;
         
-        NSString *meeting1String =  meeting1.meetingDay;
-        meeting1String = [meeting1String stringByAppendingString:@" "];
-        meeting1String = [meeting1String stringByAppendingString:meeting1.period];
+        NSString *meeting1String =  [[NSString alloc] init];
+        if(meeting1) {
+            meeting1String =  meeting1.meetingDay;
+            meeting1String = [meeting1String stringByAppendingString:@" "];
+            meeting1String = [meeting1String stringByAppendingString:meeting1.period];
+        } else {
+            meeting1String = nil;
+        }
         
         NSString *meeting2String = [[NSString alloc] init];
         if (meeting2) {
@@ -127,9 +184,15 @@
         [self.meeting2Label setText:meeting2String];
         [self.meeting3Label setText:meeting3String];
         
-        NSString *room1String = meeting1.buildingCode;
-        room1String = [room1String stringByAppendingString:@" "];
-        room1String = [room1String stringByAppendingString:meeting1.roomNumber];
+        NSString *room1String = [[NSString alloc] init];
+        if (meeting1) {
+            room1String = meeting1.buildingCode;
+            room1String = [room1String stringByAppendingString:@" "];
+            room1String = [room1String stringByAppendingString:meeting1.roomNumber];
+        } else {
+            room1String = nil;
+        }
+        
         
         NSString *room2String = [[NSString alloc] init];
         if (meeting2) {
@@ -158,15 +221,13 @@
         
         self.scheduleMapURL = @"http://campusmap.ufl.edu/?sched=";
         self.scheduleMapURL = [self.scheduleMapURL stringByAppendingString:[self.course.courseCode stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-        self.scheduleMapURL = [self.scheduleMapURL stringByAppendingString:@","];
-        self.scheduleMapURL = [self.scheduleMapURL stringByAppendingString:[meeting1.meetingDay stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-        self.scheduleMapURL = [self.scheduleMapURL stringByAppendingString:@","];
-        self.scheduleMapURL = [self.scheduleMapURL stringByAppendingString:[meeting1.period stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-        self.scheduleMapURL = [self.scheduleMapURL stringByAppendingString:@","];
-        self.scheduleMapURL = [self.scheduleMapURL stringByAppendingString:[meeting1.buildingCode stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-        self.scheduleMapURL = [self.scheduleMapURL stringByAppendingString:@","];
-        self.scheduleMapURL = [self.scheduleMapURL stringByAppendingString:[meeting1.roomNumber stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-        self.scheduleMapURL = [self.scheduleMapURL stringByAppendingString:@","];
+        
+        BOOL meet1 = (meeting1String != nil) ? YES : NO;
+        self.scheduleMapURL = [self.scheduleMapURL stringByAppendingString: (meet1) ? [NSString stringWithFormat:@"%@,",[meeting1.meetingDay stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]] : @""];
+        self.scheduleMapURL = [self.scheduleMapURL stringByAppendingString: (meet1) ? [NSString stringWithFormat:@"%@,",[meeting1.period stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]] : @""];
+        self.scheduleMapURL = [self.scheduleMapURL stringByAppendingString: (meet1) ? [NSString stringWithFormat:@"%@,",[meeting1.buildingCode stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]] : @""];
+        self.scheduleMapURL = [self.scheduleMapURL stringByAppendingString: (meet1) ? [NSString stringWithFormat:@"%@,",[meeting1.roomNumber stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]] : @""];
+        
         
         BOOL meet2 = (meeting2String != nil) ? YES : NO;
         self.scheduleMapURL = [self.scheduleMapURL stringByAppendingString: (meet2) ? [NSString stringWithFormat:@"%@,",[meeting2.meetingDay stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]] : @""];
@@ -182,7 +243,7 @@
         
         self.scheduleMapURL = [self.scheduleMapURL substringToIndex:[self.scheduleMapURL length]];
         self.scheduleMapURL = [self.scheduleMapURL stringByAppendingString:@";"];
-    
+        
     }
     
     NSLog(@"CourseDetailsViewController updateUI exit");
@@ -193,6 +254,7 @@
 
 - (NSMutableArray *)groupMeetingsDays:(NSMutableArray *)meetings
 {
+    NSLog(@"groupMeetingsDays enter");
     NSMutableArray *groupedMeetingsDays = [[NSMutableArray alloc] init];
     
     Meeting *comparedAgainstMeeting = [[Meeting alloc] init];
@@ -282,5 +344,35 @@
     _course = course;
 }
 
+- (BOOL)dropCourse:(Course *)courseToBeDropped
+{
+    __block BOOL result;
+    NSString *baseURLString = @"http://lectureloot.eu1.frbit.net/api/v1/";
+    NSString *dropCourseURLString = [NSString stringWithFormat:@"%@users/%d/courses/%d", baseURLString, self.currentUser.userId,courseToBeDropped.courseId];
+    NSURL *dropCourseURL = [NSURL URLWithString:dropCourseURLString];
+    NSMutableURLRequest *dropCourseRequest = [NSMutableURLRequest requestWithURL:dropCourseURL
+                                                                     cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                                 timeoutInterval:60.0];
+    [dropCourseRequest setValue:self.currentUser.authorizationToken forHTTPHeaderField:@"Authorization"];
+    [dropCourseRequest setHTTPMethod:@"DELETE"];
+    NSURLResponse *deleteResponse;
+    NSData *deleteData = [NSURLConnection sendSynchronousRequest:dropCourseRequest
+                                               returningResponse:&deleteResponse
+                                                           error:nil];
+    
+    NSDictionary *responseJSON = [NSJSONSerialization JSONObjectWithData:deleteData//dropCourseData
+                                                                 options:0
+                                                                   error:nil];
+    NSLog(@"JSON Dictionary: %@", responseJSON);
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)deleteResponse;//dropCourseResponse;
+    if ([httpResponse statusCode] == 200 ) {
+        //The course has been dropped in the backend DB
+        result = YES;
+    } else {
+        //The course has not been dropped in the backend DB
+        result = NO;
+    }
+    return result;
+}
 
 @end

@@ -33,7 +33,8 @@
                                         lastName:(NSString *)lastName
                                         username:(NSString *)username
                                            email:(NSString *)email
-                                        password:(NSString *)password;
+                                        password:(NSString *)password
+                              authorizationToken:(NSString *)authorizationToken;
 
 
 

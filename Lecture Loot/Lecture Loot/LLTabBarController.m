@@ -25,7 +25,8 @@
                                                                      lastName:@"LastName"
                                                                      username:@"username"
                                                                         email:@"someone@example.com"
-                                                                     password:@"password"];
+                                                                     password:@"password"
+                                                           authorizationToken:@"authorizationToken"];
         [self setSelectedIndex:1];
     }
     return self;
@@ -50,7 +51,8 @@
                                                                      lastName:@"LastName"
                                                                      username:@"username"
                                                                         email:@"someone@example.com"
-                                                                     password:@"password"];
+                                                                     password:@"password"
+                                                           authorizationToken:@"authorizationToken"];
         [self setSelectedIndex:1];
     }
     return self;

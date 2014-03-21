@@ -55,13 +55,15 @@
                                username:(NSString *)username
                            emailAddress:(NSString *)email
                                password:(NSString *)password
-                                 points:(int) points
+                     authorizationToken:(NSString *)authorizationToken
+                                 points:(int)points
 {
     self.firstName = firstName;
     self.lastName = lastName;
     self.username = username;
     self.emailAddress = email;
     self.password = password;
+    self.authorizationToken = authorizationToken;
     self.points = points;
 }
 

@@ -12,6 +12,9 @@
 
 @property int meetingId;
 @property int courseId;
+@property int buildingId;
+@property double GPSLongitude;
+@property double GPSLatitude;
 @property (strong, nonatomic) NSString *buildingCode;
 @property (strong, nonatomic) NSString *roomNumber;
 @property (strong, nonatomic) NSString *meetingDay;

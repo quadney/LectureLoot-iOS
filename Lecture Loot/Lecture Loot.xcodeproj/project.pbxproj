@@ -9,10 +9,6 @@
 /* Begin PBXBuildFile section */
 		C91409FA18CA23A100D603E5 /* WagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C91409F918CA23A100D603E5 /* WagerCell.m */; };
 		C91409FD18CA294D00D603E5 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C91409FC18CA294D00D603E5 /* Utilities.m */; };
-		C92A58D918CFEC6C000129A7 /* LLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92A58D818CFEC6C000129A7 /* LLTabBarController.m */; };
-		C95CEBC918CED50F004A8D1F /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CEBC818CED50F004A8D1F /* SignInViewController.m */; };
-		C95CEBCC18CED52B004A8D1F /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CEBCB18CED52B004A8D1F /* SignUpViewController.m */; };
-		C95CEBCF18CED610004A8D1F /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CEBCE18CED610004A8D1F /* InitialViewController.m */; };
 		C985B64318C57088009BEE3B /* AddCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C985B64218C57088009BEE3B /* AddCourseViewController.m */; };
 		C985B64618C570FC009BEE3B /* AddWagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C985B64518C570FC009BEE3B /* AddWagerViewController.m */; };
 		C988120918C2E924001E184A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C988120818C2E924001E184A /* Foundation.framework */; };
@@ -34,12 +30,16 @@
 		C988124B18C2EC08001E184A /* Meeting.m in Sources */ = {isa = PBXBuildFile; fileRef = C988124A18C2EC08001E184A /* Meeting.m */; };
 		C988124E18C2EC13001E184A /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = C988124D18C2EC13001E184A /* Course.m */; };
 		C988125118C2EC1B001E184A /* Wager.m in Sources */ = {isa = PBXBuildFile; fileRef = C988125018C2EC1B001E184A /* Wager.m */; };
-		C9CE6BB218CF7116003038E6 /* LLParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9CE6BB118CF7116003038E6 /* LLParentViewController.m */; };
 		C9CE6BB518CF7950003038E6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C9CE6BB418CF7950003038E6 /* User.m */; };
 		C9FEFD1718CA69970018DBDA /* login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9FEFD1618CA69970018DBDA /* login.storyboard */; };
 		C9FEFD1A18CA6B5A0018DBDA /* ScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FEFD1918CA6B5A0018DBDA /* ScheduleCell.m */; };
 		C9FEFD1C18CAEE450018DBDA /* AddWagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9FEFD1B18CAEE450018DBDA /* AddWagerViewController.xib */; };
 		FF390DB818CD0C3500FE8C44 /* CourseDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF390DB718CD0C3500FE8C44 /* CourseDetailsViewController.m */; };
+		FF67B47918D16CBD00F6B5A3 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF67B46F18D16CBD00F6B5A3 /* InitialViewController.m */; };
+		FF67B47A18D16CBD00F6B5A3 /* LLParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF67B47118D16CBD00F6B5A3 /* LLParentViewController.m */; };
+		FF67B47B18D16CBD00F6B5A3 /* LLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF67B47318D16CBD00F6B5A3 /* LLTabBarController.m */; };
+		FF67B47C18D16CBD00F6B5A3 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF67B47518D16CBD00F6B5A3 /* SignInViewController.m */; };
+		FF67B47D18D16CBD00F6B5A3 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF67B47718D16CBD00F6B5A3 /* SignUpViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,14 +57,6 @@
 		C91409F918CA23A100D603E5 /* WagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WagerCell.m; sourceTree = "<group>"; };
 		C91409FB18CA294D00D603E5 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		C91409FC18CA294D00D603E5 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
-		C92A58D718CFEC6C000129A7 /* LLTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLTabBarController.h; sourceTree = "<group>"; };
-		C92A58D818CFEC6C000129A7 /* LLTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLTabBarController.m; sourceTree = "<group>"; };
-		C95CEBC718CED50F004A8D1F /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
-		C95CEBC818CED50F004A8D1F /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
-		C95CEBCA18CED52B004A8D1F /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
-		C95CEBCB18CED52B004A8D1F /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
-		C95CEBCD18CED610004A8D1F /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
-		C95CEBCE18CED610004A8D1F /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 		C985B64118C57088009BEE3B /* AddCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCourseViewController.h; sourceTree = "<group>"; };
 		C985B64218C57088009BEE3B /* AddCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCourseViewController.m; sourceTree = "<group>"; };
 		C985B64418C570FC009BEE3B /* AddWagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddWagerViewController.h; sourceTree = "<group>"; };
@@ -98,8 +90,6 @@
 		C988124D18C2EC13001E184A /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
 		C988124F18C2EC1B001E184A /* Wager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wager.h; sourceTree = "<group>"; };
 		C988125018C2EC1B001E184A /* Wager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wager.m; sourceTree = "<group>"; };
-		C9CE6BB018CF7116003038E6 /* LLParentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLParentViewController.h; sourceTree = "<group>"; };
-		C9CE6BB118CF7116003038E6 /* LLParentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLParentViewController.m; sourceTree = "<group>"; };
 		C9CE6BB318CF7950003038E6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		C9CE6BB418CF7950003038E6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		C9FEFD1618CA69970018DBDA /* login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = login.storyboard; sourceTree = "<group>"; };
@@ -108,6 +98,16 @@
 		C9FEFD1B18CAEE450018DBDA /* AddWagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddWagerViewController.xib; sourceTree = "<group>"; };
 		FF390DB618CD0C3500FE8C44 /* CourseDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailsViewController.h; sourceTree = "<group>"; };
 		FF390DB718CD0C3500FE8C44 /* CourseDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailsViewController.m; sourceTree = "<group>"; };
+		FF67B46E18D16CBD00F6B5A3 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
+		FF67B46F18D16CBD00F6B5A3 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
+		FF67B47018D16CBD00F6B5A3 /* LLParentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLParentViewController.h; sourceTree = "<group>"; };
+		FF67B47118D16CBD00F6B5A3 /* LLParentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLParentViewController.m; sourceTree = "<group>"; };
+		FF67B47218D16CBD00F6B5A3 /* LLTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLTabBarController.h; sourceTree = "<group>"; };
+		FF67B47318D16CBD00F6B5A3 /* LLTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLTabBarController.m; sourceTree = "<group>"; };
+		FF67B47418D16CBD00F6B5A3 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		FF67B47518D16CBD00F6B5A3 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		FF67B47618D16CBD00F6B5A3 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		FF67B47718D16CBD00F6B5A3 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,19 +144,6 @@
 				C9FEFD1918CA6B5A0018DBDA /* ScheduleCell.m */,
 			);
 			name = Views;
-			sourceTree = "<group>";
-		};
-		C95CEBD018CED706004A8D1F /* Login/Signup Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				C95CEBC718CED50F004A8D1F /* SignInViewController.h */,
-				C95CEBC818CED50F004A8D1F /* SignInViewController.m */,
-				C95CEBCA18CED52B004A8D1F /* SignUpViewController.h */,
-				C95CEBCB18CED52B004A8D1F /* SignUpViewController.m */,
-				C95CEBCD18CED610004A8D1F /* InitialViewController.h */,
-				C95CEBCE18CED610004A8D1F /* InitialViewController.m */,
-			);
-			name = "Login/Signup Controllers";
 			sourceTree = "<group>";
 		};
 		C97B508018C9A3190046D844 /* iPad */ = {
@@ -255,10 +242,19 @@
 		C988123E18C2E94A001E184A /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C97B508718C9ACD90046D844 /* CheckInViewControllers */,
 				FF390DB618CD0C3500FE8C44 /* CourseDetailsViewController.h */,
 				FF390DB718CD0C3500FE8C44 /* CourseDetailsViewController.m */,
 				C988124018C2EBD5001E184A /* DashboardViewController.h */,
+				FF67B46E18D16CBD00F6B5A3 /* InitialViewController.h */,
+				FF67B46F18D16CBD00F6B5A3 /* InitialViewController.m */,
+				FF67B47018D16CBD00F6B5A3 /* LLParentViewController.h */,
+				FF67B47118D16CBD00F6B5A3 /* LLParentViewController.m */,
+				FF67B47218D16CBD00F6B5A3 /* LLTabBarController.h */,
+				FF67B47318D16CBD00F6B5A3 /* LLTabBarController.m */,
+				FF67B47418D16CBD00F6B5A3 /* SignInViewController.h */,
+				FF67B47518D16CBD00F6B5A3 /* SignInViewController.m */,
+				FF67B47618D16CBD00F6B5A3 /* SignUpViewController.h */,
+				FF67B47718D16CBD00F6B5A3 /* SignUpViewController.m */,
 				C988124118C2EBD5001E184A /* DashboardViewController.m */,
 				C988124318C2EBE8001E184A /* WagerViewController.h */,
 				C988124418C2EBE8001E184A /* WagerViewController.m */,
@@ -389,12 +385,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9CE6BB218CF7116003038E6 /* LLParentViewController.m in Sources */,
-				C95CEBC918CED50F004A8D1F /* SignInViewController.m in Sources */,
+				FF67B47C18D16CBD00F6B5A3 /* SignInViewController.m in Sources */,
+				FF67B47A18D16CBD00F6B5A3 /* LLParentViewController.m in Sources */,
 				C9CE6BB518CF7950003038E6 /* User.m in Sources */,
 				C985B64318C57088009BEE3B /* AddCourseViewController.m in Sources */,
 				C988124818C2EBF4001E184A /* ScheduleViewController.m in Sources */,
 				C988121918C2E924001E184A /* AppDelegate.m in Sources */,
+				FF67B47D18D16CBD00F6B5A3 /* SignUpViewController.m in Sources */,
 				C988125118C2EC1B001E184A /* Wager.m in Sources */,
 				C988124B18C2EC08001E184A /* Meeting.m in Sources */,
 				C91409FA18CA23A100D603E5 /* WagerCell.m in Sources */,
@@ -402,9 +399,8 @@
 				C91409FD18CA294D00D603E5 /* Utilities.m in Sources */,
 				C988124E18C2EC13001E184A /* Course.m in Sources */,
 				C988121518C2E924001E184A /* main.m in Sources */,
-				C95CEBCF18CED610004A8D1F /* InitialViewController.m in Sources */,
-				C92A58D918CFEC6C000129A7 /* LLTabBarController.m in Sources */,
-				C95CEBCC18CED52B004A8D1F /* SignUpViewController.m in Sources */,
+				FF67B47918D16CBD00F6B5A3 /* InitialViewController.m in Sources */,
+				FF67B47B18D16CBD00F6B5A3 /* LLTabBarController.m in Sources */,
 				C988124218C2EBD5001E184A /* DashboardViewController.m in Sources */,
 				C985B64618C570FC009BEE3B /* AddWagerViewController.m in Sources */,
 				FF390DB818CD0C3500FE8C44 /* CourseDetailsViewController.m in Sources */,
@@ -540,7 +536,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lecture Loot/Lecture Loot-Prefix.pch";
 				INFOPLIST_FILE = "Lecture Loot/Lecture Loot-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -558,7 +554,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lecture Loot/Lecture Loot-Prefix.pch";
 				INFOPLIST_FILE = "Lecture Loot/Lecture Loot-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

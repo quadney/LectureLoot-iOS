@@ -49,6 +49,7 @@
                                         username:(NSString *)username
                                            email:(NSString *)email
                                         password:(NSString *)password
+                              authorizationToken:(NSString *)authorizationToken
 {
     self.currentUser = [User currentUser];
     [self.currentUser setUserInformationWithFirstName:firstName
@@ -56,6 +57,7 @@
                                              username:username
                                          emailAddress:email
                                              password:password
+                                   authorizationToken:authorizationToken
                                                points:0];
 }
 
