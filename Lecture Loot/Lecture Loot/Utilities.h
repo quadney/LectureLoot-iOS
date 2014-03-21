@@ -8,10 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "User.h"
+#import "Meeting.h"
+
+typedef void (^DismissBlock)(void);
 
 @interface Utilities : NSObject
 
 @property (nonatomic, strong) User *currentUser;
+
 
 // this is the initialization of the app.
 // Background services such as api calls are outlined here
@@ -25,13 +29,13 @@
 #pragma mark - API calls
 
 // getting user from the database and setting it as the currentUser
-- (void)setUserInformationWithUsername:(NSString *)username
-                              password:(NSString *)password;
+- (void)loginUserWithEmail:(NSString *)email
+                  password:(NSString *)password
+                completion:(DismissBlock)completionBlock;
 
 //creating a new user
 - (void)createAndSetUserInformationWithFirstName:(NSString *)firstName
                                         lastName:(NSString *)lastName
-                                        username:(NSString *)username
                                            email:(NSString *)email
                                         password:(NSString *)password
                               authorizationToken:(NSString *)authorizationToken;

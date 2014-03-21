@@ -16,11 +16,8 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    //LLTabBarController *navTabController = [[LLTabBarController alloc] ];
-
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
     self.window.rootViewController = [storyboard instantiateInitialViewController];
     
     self.window.backgroundColor = [UIColor whiteColor];

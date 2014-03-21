@@ -52,7 +52,6 @@
 //this is a private method because we only want the program to call it, to ensure single-tonian
 - (void)setUserInformationWithFirstName:(NSString *)firstName
                                lastName:(NSString *)lastName
-                               username:(NSString *)username
                            emailAddress:(NSString *)email
                                password:(NSString *)password
                      authorizationToken:(NSString *)authorizationToken
@@ -60,11 +59,11 @@
 {
     self.firstName = firstName;
     self.lastName = lastName;
-    self.username = username;
     self.emailAddress = email;
     self.password = password;
     self.authorizationToken = authorizationToken;
     self.points = points;
+    self.userId = idNum;
 }
 
 #pragma Wager add remove get update

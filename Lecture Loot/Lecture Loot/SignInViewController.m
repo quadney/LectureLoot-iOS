@@ -45,9 +45,12 @@
         [formValidationAlert show];
         return;
     }
-    //[Utilities sharedUtilities]
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [[Utilities sharedUtilities] loginUserWithEmail:self.userEmailField.text
+                                           password:self.userPasswordField.text
+     completion:^{
+         [self dismissViewControllerAnimated:YES completion:nil];
+     }];
     
 }
 @end

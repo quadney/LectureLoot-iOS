@@ -8,6 +8,7 @@
 
 #import "LLTabBarController.h"
 #import "Utilities.h"
+#import "InitialViewController.h"
 
 @interface LLTabBarController ()
 
@@ -45,7 +46,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        NSLog(@"init with coder Tab Controller");
+        
         // This is for developement only, until we get the login stuff completed
         [[Utilities sharedUtilities] createAndSetUserInformationWithFirstName:@"FirstName"
                                                                      lastName:@"LastName"
@@ -62,8 +63,12 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    NSLog(@"View did load Nav controller");
-    
+    if( ![[Utilities sharedUtilities] currentUser]) {
+        //there is no user logged in, so present the signin/register storyboard
+        InitialViewController *loginVC = [[UIStoryboard storyboardWithName:@"login" bundle:nil] instantiateInitialViewController];
+        
+        [self presentViewController:loginVC animated:YES completion:nil];
+    }
 }
 
 @end

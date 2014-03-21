@@ -27,6 +27,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [self enableBackgroundTapToDismissKeyboard];
+    [self registerForKeyboardNotifications];
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,41 +51,41 @@
 
 - (void)registerForKeyboardNotifications
 {
-    [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillShowNotification
-                                                      object:nil
-                                                       queue:[NSOperationQueue mainQueue]
-                                                  usingBlock:^(NSNotification *note) {
-                                                      
-                                                      id keyboardData = [[note userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey];
-                                                      CGSize keyboardSize = [keyboardData CGRectValue].size;
-                                                      
-                                                      [UIView animateWithDuration:0.5
-                                                                            delay:0.0
-                                                                          options:UIViewAnimationOptionCurveEaseInOut
-                                                                       animations:^{
-                                                                           CGRect newFrame = self.view.frame;
-                                                                           newFrame.origin.y -= keyboardSize.height;
-                                                                           self.view.frame = newFrame;
-                                                                       } completion:nil];
-                                                  }];
-    
-    [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillHideNotification
-                                                      object:nil
-                                                       queue:[NSOperationQueue mainQueue]
-                                                  usingBlock:^(NSNotification *note) {
-                                                      
-                                                      id keyboardData = [[note userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey];
-                                                      CGSize keyboardSize = [keyboardData CGRectValue].size;
-                                                      
-                                                      [UIView animateWithDuration:0.1
-                                                                            delay:0.0
-                                                                          options:UIViewAnimationOptionCurveEaseInOut
-                                                                       animations:^{
-                                                                           CGRect newFrame = self.view.frame;
-                                                                           newFrame.origin.y += keyboardSize.height;
-                                                                           self.view.frame = newFrame;
-                                                                       } completion:nil];
-                                                  }];
+//    [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillShowNotification
+//                                                      object:nil
+//                                                       queue:[NSOperationQueue mainQueue]
+//                                                  usingBlock:^(NSNotification *note) {
+//                                                      
+//                                                      id keyboardData = [[note userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey];
+//                                                      CGSize keyboardSize = [keyboardData CGRectValue].size;
+//                                                      
+//                                                      [UIView animateWithDuration:0.5
+//                                                                            delay:0.0
+//                                                                          options:UIViewAnimationOptionCurveEaseInOut
+//                                                                       animations:^{
+//                                                                           CGRect newFrame = self.view.frame;
+//                                                                           newFrame.origin.y -= keyboardSize.height;
+//                                                                           self.view.frame = newFrame;
+//                                                                       } completion:nil];
+//                                                  }];
+//    
+//    [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillHideNotification
+//                                                      object:nil
+//                                                       queue:[NSOperationQueue mainQueue]
+//                                                  usingBlock:^(NSNotification *note) {
+//                                                      
+//                                                      id keyboardData = [[note userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey];
+//                                                      CGSize keyboardSize = [keyboardData CGRectValue].size;
+//                                                      
+//                                                      [UIView animateWithDuration:0.1
+//                                                                            delay:0.0
+//                                                                          options:UIViewAnimationOptionCurveEaseInOut
+//                                                                       animations:^{
+//                                                                           CGRect newFrame = self.view.frame;
+//                                                                           newFrame.origin.y += keyboardSize.height;
+//                                                                           self.view.frame = newFrame;
+//                                                                       } completion:nil];
+//                                                  }];
 }
 
 @end
