@@ -56,8 +56,8 @@
 {
     [super viewDidAppear:animated];
     
-//    // for testing purposes
-//    [[Utilities sharedUtilities] setDefaultUser];
+    // for testing purposes
+    [[Utilities sharedUtilities] setDefaultUser];
     
     
     if( ![[Utilities sharedUtilities] currentUser]) {
