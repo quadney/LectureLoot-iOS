@@ -31,7 +31,7 @@
                                  points:(int) points
                                  userId:(int)idNum;
 
-- (Wager *)createWager;
+- (void)addWager:(Wager *)newWager;
 - (void)removeWager:(Wager *)wagerToRemove;
 - (NSArray *)allWagers;
 - (Wager *)createWagerWithAmount:(int)wagerAmount startingDate:(NSDate *)startingDate;

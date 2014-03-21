@@ -38,6 +38,11 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    // for testing purposes
+    [[Utilities sharedUtilities] setDefaultUser];
+    
+    
     if( ![[Utilities sharedUtilities] currentUser]) {
         //there is no user logged in, so present the signin/register storyboard
         InitialViewController *loginVC = [[UIStoryboard storyboardWithName:@"login" bundle:nil] instantiateInitialViewController];

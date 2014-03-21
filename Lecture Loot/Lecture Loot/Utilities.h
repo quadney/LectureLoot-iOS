@@ -26,6 +26,8 @@ typedef void (^DismissBlock)(void);
 
 + (instancetype)sharedUtilities;
 
+- (void)setDefaultUser;
+
 #pragma mark - API calls
 
 // getting user from the database and setting it as the currentUser
@@ -43,21 +45,27 @@ typedef void (^DismissBlock)(void);
 // fetch all of user's wagers, courses and meetings
 - (void)fetchUserData;
 
+- (void)fetchAllUserWagers;
+
 // create new wager
-- (void)addWagerToUserWithWager:(Wager *)newWager;
+- (void)addWagerToUserWithWager:(Wager *)newWager completion:(DismissBlock)completionBlock;
 
 // remove wager for user
-- (void)removeUsersWagerWithWager:(Wager *)wagerToDelete;
+- (void)removeUsersWagerWithWager:(Wager *)wagerToDelete completion:(DismissBlock)completionBlock;
+
+// edit wager
+- (void)editWagerWithWager:(Wager *)wagerToEdit completion:(DismissBlock)completionBlock;
 
 // add new course to user
-- (void)addCourseToUsersSchedule:(Course *)courseToAdd;
+- (void)addCourseToUsersSchedule:(Course *)courseToAdd completion:(DismissBlock)completionBlock;
 
 // drop course for user
-- (void)dropCourseFromUsersSchedule:(Course *)courseToDrop;
+- (void)dropCourseFromUsersSchedule:(Course *)courseToDrop completion:(DismissBlock)completionBlock;
 
 // check in user
 - (void)checkUserIntoMeeting:(Meeting *)currentMeeting
-        wasCheckInSuccessful:(BOOL)userCheckedIn;
+        wasCheckInSuccessful:(BOOL)userCheckedIn
+                  completion:(DismissBlock)completionBlock;
 
 
 

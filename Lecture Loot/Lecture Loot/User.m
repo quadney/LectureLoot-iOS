@@ -65,14 +65,6 @@
 
 #pragma Wager add remove get update
 
-- (Wager *)createWager
-{
-    Wager *newWager = [[Wager alloc] init];
-    [self.wagers addObject:newWager];
-    
-    return newWager;
-}
-
 - (void)removeWager:(Wager *)wagerToRemove
 {
     [self.wagers removeObjectIdenticalTo:wagerToRemove];
@@ -87,6 +79,11 @@
     [self.wagers addObject:newWager];
     
     return newWager;
+}
+
+- (void)addWager:(Wager *)newWager
+{
+    [self.wagers addObject:newWager];
 }
 
 - (NSArray *)allWagers

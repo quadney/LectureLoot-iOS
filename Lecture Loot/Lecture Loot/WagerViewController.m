@@ -81,6 +81,7 @@
     Wager *selectedWager = wagers[indexPath.row];
 
     [newWagerVC setWager:selectedWager];
+    //need to reflect this information in the database
     
     [self.navigationController pushViewController:newWagerVC animated:YES];
 }
@@ -88,12 +89,15 @@
 - (IBAction)addWager:(id)sender {
     
     // create a new wager, this also adds the new wager to the wager list
-    Wager *newWager = [self.currentUser createWager];
+    Wager *newWager = [[Wager alloc] init];
     newWager.wagerAmountPerMeeting = 5;
     
     AddWagerViewController *newWagerVC = [[AddWagerViewController alloc] initForNewItem:YES];
     newWagerVC.wager = newWager;
-    newWagerVC.dismissBlock = ^{
+    newWagerVC.dismissCompletionBlock = ^{
+        NSLog(@"entering completion block");
+        [[Utilities sharedUtilities] fetchAllUserWagers];
+        NSLog(@"reloading data");
         [self.tableView reloadData];
     };
     

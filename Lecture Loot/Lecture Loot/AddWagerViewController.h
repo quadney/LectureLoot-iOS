@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "LLParentViewController.h"
 
+//typedef void (^DismissCompletionBlock)(BOOL success);
+
 @class Wager;
 
 @interface AddWagerViewController : LLParentViewController
 
 @property (nonatomic, strong) Wager *wager;
-@property (nonatomic, copy) void (^dismissBlock)(void);
+@property (nonatomic, copy) void (^dismissCompletionBlock)(void);
 
 - (instancetype)initForNewItem:(BOOL)isNew;
 
