@@ -107,7 +107,7 @@ Course *selectedCourse;
     [super viewDidLoad];
     self.currentUser = [[Utilities sharedUtilities] currentUser];
     self.currentUser.userId = 1;//TODO this needs to be set dynamically
-    self.currentUser.authorizationToken = @"fRkaPSt5JgwjQP7DggybHxZ0J8OLfKo2eLhhEEF6";
+    //self.currentUser.authorizationToken = @"fRkaPSt5JgwjQP7DggybHxZ0J8OLfKo2eLhhEEF6";
     NSLog(@"Current user: %@", self.currentUser);
     [self updateUI];
     NSLog(@"CourseDetailsViewController viewDidLoad exit");

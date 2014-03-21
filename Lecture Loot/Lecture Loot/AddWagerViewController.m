@@ -9,6 +9,7 @@
 #import "AddWagerViewController.h"
 #import "Wager.h"
 #import "User.h"
+#import "Utilities.h"
 
 @interface AddWagerViewController () <UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *wagerAmountLabel;
@@ -88,19 +89,23 @@
     }
     self.weekOfLabel.text = [self.dateFormatter stringFromDate:self.datePicker.date];
     self.wagerAmountLabel.text = [NSString stringWithFormat:@"%i pts per class", self.wager.wagerAmountPerMeeting];
-    self.totalAmountWageringLabel.text = [NSString stringWithFormat:@"%i points total", self.wager.wagerAmountPerMeeting*15];
+    self.totalAmountWageringLabel.text = [NSString stringWithFormat:@"%i points total", self.wager.totalWagerAmount];
 }
 
 - (void)save:(id)sender
 {
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:self.dismissBlock];
+//    [[Utilities sharedUtilities] addWagerToUserWithWager:self.wager completion:^{
+//        // let the user know somehow that the wager was accepted?
+//        // or only let them know if there was a problem...
+//    }];
+    
+    [[[Utilities sharedUtilities] currentUser] addWager:self.wager];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:self.dismissCompletionBlock];
 }
 
 - (void)cancel:(id)sender
 {
-    // If the user cancelled, then remove the wager
-    [[User currentUser] removeWager:self.wager];
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:self.dismissBlock];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:self.dismissCompletionBlock];
 }
 
 

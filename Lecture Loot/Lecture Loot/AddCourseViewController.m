@@ -56,7 +56,7 @@ Course *selectedCourse;
     self.currentUser = [[Utilities sharedUtilities] currentUser];
     self.courses = [[NSMutableArray alloc] init];
     self.currentUser.userId = 1;//TODO this needs to be set dynamically
-    self.currentUser.authorizationToken = @"fRkaPSt5JgwjQP7DggybHxZ0J8OLfKo2eLhhEEF6";
+    //self.currentUser.authorizationToken = @"fRkaPSt5JgwjQP7DggybHxZ0J8OLfKo2eLhhEEF6";
     NSLog(@"Current user: %@", self.currentUser);
     [self updateUI];
     

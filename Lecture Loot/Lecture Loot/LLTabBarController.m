@@ -8,6 +8,7 @@
 
 #import "LLTabBarController.h"
 #import "Utilities.h"
+#import "InitialViewController.h"
 
 @interface LLTabBarController ()
 
@@ -21,12 +22,11 @@
     if (self) {
         NSLog(@"init Tab Controller");
         // This is for developement only, until we get the login stuff completed
-        [[Utilities sharedUtilities] createAndSetUserInformationWithFirstName:@"FirstName"
-                                                                     lastName:@"LastName"
-                                                                     username:@"username"
-                                                                        email:@"someone@example.com"
-                                                                     password:@"password"
-                                                           authorizationToken:@"authorizationToken"];
+//        [[Utilities sharedUtilities] createAndSetUserInformationWithFirstName:@"FirstName"
+//                                                                     lastName:@"LastName"
+//                                                                     username:@"username"
+//                                                                        email:@"someone@example.com"
+//                                                           authorizationToken:@"authorizationToken"];
         [self setSelectedIndex:1];
     }
     return self;
@@ -40,19 +40,23 @@
     }
     return self;
 }
-
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        NSLog(@"init with coder Tab Controller");
+        
         // This is for developement only, until we get the login stuff completed
-        [[Utilities sharedUtilities] createAndSetUserInformationWithFirstName:@"FirstName"
-                                                                     lastName:@"LastName"
-                                                                     username:@"username"
-                                                                        email:@"someone@example.com"
-                                                                     password:@"password"
-                                                           authorizationToken:@"authorizationToken"];
+        [[Utilities sharedUtilities] createAndSetUserInformationWithFirstName:@"Sydney"
+                                                                     lastName:@"Richardson"
+                                                                        email:@"joshuatblack@ufl.edu"
+                                        authorizationToken:@"unxWwUVNngaIc114DAW0thZAWJPmrDOHiiISHBwK"
+                                                                       userId:1
+                                                                       points:100
+                                                                   completion:nil];
+
+
+        
+        // when the tab bar controller initializes, make sure that it loads the middle tab.
         [self setSelectedIndex:1];
     }
     return self;
@@ -62,8 +66,17 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    NSLog(@"View did load Nav controller");
     
+    // for testing purposes
+    [[Utilities sharedUtilities] setDefaultUser];
+    
+    
+    if( ![[Utilities sharedUtilities] currentUser]) {
+        //there is no user logged in, so present the signin/register storyboard
+        InitialViewController *loginVC = [[UIStoryboard storyboardWithName:@"login" bundle:nil] instantiateInitialViewController];
+        
+        [self presentViewController:loginVC animated:YES completion:nil];
+    }
 }
 
 @end
