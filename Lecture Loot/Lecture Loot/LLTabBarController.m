@@ -16,22 +16,6 @@
 
 @implementation LLTabBarController
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        NSLog(@"init Tab Controller");
-        // This is for developement only, until we get the login stuff completed
-//        [[Utilities sharedUtilities] createAndSetUserInformationWithFirstName:@"FirstName"
-//                                                                     lastName:@"LastName"
-//                                                                     username:@"username"
-//                                                                        email:@"someone@example.com"
-//                                                           authorizationToken:@"authorizationToken"];
-        [self setSelectedIndex:1];
-    }
-    return self;
-}
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super init];
@@ -45,15 +29,20 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         
-        // This is for developement only, until we get the login stuff completed
-        [[Utilities sharedUtilities] createAndSetUserInformationWithFirstName:@"Sydney"
-                                                                     lastName:@"Richardson"
-                                                                        email:@"joshuatblack@ufl.edu"
-                                        authorizationToken:@"unxWwUVNngaIc114DAW0thZAWJPmrDOHiiISHBwK"
-                                                                       userId:1
-                                                                       points:100
-                                                                   completion:nil];
-
+//        // This is for developement only, until we get the login stuff completed
+//        [[Utilities sharedUtilities] loginUserWithEmail:@"ssyyddnneeyy@ufl.edu"
+//                                               password:@"squid"
+//                                             completion:^{
+//                                                 //I dont remember what I was going to do with this
+//                                                 //I think I wanted to get all the information about the user from the data base?
+//                                                 //really dont remember lol
+//                                                 
+//                                                 //oh right I remember, this is for the login/sign up screen
+//                                                 //irrelevant here becuase this is for dev shit
+//                                             }
+//        ];
+        
+        // this is where the stuff would be loaded from the plist
 
         
         // when the tab bar controller initializes, make sure that it loads the middle tab.
@@ -67,8 +56,8 @@
 {
     [super viewDidAppear:animated];
     
-    // for testing purposes
-    [[Utilities sharedUtilities] setDefaultUser];
+//    // for testing purposes
+//    [[Utilities sharedUtilities] setDefaultUser];
     
     
     if( ![[Utilities sharedUtilities] currentUser]) {

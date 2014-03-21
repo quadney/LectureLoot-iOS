@@ -59,14 +59,13 @@
         return;
     }
     
-    // for testing purposes
-//    [[Utilities sharedUtilities] createAndSetUserInformationWithFirstName:self.firstNameField.text
-//                                                                 lastName:self.lastNameField.text
-//                                                                    email:self.emailField.text
-//                                                                 password:self.passwordField.text
-//                                                               completion:^{
-//                                                                   [self dismissViewControllerAnimated:YES completion:nil];
-//                                                               }];
+    [[Utilities sharedUtilities] createAndSetUserInformationWithFirstName:self.firstNameField.text
+                                                                 lastName:self.lastNameField.text
+                                                                    email:self.emailField.text
+                                                                 password:self.passwordField.text
+                                                               completion:^{
+                                                                   [self dismissViewControllerAnimated:YES completion:nil];
+                                                               }];
     
     
 

@@ -7,7 +7,6 @@
 //
 
 const NSString *baseURLString = @"http://lectureloot.eu1.frbit.net/api/v1/";
-const NSString *userToken;
 #import "Utilities.h"
 #import "User.h"
 #import "Wager.h"
@@ -54,121 +53,100 @@ const NSString *userToken;
                   password:(NSString *)password
                 completion:(DismissBlock)completionBlock
 {
-//    //after get all the information from the database
-//    //create the current user
-//    NSString *urlString = [NSString stringWithFormat:@"%@users/login?emailAddress=%@&password=%@", baseURLString, email, password];
-//    NSURL *url = [NSURL URLWithString:urlString];
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
-//                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
-//                                                       timeoutInterval:60.0];
-//    [request setHTTPMethod:@"POST"];
-//    [NSURLConnection sendAsynchronousRequest:request
-//                                       queue:[NSOperationQueue mainQueue]
-//                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-//                               //parse JSON data
-//                               NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data
-//                                                                                              options:0
-//                                                                                                error:nil];
-//                               NSLog(@"JSON Dictionary: %@", jsonDictionary);
-//                               // returns message and token ... whatever that means
-//                               if ([[jsonDictionary objectForKey:@"message"] isEqualToString:@"Success, valid credentials"]) {
-//                                   //the user was successfully logged in
-//                                   // store the token, might delete if we dont need it later
-//                                   userToken = [jsonDictionary objectForKey:@"token"];
-//                                   
-//                                   // then set that information here:
-//                                   self.currentUser = [User currentUser];
-//                                   [self.currentUser setUserInformationWithFirstName:@"First Name"
-//                                                                            lastName:@"Last Name"
-//                                                                        emailAddress:email
-//                                                                              points:0
-//                                                                              userId:[[jsonDictionary objectForKey:@"user_id"] intValue]];
-//                                   
-//                                   // call the caller's completion block
-//                                   if(completionBlock)
-//                                       completionBlock();
-//                                   
-//                               }
-//                               else {
-//                                   //there was an error, display an alert view
-//                                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-//                                                                                   message:[jsonDictionary objectForKey:@"message"]
-//                                                                                  delegate:nil
-//                                                                         cancelButtonTitle:@"Oops"
-//                                                                         otherButtonTitles:nil];
-//                                   [alert show];
-//                                   
-//                               }
-//                               //
-//                           }];
+    NSString *urlString = [NSString stringWithFormat:@"%@users/login?emailAddress=%@&password=%@", baseURLString, email, password];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    [request setHTTPMethod:@"POST"];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               //parse JSON data
+                               NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                                              options:0
+                                                                                                error:nil];
+                               //NSLog(@"JSON Dictionary: %@", jsonDictionary);
+                               // returns message and token ... whatever that means
+                               if ([[jsonDictionary objectForKey:@"message"] isEqualToString:@"Success, valid credentials"]) {
+                                   
+                                   // then set that information here:
+                                   self.currentUser = [User currentUser];
+                                   [self.currentUser setUserInformationWithFirstName:@""
+                                                                            lastName:@""
+                                                                        emailAddress:email
+                                                                  authorizationToken:[jsonDictionary objectForKey:@"token"]
+                                                                              points:0
+                                                                              userId:[[jsonDictionary objectForKey:@"user_id"] intValue]];
+                                   
+                                   // call the caller's completion block
+                                   if(completionBlock)
+                                       completionBlock();
+                                   
+                               }
+                               else {
+                                   //there was an error, display an alert view
+                                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                                   message:[jsonDictionary objectForKey:@"message"]
+                                                                                  delegate:nil
+                                                                         cancelButtonTitle:@"Oops"
+                                                                         otherButtonTitles:nil];
+                                   [alert show];
+                                   
+                               }
+                               //
+                           }];
 }
 
-//creating a new user
+//creating a new user and setting the information to the app
 - (void)createAndSetUserInformationWithFirstName:(NSString *)firstName
                                         lastName:(NSString *)lastName
                                            email:(NSString *)email
-                              authorizationToken:(NSString *)authorizationToken
-                                          userId:(int)userId
-                                          points:(int)points
-                                      completion:(DismissBlock)completionBlocker
+                                        password:(NSString *)password
+                                      completion:(DismissBlock)completionBlock
 {
-    self.currentUser = [User currentUser];
-//    [self.currentUser setUserInformationWithFirstName:firstName
-//                                             lastName:lastName
-//                                             username:username
-//                                         emailAddress:email
-//                                   authorizationToken:authorizationToken
-//                                               points:0
-//                                           completion:(DismissBlock)completionBlock];
-    
-//    NSString *urlString = [NSString stringWithFormat:@"%@users?emailAddress=%@&password=%@&firstName=%@&lastName=%@&pointBalance=%i", baseURLString, email, password, firstName, lastName, 100];
-//    NSURL *url = [NSURL URLWithString:urlString];
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
-//                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
-//                                                       timeoutInterval:60.0];
-//    [request setHTTPMethod:@"POST"];
-//    [NSURLConnection sendAsynchronousRequest:request
-//                                       queue:[NSOperationQueue mainQueue]
-//                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-//                               //parse JSON data
-//                               NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data
-//                                                                                              options:0
-//                                                                                                error:nil];
-//                               
-//                               // returns message and token ... whatever that means
-//                               if ([[jsonDictionary objectForKey:@"message"] isEqualToString:@"Success, the user was registered"]) {
-//                                   //the user was successfully logged in
-//                                   // store the token, might delete if we dont need it later
-//                                   userToken = [jsonDictionary objectForKey:@"token"];
-//                                   
-//                                   // get all the other information about that user
-//                                   // such as first name and shit
-//                                   
-//                                   
-//                                   // then set that information here:
-//                                   self.currentUser = [User currentUser];
-//                                   [self.currentUser setUserInformationWithFirstName:firstName
-//                                                                            lastName:lastName
-//                                                                        emailAddress:email
-//                                                                              points:0
-//                                                                              userId:[[jsonDictionary objectForKey:@"user_id"] intValue]];
-//                                   
-//                                   // call the caller's completion block
-//                                   if(completionBlock)
-//                                       completionBlock();
-//                               }
-//                               else {
-//                                   //there was an error, display an alert view
-//                                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-//                                                                                   message:[jsonDictionary objectForKey:@"message"]
-//                                                                                  delegate:nil
-//                                                                         cancelButtonTitle:@"Oops"
-//                                                                         otherButtonTitles:nil];
-//                                   [alert show];
-//                                   
-//                               }
-//                               //
-//                           }];
+    NSString *urlString = [NSString stringWithFormat:@"%@users?emailAddress=%@&password=%@&firstName=%@&lastName=%@&pointBalance=%i", baseURLString, email, password, firstName, lastName, 100];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    [request setHTTPMethod:@"POST"];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               //parse JSON data
+                               NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                                              options:0
+                                                                                                error:nil];
+                               
+                               // returns message and token ... whatever that means
+                               if ([[jsonDictionary objectForKey:@"message"] isEqualToString:@"Success, the user was registered"]) {
+                                   
+                                   // then set that information here:
+                                   self.currentUser = [User currentUser];
+                                   [self.currentUser setUserInformationWithFirstName:firstName
+                                                                            lastName:lastName
+                                                                        emailAddress:email
+                                                                  authorizationToken:[jsonDictionary objectForKey:@"token"]
+                                                                              points:100
+                                                                              userId:[[jsonDictionary objectForKey:@"token"] intValue]];
+                                   
+                                   // call the caller's completion block
+                                   if(completionBlock)
+                                       completionBlock();
+                               }
+                               else {
+                                   //there was an error, display an alert view
+                                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                                   message:[jsonDictionary objectForKey:@"message"]
+                                                                                  delegate:nil
+                                                                         cancelButtonTitle:@"Oops"
+                                                                         otherButtonTitles:nil];
+                                   [alert show];
+                                   
+                               }
+                               //
+                           }];
 }
 
 // fetch all of user's wagers, courses and meetings
@@ -183,7 +161,7 @@ const NSString *userToken;
     NSLog(@"fetching user wagers data");
     //NSString *urlString = [NSString stringWithFormat:@"%@users/%i/wagers", baseURLString, [self.currentUser userId]];
 
-    NSString *urlString = [NSString stringWithFormat:@"%@users/1", baseURLString];
+    NSString *urlString = [NSString stringWithFormat:@"%@users/%i", baseURLString, [self.currentUser userId]];
     NSLog(@"%@", urlString);
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
@@ -209,23 +187,72 @@ const NSString *userToken;
     
 }
 
+//fetch the users courses/meetings
+- (void)fetchAllUserCourses
+{
+    
+}
+
+//fetch all the courses that are on the database
+- (void)fetchAllCoursesAtUniversity
+{
+    
+}
+
 // create new wager
 - (void)addWagerToUserWithWager:(Wager *)newWager completion:(DismissBlock)completionBlock
 {
-//    NSString *urlString = [NSString stringWithFormat:@"%@users/%i/wagers?user_id=%i&session_id=%i&wagerUnitValue=%i&wagerTotalValue=%i&pointsLost=%i", baseURLString, [self.currentUser userId], [self.currentUser userId], 3, newWager.wagerAmountPerMeeting, [newWager totalWagerAmount], 0];
+    NSString *urlString = [NSString stringWithFormat:@"%@users/%i/wagers?user_id=%i&session_id=%i&wagerUnitValue=%i&wagerTotalValue=%i&pointsLost=%i", baseURLString, [self.currentUser userId], [self.currentUser userId], 3, newWager.wagerAmountPerMeeting, [newWager totalWagerAmount], 0];
+    // TODO what is session id
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    [request setHTTPMethod:@"POST"];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               //parse JSON data
+                               NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                                              options:0
+                                                                                                error:nil];
+                               if ([[jsonDictionary objectForKey:@"message"] isEqualToString:@"Success, wager created and added to the user"]) {
+                                   if(completionBlock)
+                                       completionBlock();
+                               }
+                               else {
+                                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                                   message:[jsonDictionary objectForKey:@"message"]
+                                                                                  delegate:nil
+                                                                         cancelButtonTitle:@"Oops"
+                                                                         otherButtonTitles:nil];
+                                   [alert show];
+                               }
+                           }
+     ];
+    
+}
+
+// remove wager for user
+- (void)removeUsersWagerWithWager:(Wager *)wagerToDelete completion:(DismissBlock)completionBlock
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@wagers/%i", baseURLString, [wagerToDelete wagerId]];
 //    // TODO what is session id
-//    NSURL *url = [NSURL URLWithString:urlString];
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
-//                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
-//                                                       timeoutInterval:60.0];
-//    [request setHTTPMethod:@"POST"];
-//    [NSURLConnection sendAsynchronousRequest:request
-//                                       queue:[NSOperationQueue mainQueue]
-//                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-//                               //parse JSON data
-//                               NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data
-//                                                                                              options:0
-//                                                                                                error:nil];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    [request setHTTPMethod:@"DELETE"];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               //parse JSON data
+                               NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                                              options:0
+                                                                                                error:nil];
+                               
+                               NSLog(@"%@", jsonDictionary);
+                               
 //                               if ([[jsonDictionary objectForKey:@"message"] isEqualToString:@"Success, wager created and added to the user"]) {
 //                                   if(completionBlock)
 //                                       completionBlock();
@@ -238,21 +265,8 @@ const NSString *userToken;
 //                                                                         otherButtonTitles:nil];
 //                                   [alert show];
 //                               }
-//                           }
-//     ];
-    
-}
-
-// remove wager for user
-- (void)removeUsersWagerWithWager:(Wager *)wagerToDelete completion:(DismissBlock)completionBlock
-{
-    //    NSString *urlString = [NSString stringWithFormat:@"%@wagers/%i", baseURLString, [wagerToDelete wagerId]];
-    //    // TODO what is session id
-    //    NSURL *url = [NSURL URLWithString:urlString];
-    //    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
-    //                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
-    //                                                       timeoutInterval:60.0];
-    //    [request setHTTPMethod:@"DELETE"];
+                           }
+     ];
 }
 
 - (void)editWagerWithWager:(Wager *)wagerToEdit completion:(DismissBlock)completionBlock

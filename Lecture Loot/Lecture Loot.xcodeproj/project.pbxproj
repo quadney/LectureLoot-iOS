@@ -9,10 +9,6 @@
 /* Begin PBXBuildFile section */
 		C91409FA18CA23A100D603E5 /* WagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C91409F918CA23A100D603E5 /* WagerCell.m */; };
 		C91409FD18CA294D00D603E5 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C91409FC18CA294D00D603E5 /* Utilities.m */; };
-		C92A58D918CFEC6C000129A7 /* LLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92A58D818CFEC6C000129A7 /* LLTabBarController.m */; };
-		C95CEBC918CED50F004A8D1F /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CEBC818CED50F004A8D1F /* SignInViewController.m */; };
-		C95CEBCC18CED52B004A8D1F /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CEBCB18CED52B004A8D1F /* SignUpViewController.m */; };
-		C95CEBCF18CED610004A8D1F /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CEBCE18CED610004A8D1F /* InitialViewController.m */; };
 		C9750A3218DCB14100D52659 /* profpic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C9750A3118DCB14100D52659 /* profpic.jpg */; };
 		C985B64318C57088009BEE3B /* AddCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C985B64218C57088009BEE3B /* AddCourseViewController.m */; };
 		C985B64618C570FC009BEE3B /* AddWagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C985B64518C570FC009BEE3B /* AddWagerViewController.m */; };
@@ -62,14 +58,6 @@
 		C91409F918CA23A100D603E5 /* WagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WagerCell.m; sourceTree = "<group>"; };
 		C91409FB18CA294D00D603E5 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		C91409FC18CA294D00D603E5 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
-		C92A58D718CFEC6C000129A7 /* LLTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLTabBarController.h; sourceTree = "<group>"; };
-		C92A58D818CFEC6C000129A7 /* LLTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLTabBarController.m; sourceTree = "<group>"; };
-		C95CEBC718CED50F004A8D1F /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
-		C95CEBC818CED50F004A8D1F /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
-		C95CEBCA18CED52B004A8D1F /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
-		C95CEBCB18CED52B004A8D1F /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
-		C95CEBCD18CED610004A8D1F /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
-		C95CEBCE18CED610004A8D1F /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 		C9750A3118DCB14100D52659 /* profpic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = profpic.jpg; sourceTree = "<group>"; };
 		C985B64118C57088009BEE3B /* AddCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCourseViewController.h; sourceTree = "<group>"; };
 		C985B64218C57088009BEE3B /* AddCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCourseViewController.m; sourceTree = "<group>"; };
@@ -257,28 +245,15 @@
 		C988123E18C2E94A001E184A /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FF390DB618CD0C3500FE8C44 /* CourseDetailsViewController.h */,
-				FF390DB718CD0C3500FE8C44 /* CourseDetailsViewController.m */,
-				C988124018C2EBD5001E184A /* DashboardViewController.h */,
-				FF67B46E18D16CBD00F6B5A3 /* InitialViewController.h */,
-				FF67B46F18D16CBD00F6B5A3 /* InitialViewController.m */,
 				FF67B47018D16CBD00F6B5A3 /* LLParentViewController.h */,
 				FF67B47118D16CBD00F6B5A3 /* LLParentViewController.m */,
 				FF67B47218D16CBD00F6B5A3 /* LLTabBarController.h */,
 				FF67B47318D16CBD00F6B5A3 /* LLTabBarController.m */,
-				FF67B47418D16CBD00F6B5A3 /* SignInViewController.h */,
-				FF67B47518D16CBD00F6B5A3 /* SignInViewController.m */,
-				FF67B47618D16CBD00F6B5A3 /* SignUpViewController.h */,
-				FF67B47718D16CBD00F6B5A3 /* SignUpViewController.m */,
+				C9D170FF18DCF9780008E2A9 /* login and sign up */,
+				C9D1710018DCFA020008E2A9 /* wagers */,
+				C9D1710118DCFA1D0008E2A9 /* schedule and courses */,
+				C988124018C2EBD5001E184A /* DashboardViewController.h */,
 				C988124118C2EBD5001E184A /* DashboardViewController.m */,
-				C988124318C2EBE8001E184A /* WagerViewController.h */,
-				C988124418C2EBE8001E184A /* WagerViewController.m */,
-				C988124618C2EBF4001E184A /* ScheduleViewController.h */,
-				C988124718C2EBF4001E184A /* ScheduleViewController.m */,
-				C985B64118C57088009BEE3B /* AddCourseViewController.h */,
-				C985B64218C57088009BEE3B /* AddCourseViewController.m */,
-				C985B64418C570FC009BEE3B /* AddWagerViewController.h */,
-				C985B64518C570FC009BEE3B /* AddWagerViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -296,6 +271,43 @@
 				C9CE6BB418CF7950003038E6 /* User.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		C9D170FF18DCF9780008E2A9 /* login and sign up */ = {
+			isa = PBXGroup;
+			children = (
+				FF67B46E18D16CBD00F6B5A3 /* InitialViewController.h */,
+				FF67B46F18D16CBD00F6B5A3 /* InitialViewController.m */,
+				FF67B47418D16CBD00F6B5A3 /* SignInViewController.h */,
+				FF67B47518D16CBD00F6B5A3 /* SignInViewController.m */,
+				FF67B47618D16CBD00F6B5A3 /* SignUpViewController.h */,
+				FF67B47718D16CBD00F6B5A3 /* SignUpViewController.m */,
+			);
+			name = "login and sign up";
+			sourceTree = "<group>";
+		};
+		C9D1710018DCFA020008E2A9 /* wagers */ = {
+			isa = PBXGroup;
+			children = (
+				C988124318C2EBE8001E184A /* WagerViewController.h */,
+				C988124418C2EBE8001E184A /* WagerViewController.m */,
+				C985B64418C570FC009BEE3B /* AddWagerViewController.h */,
+				C985B64518C570FC009BEE3B /* AddWagerViewController.m */,
+			);
+			name = wagers;
+			sourceTree = "<group>";
+		};
+		C9D1710118DCFA1D0008E2A9 /* schedule and courses */ = {
+			isa = PBXGroup;
+			children = (
+				FF390DB618CD0C3500FE8C44 /* CourseDetailsViewController.h */,
+				FF390DB718CD0C3500FE8C44 /* CourseDetailsViewController.m */,
+				C988124618C2EBF4001E184A /* ScheduleViewController.h */,
+				C988124718C2EBF4001E184A /* ScheduleViewController.m */,
+				C985B64118C57088009BEE3B /* AddCourseViewController.h */,
+				C985B64218C57088009BEE3B /* AddCourseViewController.m */,
+			);
+			name = "schedule and courses";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,7 +354,7 @@
 		C98811FD18C2E923001E184A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = CashU;
 				TargetAttributes = {
 					C988120418C2E924001E184A = {
@@ -474,7 +486,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -513,7 +524,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -581,7 +591,6 @@
 		C988123B18C2E924001E184A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Lecture Loot.app/Lecture Loot";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -604,7 +613,6 @@
 		C988123C18C2E924001E184A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Lecture Loot.app/Lecture Loot";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
