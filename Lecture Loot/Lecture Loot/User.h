@@ -16,7 +16,6 @@
 @property (nonatomic, copy) NSString *firstName;
 @property (nonatomic, copy) NSString *lastName;
 @property (nonatomic, copy) NSString *emailAddress;
-@property (nonatomic, copy) NSString *password; //is it safe to have this like this?
 @property (nonatomic, copy) NSString *authorizationToken;
 @property (nonatomic, strong) NSURL *profileImageUrl;
 @property (nonatomic, strong) UIImage *profileImage;
@@ -30,9 +29,9 @@
 - (void)setUserInformationWithFirstName:(NSString *)firstName
                                lastName:(NSString *)lastName
                            emailAddress:(NSString *)email
-                               password:(NSString *)password
                      authorizationToken:(NSString *)authorizationToken
-                                 points:(int) points;
+                                 points:(int) points
+                                 userId:(int)idNum;
 
 - (void)addWager:(Wager *)newWager;
 - (void)removeWager:(Wager *)wagerToRemove;

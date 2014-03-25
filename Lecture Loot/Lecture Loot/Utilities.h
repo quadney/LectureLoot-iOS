@@ -40,8 +40,41 @@ typedef void (^DismissBlock)(void);
                                         lastName:(NSString *)lastName
                                            email:(NSString *)email
                                         password:(NSString *)password
-                              authorizationToken:(NSString *)authorizationToken;
+                                      completion:(DismissBlock)completionBlock;
+
+// fetch all of user's wagers, courses and meetings
+- (void)fetchUserData;
+
+//festch the users wagers
+- (void)fetchAllUserWagers;
+
+//fetch the users courses/meetings
+- (void)fetchAllUserCourses;
+
+//fetch all the courses that are on the database
+- (void)fetchAllCoursesAtUniversity;
 
 
+//-------------WAGERS--------------------
+// create new wager
+- (void)addWagerToUserWithWager:(Wager *)newWager completion:(DismissBlock)completionBlock;
 
+// remove wager for user
+- (void)removeUsersWagerWithWager:(Wager *)wagerToDelete completion:(DismissBlock)completionBlock;
+
+// edit wager
+- (void)editWagerWithWager:(Wager *)wagerToEdit completion:(DismissBlock)completionBlock;
+
+//----------SCHEDULE---------------------
+// add new course to user
+- (void)addCourseToUsersSchedule:(Course *)courseToAdd completion:(DismissBlock)completionBlock;
+
+// drop course for user
+- (void)dropCourseFromUsersSchedule:(Course *)courseToDrop completion:(DismissBlock)completionBlock;
+
+//-----------DASHBOARD-------------------
+// check in user
+- (void)checkUserIntoMeeting:(Meeting *)currentMeeting
+        wasCheckInSuccessful:(BOOL)userCheckedIn
+                  completion:(DismissBlock)completionBlock;
 @end

@@ -53,14 +53,13 @@
 - (void)setUserInformationWithFirstName:(NSString *)firstName
                                lastName:(NSString *)lastName
                            emailAddress:(NSString *)email
-                               password:(NSString *)password
                      authorizationToken:(NSString *)authorizationToken
                                  points:(int)points
+                                 userId:(int)idNum
 {
     self.firstName = firstName;
     self.lastName = lastName;
     self.emailAddress = email;
-    self.password = password;
     self.authorizationToken = authorizationToken;
     self.points = points;
     self.userId = idNum;

@@ -16,22 +16,22 @@
 
 @implementation LLTabBarController
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        NSLog(@"init Tab Controller");
-        // This is for developement only, until we get the login stuff completed
-        [[Utilities sharedUtilities] createAndSetUserInformationWithFirstName:@"FirstName"
-                                                                     lastName:@"LastName"
-                                                                     username:@"username"
-                                                                        email:@"someone@example.com"
-                                                                     password:@"password"
-                                                           authorizationToken:@"authorizationToken"];
-        [self setSelectedIndex:1];
-    }
-    return self;
-}
+//- (id)init
+//{
+//    self = [super init];
+//    if (self) {
+//        NSLog(@"init Tab Controller");
+//        // This is for developement only, until we get the login stuff completed
+//        [[Utilities sharedUtilities] createAndSetUserInformationWithFirstName:@"FirstName"
+//                                                                     lastName:@"LastName"
+//                                                                     username:@"username"
+//                                                                        email:@"someone@example.com"
+//                                                                     password:@"password"
+//                                                           authorizationToken:@"authorizationToken"];
+//        [self setSelectedIndex:1];
+//    }
+//    return self;
+//}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,12 +48,12 @@
     if (self) {
         
         // This is for developement only, until we get the login stuff completed
-        [[Utilities sharedUtilities] createAndSetUserInformationWithFirstName:@"FirstName"
-                                                                     lastName:@"LastName"
-                                                                     username:@"username"
-                                                                        email:@"someone@example.com"
-                                                                     password:@"password"
-                                                           authorizationToken:@"authorizationToken"];
+//        [[Utilities sharedUtilities] createAndSetUserInformationWithFirstName:@"FirstName"
+//                                                                     lastName:@"LastName"
+//                                                                     username:@"username"
+//                                                                        email:@"someone@example.com"
+//                                                                     password:@"password"
+//                                                           authorizationToken:@"authorizationToken"];
         [self setSelectedIndex:1];
     }
     return self;

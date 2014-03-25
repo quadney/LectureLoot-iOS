@@ -41,7 +41,7 @@ const NSString *baseURLString = @"http://lectureloot.eu1.frbit.net/api/v1/";
    [self.currentUser setUserInformationWithFirstName:@"josh"
                                             lastName:@"black"
                                         emailAddress:@"joshuatblack@ufl.edu"
-                                  authorizationToken:@"unxWwUVNngaIc114DAW0thZAWJPmrDOHiiISHBwK"
+                                  authorizationToken:@"qqNguwzODzYG3RadBLGTHwZTVddCg6efteMJrpOS"
                                               points:100
                                               userId:1];
 }
@@ -103,16 +103,205 @@ const NSString *baseURLString = @"http://lectureloot.eu1.frbit.net/api/v1/";
                                         lastName:(NSString *)lastName
                                            email:(NSString *)email
                                         password:(NSString *)password
-                              authorizationToken:(NSString *)authorizationToken
+                                          completion:(DismissBlock)completionBlock
 {
-    self.currentUser = [User currentUser];
-    [self.currentUser setUserInformationWithFirstName:firstName
-                                             lastName:lastName
-                                             username:username
-                                         emailAddress:email
-                                             password:password
-                                   authorizationToken:authorizationToken
-                                               points:0];
+    NSString *urlString = [NSString stringWithFormat:@"%@users?emailAddress=%@&password=%@&firstName=%@&lastName=%@&pointBalance=%i", baseURLString, email, password, firstName, lastName, 100];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    [request setHTTPMethod:@"POST"];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               //parse JSON data
+                               NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                                              options:0
+                                                                                                error:nil];
+                               
+                               // returns message and token ... whatever that means
+                               if ([[jsonDictionary objectForKey:@"message"] isEqualToString:@"Success, the user was registered"]) {
+                                   
+                                   // then set that information here:
+                                   self.currentUser = [User currentUser];
+                                   [self.currentUser setUserInformationWithFirstName:firstName
+                                                                            lastName:lastName
+                                                                        emailAddress:email
+                                                                  authorizationToken:[jsonDictionary objectForKey:@"token"]
+                                                                              points:100
+                                                                              userId:[[jsonDictionary objectForKey:@"token"] intValue]];
+                                   
+                                   // call the caller's completion block
+                                   if(completionBlock)
+                                       completionBlock();
+                               }
+                               else {
+                                   //there was an error, display an alert view
+                                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                                   message:[jsonDictionary objectForKey:@"message"]
+                                                                                  delegate:nil
+                                                                         cancelButtonTitle:@"Oops"
+                                                                         otherButtonTitles:nil];
+                                   [alert show];
+                                   
+                               }
+                               //
+                           }];
+    
+    
+//    self.currentUser = [User currentUser];
+//    [self.currentUser setUserInformationWithFirstName:firstName
+//                                             lastName:lastName
+//                                         emailAddress:email
+//                                   authorizationToken:authorizationToken
+//                                               points:0
+//                                               userId:idNum];
+}
+
+
+// fetch all of user's wagers, courses and meetings
+- (void)fetchUserData
+{
+    [self fetchAllUserWagers];
+    //[self fetchAllUsersCourses];
+}
+
+- (void)fetchAllUserWagers
+{
+    NSLog(@"fetching user wagers data");
+    //NSString *urlString = [NSString stringWithFormat:@"%@users/%i/wagers", baseURLString, [self.currentUser userId]];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@users/%i", baseURLString, [self.currentUser userId]];
+    NSLog(@"%@", urlString);
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    [request setHTTPMethod:@"GET"];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               //parse JSON data
+                               NSLog(@"json data: %@", data);
+                               NSLog(@"json response: %@", response);
+                               NSLog(@"ns error: %@", connectionError);
+                               NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                                              options:0
+                                                                                                error:nil];
+                               NSLog(@"json dictionary: %@", jsonDictionary);
+                               //                               for (int i = 0; i < [jsonDictionary count]; i++) {
+                               //                                   NSLog(@"Number: %i \n %@", i, jsonDictionary[i]);
+                               //                               }
+                           }
+     ];
+    
+}
+
+//fetch the users courses/meetings
+- (void)fetchAllUserCourses
+{
+    
+}
+
+//fetch all the courses that are on the database
+- (void)fetchAllCoursesAtUniversity
+{
+    
+}
+
+// create new wager
+- (void)addWagerToUserWithWager:(Wager *)newWager completion:(DismissBlock)completionBlock
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@users/%i/wagers?user_id=%i&session_id=%i&wagerUnitValue=%i&wagerTotalValue=%i&pointsLost=%i", baseURLString, [self.currentUser userId], [self.currentUser userId], 3, newWager.wagerAmountPerMeeting, [newWager totalWagerAmount], 0];
+    // TODO what is session id
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    [request setHTTPMethod:@"POST"];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               //parse JSON data
+                               NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                                              options:0
+                                                                                                error:nil];
+                               if ([[jsonDictionary objectForKey:@"message"] isEqualToString:@"Success, wager created and added to the user"]) {
+                                   if(completionBlock)
+                                       completionBlock();
+                               }
+                               else {
+                                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                                   message:[jsonDictionary objectForKey:@"message"]
+                                                                                  delegate:nil
+                                                                         cancelButtonTitle:@"Oops"
+                                                                         otherButtonTitles:nil];
+                                   [alert show];
+                               }
+                           }
+     ];
+    
+}
+
+// remove wager for user
+- (void)removeUsersWagerWithWager:(Wager *)wagerToDelete completion:(DismissBlock)completionBlock
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@wagers/%i", baseURLString, [wagerToDelete wagerId]];
+    //    // TODO what is session id
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    [request setHTTPMethod:@"DELETE"];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               //parse JSON data
+                               NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                                              options:0
+                                                                                                error:nil];
+                               
+                               NSLog(@"%@", jsonDictionary);
+                               
+                               //                               if ([[jsonDictionary objectForKey:@"message"] isEqualToString:@"Success, wager created and added to the user"]) {
+                               //                                   if(completionBlock)
+                               //                                       completionBlock();
+                               //                               }
+                               //                               else {
+                               //                                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                               //                                                                                   message:[jsonDictionary objectForKey:@"message"]
+                               //                                                                                  delegate:nil
+                               //                                                                         cancelButtonTitle:@"Oops"
+                               //                                                                         otherButtonTitles:nil];
+                               //                                   [alert show];
+                               //                               }
+                           }
+     ];
+}
+
+- (void)editWagerWithWager:(Wager *)wagerToEdit completion:(DismissBlock)completionBlock
+{
+    
+}
+
+// check in user
+- (void)checkUserIntoMeeting:(Meeting *)currentMeeting
+        wasCheckInSuccessful:(BOOL)userCheckedIn
+                  completion:(DismissBlock)completionBlock
+{
+    
+}
+
+// add new course to user
+- (void)addCourseToUsersSchedule:(Course *)courseToAdd completion:(DismissBlock)completionBlock
+{
+    
+}
+
+// drop course for user
+- (void)dropCourseFromUsersSchedule:(Course *)courseToDrop completion:(DismissBlock)completionBlock
+{
+    
 }
 
 @end
