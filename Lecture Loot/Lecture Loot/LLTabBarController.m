@@ -29,19 +29,6 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         
-//        // This is for developement only, until we get the login stuff completed
-//        [[Utilities sharedUtilities] loginUserWithEmail:@"ssyyddnneeyy@ufl.edu"
-//                                               password:@"squid"
-//                                             completion:^{
-//                                                 //I dont remember what I was going to do with this
-//                                                 //I think I wanted to get all the information about the user from the data base?
-//                                                 //really dont remember lol
-//                                                 
-//                                                 //oh right I remember, this is for the login/sign up screen
-//                                                 //irrelevant here becuase this is for dev shit
-//                                             }
-//        ];
-        
         // this is where the stuff would be loaded from the plist
 
         
