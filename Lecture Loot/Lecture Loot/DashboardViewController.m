@@ -59,7 +59,7 @@ typedef enum  {
 {
     [super viewDidLoad];
     
-    self.timeLeft = 30*60;
+    self.timeLeft = 14*60;
     self.timeUntilNextMeeting = [[NSDate alloc] initWithTimeIntervalSinceNow:self.timeLeft];
 	
     // Do any additional setup after loading the view.
@@ -70,7 +70,7 @@ typedef enum  {
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
     //userCheckInStateView
-    self.checkInState = UserHasUpcomingMeeting;
+    self.checkInState = UserNeedsToCheckIn;
     [self updateTimerLabel:nil];
     [self updateUI];
 
@@ -198,7 +198,10 @@ typedef enum  {
                                                                         green:0.894
                                                                          blue:0.5843
                                                                         alpha:1.0];
-    [self.checkInButton setHidden:YES];
+    [self.checkInButton setHidden:NO];
+    [self.checkInButton setEnabled:NO];
+    [self.checkInButton setBackgroundColor:[[UIColor alloc] initWithRed:0.01 green:0.54 blue:0.25 alpha:1.0]];
+    [self.checkInButton setTitle:@"Checked In!" forState:UIControlStateDisabled];
     [self.countdownLabel setHidden:YES];
     [self.courseLabel setHidden:YES];
     [self.locationLabel setHidden:YES];
@@ -244,11 +247,9 @@ typedef enum  {
 }
 
 - (void)killTimer{
-    NSLog(@"stopping timer...");
 	if(self.timer){
 		[self.timer invalidate];
 		self.timer = nil;
-        NSLog(@"timer stopped. ");
 	}
 }
 

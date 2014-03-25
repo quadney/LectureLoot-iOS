@@ -26,6 +26,8 @@ typedef void (^DismissBlock)(void);
 
 + (instancetype)sharedUtilities;
 
+- (void)setDefaultUser;
+
 #pragma mark - API calls
 
 // getting user from the database and setting it as the currentUser

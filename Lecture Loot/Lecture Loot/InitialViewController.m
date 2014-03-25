@@ -31,7 +31,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    NSLog(@"view did load, initial view controller");
 }
 
 - (IBAction)registerWithFacebook:(id)sender {

@@ -24,7 +24,6 @@
 @property (nonatomic) int userId;
 @property (nonatomic) NSMutableArray *courses;
 @property (nonatomic) NSMutableArray *wagers;
-@property int userId;
 
 + (instancetype)currentUser;
 
@@ -35,7 +34,7 @@
                      authorizationToken:(NSString *)authorizationToken
                                  points:(int) points;
 
-- (Wager *)createWager;
+- (void)addWager:(Wager *)newWager;
 - (void)removeWager:(Wager *)wagerToRemove;
 - (NSArray *)allWagers;
 - (Wager *)createWagerWithAmount:(int)wagerAmount startingDate:(NSDate *)startingDate;

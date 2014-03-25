@@ -59,7 +59,6 @@
         return;
     }
     
-    // for testing purposes
     [[Utilities sharedUtilities] createAndSetUserInformationWithFirstName:self.firstNameField.text
                                                                  lastName:self.lastNameField.text
                                                                     email:self.emailField.text
