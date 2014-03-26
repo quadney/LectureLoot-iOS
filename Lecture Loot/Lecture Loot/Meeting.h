@@ -17,9 +17,12 @@
 @property double GPSLatitude;
 @property (strong, nonatomic) NSString *buildingCode;
 @property (strong, nonatomic) NSString *roomNumber;
-@property (strong, nonatomic) NSString *meetingDay;
-@property (strong, nonatomic) NSString *period;
+@property (strong, nonatomic) NSString *meetingDay;     //M,T,W,R,F ?
+@property (strong, nonatomic) NSString *period;         //1,2,3...,11,E1,E2,E3
 @property long time;
+@property (strong, nonatomic) NSDate *upcomingDate;
 
+- (NSDateComponents *)getDateComponents;
+//- (void)createMeetingDateWithDateComponents;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "DashboardViewController.h"
 #import "Meeting.h"
+#import "Utilities.h"
 
 @interface DashboardViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *userProfileImage;
@@ -27,11 +28,9 @@
 @property (strong, nonatomic) Meeting *upcomingMeeting;
 @property (weak, nonatomic) CLLocation *currentLocation;
 @property (strong, nonatomic) NSTimer *timer;
-@property NSTimeInterval timeLeft;
-
 - (IBAction)checkIn:(id)sender;
 
-@property (strong, nonatomic) NSDate *timeUntilNextMeeting;
+@property (strong, nonatomic) NSDate *nextMeeting;
 
 typedef enum  {
     UserNeedsToCheckIn = 0,
@@ -59,9 +58,13 @@ typedef enum  {
 {
     [super viewDidLoad];
     
-    self.timeLeft = 14*60;
-    self.timeUntilNextMeeting = [[NSDate alloc] initWithTimeIntervalSinceNow:self.timeLeft];
-	
+    //calculate upcoming meeting
+    Meeting *upcomingMeeting = [[[Utilities sharedUtilities] currentUser] getUpcomingMeeting];
+    //convert the meeting to time?
+    self.nextMeeting = [upcomingMeeting upcomingDate];
+    NSLog(@"Next Meeting Course id %i", [upcomingMeeting courseId]);
+    NSLog(@"Next Meeting RoomNumber %@", [upcomingMeeting roomNumber]);
+    
     // Do any additional setup after loading the view.
     
     self.locationManager = [[CLLocationManager alloc] init];
@@ -69,8 +72,8 @@ typedef enum  {
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
-    //userCheckInStateView
-    self.checkInState = UserNeedsToCheckIn;
+    //calculate what the user check in state is
+    [self figureOutCheckInState];
     [self updateTimerLabel:nil];
     [self updateUI];
 
@@ -99,27 +102,6 @@ typedef enum  {
     [self.locationManager startUpdatingLocation];
     self.currentLocation = [self.locationManager location];
     [self.locationManager stopUpdatingLocation];
-}
-
-- (IBAction)toggleCheckInStateForTesting:(id)sender
-{
-    switch (self.checkInState) {
-        case UserNeedsToCheckIn:
-            self.checkInState = UserHasUpcomingMeeting;
-            break;
-        case UserHasUpcomingMeeting:
-            self.checkInState = UserIsDoneForDay;
-            break;
-        case UserIsDoneForDay:
-            self.checkInState = UserCheckedIn;
-            break;
-        case UserCheckedIn:
-            self.checkInState = UserNeedsToCheckIn;
-            break;
-        default:
-            break;
-    }
-    [self updateUI];
 }
 
 - (void)updateUI
@@ -222,6 +204,25 @@ typedef enum  {
     }
 }
 
+- (void)figureOutCheckInState
+{
+    NSTimeInterval secondsLeft = [self.nextMeeting timeIntervalSinceNow];
+    NSTimeInterval minutesLeft = (int)secondsLeft / 60;
+    secondsLeft = (int)secondsLeft % 60;
+    NSLog(@"Seconds Left: %f", secondsLeft);
+    NSLog(@"Minutes Left: %f", minutesLeft);
+    
+    if (minutesLeft <= 15) {
+        //user needs to check in
+        self.checkInState = UserNeedsToCheckIn;
+    }
+    else {
+        self.checkInState = UserHasUpcomingMeeting;
+    }
+
+    NSLog(@"Check in state: %u", self.checkInState);
+}
+
 - (NSTimeInterval)calculateRemainingTime:(NSDate *)futureTime
 {
     NSTimeInterval seconds = [futureTime timeIntervalSinceNow];
@@ -231,7 +232,7 @@ typedef enum  {
 
 - (void)updateTimerLabel:(id)sender
 {
-    NSTimeInterval secondsLeft = [self.timeUntilNextMeeting timeIntervalSinceNow];
+    NSTimeInterval secondsLeft = [self.nextMeeting timeIntervalSinceNow];
     NSTimeInterval minutesLeft = (int)secondsLeft / 60;
     secondsLeft = (int)secondsLeft % 60;
     
