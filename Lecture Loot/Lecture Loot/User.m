@@ -100,12 +100,10 @@
 
 - (NSArray *)getAllMeetings
 {
-    if(self.meetings == nil){
-        self.meetings = [[NSMutableArray alloc] init];
-        for (Course *course in self.courses){
-            for (Meeting *meeting in [course meetings]) {
-                [self.meetings addObject:meeting];
-            }
+    self.meetings = [[NSMutableArray alloc] init];
+    for (Course *course in self.courses){
+        for (Meeting *meeting in [course meetings]) {
+            [self.meetings addObject:meeting];
         }
     }
     return self.meetings;
@@ -113,6 +111,8 @@
 
 - (Meeting *)getUpcomingMeeting
 {
+    NSLog(@"getting upcoming meeting");
+    [self getAllMeetings];
     Meeting *upcomingMeeting;
     //get the time
     NSDate *currentTime = [NSDate date];
@@ -134,16 +134,19 @@
         NSDateComponents *comparingMeeting = [meeting getDateComponents];
         if ([currentComp weekday] == [comparingMeeting weekday]) {
             //the dates are the same
-            
+            NSLog(@"Meeting courseid %i", [meeting courseId]);
+            NSLog(@"Meeting building: %@", [meeting buildingCode]);
             //now to compare the times
             //get the closest meeting to the current time
             if (([currentComp hour] <= [comparingMeeting hour]) && ([currentComp minute] <= [comparingMeeting minute])) {
                 if (!upcomingMeeting){
+                    NSLog(@"Setting upcoming meeting");
                     upcomingMeeting = meeting;
                 }
                 else if (([currentComp hour] > [[upcomingMeeting getDateComponents] hour])
                          && ([currentComp minute] > [[upcomingMeeting getDateComponents] minute])) {
                     //if the current time is greater than the upcoming meeting, then set it as the upcoming meeting
+                    NSLog(@"Setting upcoming meeting");
                     upcomingMeeting = meeting;
                 }
                 [upcomingMeeting setUpcomingDate:[calendar dateFromComponents:comparingMeeting]];
@@ -151,6 +154,9 @@
             
         }
     }
+    
+    NSLog(@"Upcoming meeting: %@", upcomingMeeting);
+    NSLog(@"Upcoming Meeting building code: %@", [upcomingMeeting buildingCode]);
     
     return upcomingMeeting;
 }

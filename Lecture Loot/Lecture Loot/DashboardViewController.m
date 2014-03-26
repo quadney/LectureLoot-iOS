@@ -57,26 +57,35 @@ typedef enum  {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    //calculate upcoming meeting
-    Meeting *upcomingMeeting = [[[Utilities sharedUtilities] currentUser] getUpcomingMeeting];
-    //convert the meeting to time?
-    self.nextMeeting = [upcomingMeeting upcomingDate];
-    NSLog(@"Next Meeting Course id %i", [upcomingMeeting courseId]);
-    NSLog(@"Next Meeting RoomNumber %@", [upcomingMeeting roomNumber]);
-    
     // Do any additional setup after loading the view.
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    
-    //calculate what the user check in state is
-    [self figureOutCheckInState];
-    [self updateTimerLabel:nil];
-    [self updateUI];
+}
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    //calculate upcoming meeting
+    Meeting *upcomingMeeting = [[[Utilities sharedUtilities] currentUser] getUpcomingMeeting];
+    
+    if(!upcomingMeeting){
+        self.checkInState = UserIsDoneForDay;
+    }
+    else{
+        //convert the meeting to time?
+        self.nextMeeting = [upcomingMeeting upcomingDate];
+        NSLog(@"Next Meeting Course id %i", [upcomingMeeting courseId]);
+        NSLog(@"Next Meeting RoomNumber %@", [upcomingMeeting roomNumber]);
+        
+        [self figureOutCheckInState];
+        [self updateTimerLabel:nil];
+    }
+    
+    [self updateUI];
 }
 
 - (IBAction)checkIn:(id)sender {
@@ -168,7 +177,10 @@ typedef enum  {
 - (void)enableUserIsDoneForDayView
 {
     self.checkInStateContainer.backgroundColor = [UIColor clearColor];
-    [self.checkInButton setHidden:YES];
+    [self.checkInButton setEnabled:NO];
+    [self.checkInButton setBackgroundColor:[[UIColor alloc] initWithRed:0.01 green:0.54 blue:0.25 alpha:1.0]];
+    [self.checkInButton setTitle:@"Done for the day!" forState:UIControlStateDisabled];
+
     [self.countdownLabel setHidden:YES];
     [self.courseLabel setHidden:YES];
     [self.locationLabel setHidden:YES];

@@ -62,19 +62,19 @@
 - (void)setDayToDateComponent
 {
     int day = 0;
-    if ([self.meetingDay isEqualToString:@"M"]) {
+    if ([self.meetingDay isEqualToString:@"m"]) {
         day = 2;
     }
-    else if ([self.meetingDay isEqualToString:@"T"]) {
+    else if ([self.meetingDay isEqualToString:@"t"]) {
          day = 3;
     }
-    else if ([self.meetingDay isEqualToString:@"W"]) {
+    else if ([self.meetingDay isEqualToString:@"w"]) {
          day = 4;
     }
-    else if ([self.meetingDay isEqualToString:@"R"]) {
+    else if ([self.meetingDay isEqualToString:@"r"]) {
          day = 5;
     }
-    else if ([self.meetingDay isEqualToString:@"F"]) {
+    else if ([self.meetingDay isEqualToString:@"f"]) {
          day = 6;
     }
     [self.meetingDateComponent setWeekday:day];
