@@ -203,7 +203,7 @@ const NSString *baseURLString = @"http://lectureloot.eu1.frbit.net/api/v1/";
 - (void)addWagerToUserWithWager:(Wager *)newWager completion:(DismissBlock)completionBlock
 {
     NSString *urlString = [NSString stringWithFormat:@"%@users/%i/wagers?user_id=%i&session_id=%i&wagerUnitValue=%i&wagerTotalValue=%i&pointsLost=%i", baseURLString, [self.currentUser userId], [self.currentUser userId], 3, newWager.wagerAmountPerMeeting, [newWager totalWagerAmount], 0];
-    // TODO what is session id
+                                                                                            // TODO what is session id
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -221,7 +221,7 @@ const NSString *baseURLString = @"http://lectureloot.eu1.frbit.net/api/v1/";
                                        completionBlock();
                                }
                                else {
-                                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error Wager not created"
                                                                                    message:[jsonDictionary objectForKey:@"message"]
                                                                                   delegate:nil
                                                                          cancelButtonTitle:@"Oops"

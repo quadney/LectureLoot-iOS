@@ -111,16 +111,15 @@
 
 - (Meeting *)getUpcomingMeeting
 {
-    NSLog(@"getting upcoming meeting");
     [self getAllMeetings];
     Meeting *upcomingMeeting;
     //get the time
     NSDate *currentTime = [NSDate date];
     
     // setting units we would like to use in future
-    unsigned units = NSWeekdayCalendarUnit | NSMinuteCalendarUnit | NSHourCalendarUnit;
+    unsigned units = NSWeekdayCalendarUnit | NSMinuteCalendarUnit | NSHourCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit | NSDayCalendarUnit;
     // creating NSCalendar object
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
     
     // extracting components from date
     //this is what we want to get nearest
@@ -138,24 +137,25 @@
             //now to compare the times
             //get the closest meeting to the current time
             if (([currentComp hour] <= [comparingMeeting hour]) && ([currentComp minute] <= [comparingMeeting minute])) {
+                // if the current hour is less than the meeting that compaing to
+                //meaning that the meeting has not occured yet
                 if (!upcomingMeeting){
-                    NSLog(@"Setting upcoming meeting");
                     upcomingMeeting = meeting;
                 }
-                else if (([currentComp hour] > [[upcomingMeeting getDateComponents] hour])
-                         && ([currentComp minute] > [[upcomingMeeting getDateComponents] minute])) {
-                    //if the current time is greater than the upcoming meeting, then set it as the upcoming meeting
-                    NSLog(@"Setting upcoming meeting");
+                else if (([comparingMeeting hour] < [[upcomingMeeting getDateComponents] hour])
+                         && ([comparingMeeting minute] < [[upcomingMeeting getDateComponents] minute])) {
+                    
+                    //if the comparing meeting is less than the upcoming meeting, then set it as the upcoming meeting
                     upcomingMeeting = meeting;
                 }
+                [comparingMeeting setDay:[currentComp day]];
+                [comparingMeeting setYear:[currentComp year]];
+                [comparingMeeting setMonth:[currentComp month]];
+                
                 [upcomingMeeting setUpcomingDate:[calendar dateFromComponents:comparingMeeting]];
             }
-            
         }
     }
-    
-    NSLog(@"Upcoming meeting: %@", upcomingMeeting);
-    NSLog(@"Upcoming Meeting building code: %@", [upcomingMeeting buildingCode]);
     
     return upcomingMeeting;
 }
