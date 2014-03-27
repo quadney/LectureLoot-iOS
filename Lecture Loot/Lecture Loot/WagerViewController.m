@@ -31,7 +31,7 @@
     // this cause me a lot of confusion. -s
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.separatorStyle =  UITableViewCellSeparatorStyleNone;
+    self.tableView.separatorStyle =  UITableViewCellSeparatorStyleSingleLine;
     self.currentUser = [[Utilities sharedUtilities] currentUser];
     NSLog(@"Current user: %@", self.currentUser);
     

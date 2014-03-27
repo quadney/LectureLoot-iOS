@@ -134,8 +134,7 @@
         NSDateComponents *comparingMeeting = [meeting getDateComponents];
         if ([currentComp weekday] == [comparingMeeting weekday]) {
             //the dates are the same
-            NSLog(@"Meeting courseid %i", [meeting courseId]);
-            NSLog(@"Meeting building: %@", [meeting buildingCode]);
+            
             //now to compare the times
             //get the closest meeting to the current time
             if (([currentComp hour] <= [comparingMeeting hour]) && ([currentComp minute] <= [comparingMeeting minute])) {

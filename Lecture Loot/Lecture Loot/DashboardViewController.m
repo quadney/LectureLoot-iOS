@@ -8,6 +8,7 @@
 
 #import "DashboardViewController.h"
 #import "Meeting.h"
+#import "Course.h"
 #import "Utilities.h"
 
 @interface DashboardViewController ()
@@ -58,6 +59,9 @@ typedef enum  {
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self updateUserPoints];
+    
+    [self.userProfileImage.layer setCornerRadius:30.0];
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -70,7 +74,7 @@ typedef enum  {
     [super viewWillAppear:animated];
     
     //calculate upcoming meeting
-    Meeting *upcomingMeeting = [[[Utilities sharedUtilities] currentUser] getUpcomingMeeting];
+    Meeting *upcomingMeeting = [[User currentUser] getUpcomingMeeting];
     
     if(!upcomingMeeting){
         self.checkInState = UserIsDoneForDay;
@@ -78,14 +82,18 @@ typedef enum  {
     else{
         //convert the meeting to time?
         self.nextMeeting = [upcomingMeeting upcomingDate];
-        NSLog(@"Next Meeting Course id %i", [upcomingMeeting courseId]);
-        NSLog(@"Next Meeting RoomNumber %@", [upcomingMeeting roomNumber]);
         
+        [self updateUpcomingMeetingLabels];
         [self figureOutCheckInState];
         [self updateTimerLabel:nil];
     }
     
     [self updateUI];
+}
+
+- (void)updateUserPoints
+{
+    self.userPointsLabel.text = [NSString stringWithFormat:@"%i points", [[User currentUser] points]];
 }
 
 - (IBAction)checkIn:(id)sender {
@@ -94,15 +102,28 @@ typedef enum  {
     // check with the database if it's right
     // if check in was good, enable user checked in
     // else display a message to the user that something went wrong
-    BOOL checkedIn = true;
+    [self getLocation];
+    BOOL checkedIn = [self compareCurrentLocationToMeetingLocation];
     if (checkedIn) {
         [self enableUserCheckedInView];
-        [self getLocation];
         //stop the timer
         [self killTimer];
     }
     else {
         [self displayCheckInUnsuccessfulAlert:NO];
+    }
+}
+
+- (void)updateUpcomingMeetingLabels
+{
+    NSLog(@"Meeting courseid %i", [self.upcomingMeeting courseId]);
+    //tring to get the course that is associated with the meeting guh
+    for (Course *course in [[User currentUser] courses]) {
+        if ([course courseId] == [self.upcomingMeeting courseId]) {
+            self.courseLabel.text = [course courseCode];
+            self.locationLabel.text = [NSString stringWithFormat:@"%@%@", [self.upcomingMeeting buildingCode], [self.upcomingMeeting roomNumber]];
+            break;
+        }
     }
 }
 
@@ -113,12 +134,27 @@ typedef enum  {
     [self.locationManager stopUpdatingLocation];
 }
 
+- (BOOL)compareCurrentLocationToMeetingLocation
+{
+    //returns true if the person's location was accepted
+    CLLocation *meetingLocation = [[CLLocation alloc] initWithLatitude:[self.upcomingMeeting GPSLongitude]
+                                                             longitude:[self.upcomingMeeting GPSLatitude]];
+    float distance = [meetingLocation distanceFromLocation:self.currentLocation];
+    float threshold = 2*[meetingLocation horizontalAccuracy];   //not sure what this does
+    
+    if (distance <= threshold) {
+        return true;
+    }
+    return false;
+}
+
 - (void)updateUI
 {
     switch (self.checkInState) {
         case UserNeedsToCheckIn:
             [self enableNeedsToCheckInView];
-            //initialize timer for the time left
+            //initialize t
+            //timer for the time left
             self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                                           target:self
                                                         selector:@selector(updateTimerLabel:)
