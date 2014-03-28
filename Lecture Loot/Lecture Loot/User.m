@@ -13,6 +13,8 @@
 
 @interface User()
 
+@property (nonatomic) NSMutableArray *meetings;
+
 @end
 
 @implementation User
@@ -65,6 +67,7 @@
     self.userId = idNum;
 }
 
+
 #pragma Wager add remove get update
 
 - (void)removeWager:(Wager *)wagerToRemove
@@ -93,6 +96,70 @@
     return [self.wagers copy];
 }
 
+#pragma Meetings
+
+- (NSArray *)getAllMeetings
+{
+    self.meetings = [[NSMutableArray alloc] init];
+    for (Course *course in self.courses){
+        for (Meeting *meeting in [course meetings]) {
+            [self.meetings addObject:meeting];
+        }
+    }
+    return self.meetings;
+}
+
+- (Meeting *)getUpcomingMeeting
+{
+    [self getAllMeetings];
+    Meeting *upcomingMeeting;
+    //get the time
+    NSDate *currentTime = [NSDate date];
+    
+    // setting units we would like to use in future
+    unsigned units = NSWeekdayCalendarUnit | NSMinuteCalendarUnit | NSHourCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit | NSDayCalendarUnit;
+    // creating NSCalendar object
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    // extracting components from date
+    //this is what we want to get nearest
+    NSDateComponents *currentComp = [calendar components:units fromDate:currentTime];
+    //this has the day of week and the time
+    
+    
+    //parse through all the meetings and decide which is the next one
+    for(Meeting *meeting in self.meetings){
+        //need to make the curre
+        NSDateComponents *comparingMeeting = [meeting getDateComponents];
+        if ([currentComp weekday] == [comparingMeeting weekday]) {
+            //the dates are the same
+            
+            //now to compare the times
+            //get the closest meeting to the current time
+            if (([currentComp hour] <= [comparingMeeting hour]) && ([currentComp minute] <= [comparingMeeting minute])) {
+                // if the current hour is less than the meeting that compaing to
+                //meaning that the meeting has not occured yet
+                if (!upcomingMeeting){
+                    upcomingMeeting = meeting;
+                }
+                else if (([comparingMeeting hour] < [[upcomingMeeting getDateComponents] hour])
+                         && ([comparingMeeting minute] < [[upcomingMeeting getDateComponents] minute])) {
+                    
+                    //if the comparing meeting is less than the upcoming meeting, then set it as the upcoming meeting
+                    upcomingMeeting = meeting;
+                }
+                [comparingMeeting setDay:[currentComp day]];
+                [comparingMeeting setYear:[currentComp year]];
+                [comparingMeeting setMonth:[currentComp month]];
+                
+                [upcomingMeeting setUpcomingDate:[calendar dateFromComponents:comparingMeeting]];
+            }
+        }
+    }
+    
+    return upcomingMeeting;
+}
+
 #pragma Course add remove get update
 
 - (Course *)createCourse
@@ -109,6 +176,8 @@
 {
     return [self.courses copy];
 }
+
+
 
 
 @end

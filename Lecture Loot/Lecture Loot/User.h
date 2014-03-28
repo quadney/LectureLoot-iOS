@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Meeting.h"
 
 @class Wager;
 @class Course;
@@ -37,6 +38,9 @@
 - (void)removeWager:(Wager *)wagerToRemove;
 - (NSArray *)allWagers;
 - (Wager *)createWagerWithAmount:(int)wagerAmount startingDate:(NSDate *)startingDate;
+
+- (NSArray *)getAllMeetings;
+- (Meeting *)getUpcomingMeeting;
 
 - (Course *)createCourse;
 - (NSArray *)allCourses;

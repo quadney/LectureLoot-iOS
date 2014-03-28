@@ -7,6 +7,7 @@
 //
 
 #import "Wager.h"
+#import "Meeting.h"
 
 
 @interface Wager()

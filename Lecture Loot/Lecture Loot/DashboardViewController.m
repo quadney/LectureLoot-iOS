@@ -8,6 +8,8 @@
 
 #import "DashboardViewController.h"
 #import "Meeting.h"
+#import "Course.h"
+#import "Utilities.h"
 
 @interface DashboardViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *userProfileImage;
@@ -27,11 +29,7 @@
 @property (strong, nonatomic) Meeting *upcomingMeeting;
 @property (weak, nonatomic) CLLocation *currentLocation;
 @property (strong, nonatomic) NSTimer *timer;
-@property NSTimeInterval timeLeft;
-
 - (IBAction)checkIn:(id)sender;
-
-@property (strong, nonatomic) NSDate *timeUntilNextMeeting;
 
 typedef enum  {
     UserNeedsToCheckIn = 0,
@@ -58,22 +56,39 @@ typedef enum  {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.timeLeft = 14*60;
-    self.timeUntilNextMeeting = [[NSDate alloc] initWithTimeIntervalSinceNow:self.timeLeft];
-	
     // Do any additional setup after loading the view.
+    [self updateUserPoints];
+    
+    [self.userProfileImage.layer setCornerRadius:30.0];
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    
-    //userCheckInStateView
-    self.checkInState = UserNeedsToCheckIn;
-    [self updateTimerLabel:nil];
-    [self updateUI];
+}
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    //calculate upcoming meeting
+    self.upcomingMeeting = [[User currentUser] getUpcomingMeeting];
+    
+    if(!self.upcomingMeeting){
+        self.checkInState = UserIsDoneForDay;
+    }
+    else{
+        //convert the meeting to time?
+        [self figureOutCheckInState];
+        [self updateTimerLabel:nil];
+    }
+    
+    [self updateUI];
+}
+
+- (void)updateUserPoints
+{
+    self.userPointsLabel.text = [NSString stringWithFormat:@"%i points", [[User currentUser] points]];
 }
 
 - (IBAction)checkIn:(id)sender {
@@ -82,10 +97,10 @@ typedef enum  {
     // check with the database if it's right
     // if check in was good, enable user checked in
     // else display a message to the user that something went wrong
-    BOOL checkedIn = true;
+    [self getLocation];
+    BOOL checkedIn = [self compareCurrentLocationToMeetingLocation];
     if (checkedIn) {
         [self enableUserCheckedInView];
-        [self getLocation];
         //stop the timer
         [self killTimer];
     }
@@ -101,25 +116,21 @@ typedef enum  {
     [self.locationManager stopUpdatingLocation];
 }
 
-- (IBAction)toggleCheckInStateForTesting:(id)sender
+- (BOOL)compareCurrentLocationToMeetingLocation
 {
-    switch (self.checkInState) {
-        case UserNeedsToCheckIn:
-            self.checkInState = UserHasUpcomingMeeting;
-            break;
-        case UserHasUpcomingMeeting:
-            self.checkInState = UserIsDoneForDay;
-            break;
-        case UserIsDoneForDay:
-            self.checkInState = UserCheckedIn;
-            break;
-        case UserCheckedIn:
-            self.checkInState = UserNeedsToCheckIn;
-            break;
-        default:
-            break;
+    //returns true if the person's location was accepted
+    CLLocation *meetingLocation = [[CLLocation alloc] initWithLatitude:[self.upcomingMeeting GPSLongitude]
+                                                             longitude:[self.upcomingMeeting GPSLatitude]];
+    float distance = [meetingLocation distanceFromLocation:self.currentLocation];
+    NSLog(@"Distance from meeting location: %f", distance);
+    float threshold = [self.currentLocation horizontalAccuracy];   //not sure what this does
+    NSLog(@"threshold: %f", threshold);
+    
+    if (distance <= threshold) {
+        NSLog(@"Location accepted");
+        return true;
     }
-    [self updateUI];
+    return false;
 }
 
 - (void)updateUI
@@ -127,7 +138,10 @@ typedef enum  {
     switch (self.checkInState) {
         case UserNeedsToCheckIn:
             [self enableNeedsToCheckInView];
-            //initialize timer for the time left
+            //refresh the labels for the location and course
+            [self updateUpcomingMeetingLabels];
+            //initialize t
+            //timer for the time left
             self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                                           target:self
                                                         selector:@selector(updateTimerLabel:)
@@ -140,6 +154,7 @@ typedef enum  {
             break;
         case UserHasUpcomingMeeting:
             [self enableHasUpcomingMeetingView];
+            [self updateUpcomingMeetingLabels];
             //start the timer for the next meeting
             self.timer = [NSTimer scheduledTimerWithTimeInterval:60.0
                                                           target:self
@@ -155,13 +170,22 @@ typedef enum  {
     }
 }
 
+- (void)updateUpcomingMeetingLabels
+{
+    //tring to get the course that is associated with the meeting guh
+    for (Course *course in [[User currentUser] courses]) {
+        if ([course courseId] == [self.upcomingMeeting courseId]) {
+            self.courseLabel.text = [course courseCode];
+            self.locationLabel.text = [NSString stringWithFormat:@"%@ %@", [self.upcomingMeeting buildingCode], [self.upcomingMeeting roomNumber]];
+            break;
+        }
+    }
+}
+
 - (void)enableNeedsToCheckInView
 {
     //background red and the countdown label is red bold
-    self.checkInStateContainer.backgroundColor = [[UIColor alloc] initWithRed:1.0
-                                                                        green:0.86
-                                                                         blue:0.9137
-                                                                        alpha:1.0];
+    self.checkInStateContainer.backgroundColor = [[UIColor alloc] initWithRed:1.0 green:0.86 blue:0.9137 alpha:1.0];
     [self.checkInButton setHidden:NO];
     [self.countdownLabel setHidden:NO];
     [self.countdownLabel setTextColor:[UIColor redColor]];
@@ -174,10 +198,12 @@ typedef enum  {
 - (void)enableHasUpcomingMeetingView
 {
     self.checkInStateContainer.backgroundColor = [UIColor clearColor];
-    [self.checkInButton setHidden:YES];
+    [self.checkInButton setEnabled:NO];
+    [self.checkInButton setBackgroundColor:[[UIColor alloc] initWithRed:0.01 green:0.54 blue:0.25 alpha:1.0]];
+    [self.checkInButton setTitle:@"Upcoming Class:" forState:UIControlStateDisabled];
     [self.countdownLabel setHidden:NO];
     [self.countdownLabel setTextColor:[UIColor blackColor]];
-    [self.countdownLabel setFont:[UIFont systemFontOfSize:44]];
+    [self.countdownLabel setFont:[UIFont systemFontOfSize:40]];
     
     [self.courseLabel setHidden:NO];
     [self.locationLabel setHidden:NO];
@@ -186,7 +212,10 @@ typedef enum  {
 - (void)enableUserIsDoneForDayView
 {
     self.checkInStateContainer.backgroundColor = [UIColor clearColor];
-    [self.checkInButton setHidden:YES];
+    [self.checkInButton setEnabled:NO];
+    [self.checkInButton setBackgroundColor:[[UIColor alloc] initWithRed:0.01 green:0.54 blue:0.25 alpha:1.0]];
+    [self.checkInButton setTitle:@"Done for the day!" forState:UIControlStateDisabled];
+
     [self.countdownLabel setHidden:YES];
     [self.courseLabel setHidden:YES];
     [self.locationLabel setHidden:YES];
@@ -194,10 +223,7 @@ typedef enum  {
 
 - (void)enableUserCheckedInView
 {
-    self.checkInStateContainer.backgroundColor = [[UIColor alloc] initWithRed:0.5294
-                                                                        green:0.894
-                                                                         blue:0.5843
-                                                                        alpha:1.0];
+    self.checkInStateContainer.backgroundColor = [[UIColor alloc] initWithRed:0.5294 green:0.894 blue:0.5843 alpha:1.0];
     [self.checkInButton setHidden:NO];
     [self.checkInButton setEnabled:NO];
     [self.checkInButton setBackgroundColor:[[UIColor alloc] initWithRed:0.01 green:0.54 blue:0.25 alpha:1.0]];
@@ -222,16 +248,30 @@ typedef enum  {
     }
 }
 
+- (void)figureOutCheckInState
+{
+    NSTimeInterval secondsLeft = [[self.upcomingMeeting upcomingDate] timeIntervalSinceNow];
+    NSTimeInterval minutesLeft = (int)secondsLeft / 60;
+    secondsLeft = (int)secondsLeft % 60;
+    
+    if (minutesLeft <= 15) {
+        //user needs to check in
+        self.checkInState = UserNeedsToCheckIn;
+    }
+    else {
+        self.checkInState = UserHasUpcomingMeeting;
+    }
+}
+
 - (NSTimeInterval)calculateRemainingTime:(NSDate *)futureTime
 {
     NSTimeInterval seconds = [futureTime timeIntervalSinceNow];
-    NSLog(@"Time Interval: %f", seconds);
     return seconds;
 }
 
 - (void)updateTimerLabel:(id)sender
 {
-    NSTimeInterval secondsLeft = [self.timeUntilNextMeeting timeIntervalSinceNow];
+    NSTimeInterval secondsLeft = [[self.upcomingMeeting upcomingDate] timeIntervalSinceNow];
     NSTimeInterval minutesLeft = (int)secondsLeft / 60;
     secondsLeft = (int)secondsLeft % 60;
     
@@ -240,9 +280,17 @@ typedef enum  {
         //NSLog(@"Updating Timer %@", self.timeUntilNextMeeting.description);
         self.countdownLabel.text = [NSString stringWithFormat:@"%i:%i", (int)minutesLeft, (int)secondsLeft];
     }
-    else {
+    else if (minutesLeft < 60){
         //not as important, update every minute
         self.countdownLabel.text = [NSString stringWithFormat:@"%i mins", (int)minutesLeft];
+    }
+    else {
+        //hours away
+        int hours = (int)minutesLeft/60;
+        if(hours == 1)
+            self.countdownLabel.text = [NSString stringWithFormat:@"%i hour", hours];
+        else
+            self.countdownLabel.text = [NSString stringWithFormat:@"%i hours", hours];
     }
 }
 
