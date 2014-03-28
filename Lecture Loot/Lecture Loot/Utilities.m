@@ -147,51 +147,84 @@ const NSString *baseURLString = @"http://lectureloot.eu1.frbit.net/api/v1/";
                                }
                                //
                            }];
-    
-    
-//    self.currentUser = [User currentUser];
-//    [self.currentUser setUserInformationWithFirstName:firstName
-//                                             lastName:lastName
-//                                         emailAddress:email
-//                                   authorizationToken:authorizationToken
-//                                               points:0
-//                                               userId:idNum];
 }
 
 
 // fetch all of user's wagers, courses and meetings
-- (void)fetchUserData
+- (void)fetchUserDataWithCompletion:(DismissBlock)completionBlock
 {
-    [self fetchAllUserWagers];
-    //[self fetchAllUsersCourses];
-}
-
-- (void)fetchAllUserWagers
-{
-    NSLog(@"fetching user wagers data");
-    //NSString *urlString = [NSString stringWithFormat:@"%@users/%i/wagers", baseURLString, [self.currentUser userId]];
-    
     NSString *urlString = [NSString stringWithFormat:@"%@users/%i", baseURLString, [self.currentUser userId]];
     NSLog(@"%@", urlString);
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
+    
+    [request setValue:[self.currentUser authorizationToken] forHTTPHeaderField:@"Authorization"];
     [request setHTTPMethod:@"GET"];
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                                //parse JSON data
-                               NSLog(@"json data: %@", data);
-                               NSLog(@"json response: %@", response);
-                               NSLog(@"ns error: %@", connectionError);
+                               
                                NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data
                                                                                               options:0
                                                                                                 error:nil];
-                               NSLog(@"json dictionary: %@", jsonDictionary);
-                               //                               for (int i = 0; i < [jsonDictionary count]; i++) {
-                               //                                   NSLog(@"Number: %i \n %@", i, jsonDictionary[i]);
-                               //                               }
+                               
+                               NSLog(@"getting the user's points");
+                               NSLog(@"Json dictionary: %@", jsonDictionary);
+                               NSLog(@"user point balance before pull: %i", [self.currentUser points]);
+                               [self.currentUser setPoints:[[jsonDictionary objectForKey:@"pointBalance"] intValue]];
+                               
+                               NSLog(@"user point balance after pull: %i", [self.currentUser points]);
+                               //TODO would also be nice to get the user's courses and wagers in this pull request
+                               
+                               // call the caller's completion block
+                               if(completionBlock)
+                                   completionBlock();
+                               
+                           }
+     ];
+
+    //[self fetchAllUserWagers];
+    //[self fetchAllUsersCourses];
+}
+
+- (void)fetchAllUserWagersWithCompletion:(DismissBlock)completionBlock
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@users/%i/wagers", baseURLString, [self.currentUser userId]];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSLog(@"%@", urlString);
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+        
+    [request setValue:[self.currentUser authorizationToken] forHTTPHeaderField:@"Authorization"];
+    [request setHTTPMethod:@"GET"];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               //parse JSON data
+                               
+                               NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                                              options:0
+                                                                                                error:nil];                               
+                               
+                               for (NSDictionary *wagerDictionary in jsonDictionary) {
+                                   Wager *wager = [[Wager alloc] init];
+                                   [wager setWagerAmountPerMeeting:[[wagerDictionary objectForKey:@"wagerUnitValue"] intValue]];
+                                   [wager setWagerId:[[wagerDictionary objectForKey:@"id"] intValue]];
+                                   [wager setSessionId:[[wagerDictionary objectForKey:@"session_id"] intValue]];
+                                   [wager setTotalWagerAmount:[[wagerDictionary objectForKey:@"wagerTotalValue"] intValue]];
+                                   [wager setPointsLost:[[wagerDictionary objectForKey:@"pointsLost"] intValue]];
+                                   
+                                   [self.currentUser addWager:wager];
+                               }
+                               
+                               // call the caller's completion block
+                               if(completionBlock)
+                                   completionBlock();
+                               
                            }
      ];
     

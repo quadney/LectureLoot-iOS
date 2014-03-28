@@ -43,10 +43,10 @@ typedef void (^DismissBlock)(void);
                                       completion:(DismissBlock)completionBlock;
 
 // fetch all of user's wagers, courses and meetings
-- (void)fetchUserData;
+- (void)fetchUserDataWithCompletion:(DismissBlock)completionBlock;
 
 //festch the users wagers
-- (void)fetchAllUserWagers;
+- (void)fetchAllUserWagersWithCompletion:(DismissBlock)completionBlock;
 
 //fetch the users courses/meetings
 - (void)fetchAllUserCourses;

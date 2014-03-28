@@ -48,9 +48,12 @@
     
     [[Utilities sharedUtilities] loginUserWithEmail:self.userEmailField.text
                                            password:self.userPasswordField.text
-     completion:^{
-         [self dismissViewControllerAnimated:YES completion:nil];
-     }];
-    
+                                         completion:^{
+                                             [[Utilities sharedUtilities] fetchUserDataWithCompletion:^{
+                                                 [self dismissViewControllerAnimated:YES completion:nil];
+                                             }];
+                                             //[self dismissViewControllerAnimated:YES completion:nil];
+                                         }];
+                                        
 }
 @end

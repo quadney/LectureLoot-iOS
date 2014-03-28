@@ -57,7 +57,13 @@ typedef enum  {
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self updateUserPoints];
+    
+//    //get user information from the database
+//    if([[[Utilities sharedUtilities] currentUser] points] == 0){
+//        [[Utilities sharedUtilities] fetchUserDataWithCompletion:^{
+//            [self updateUserPoints];
+//        }];
+//    }
     
     [self.userProfileImage.layer setCornerRadius:30.0];
     
@@ -70,6 +76,8 @@ typedef enum  {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [self updateUserPoints];
     
     //calculate upcoming meeting
     self.upcomingMeeting = [[User currentUser] getUpcomingMeeting];

@@ -16,7 +16,7 @@
 @interface WagerViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
-@property (strong, nonatomic) User *currentUser;
+@property (nonatomic) UIActivityIndicatorView *loadingSpinner;
 
 @end
 
@@ -32,14 +32,26 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle =  UITableViewCellSeparatorStyleSingleLine;
-    self.currentUser = [[Utilities sharedUtilities] currentUser];
-    NSLog(@"Current user: %@", self.currentUser);
     
     if (!self.dateFormatter) {
         self.dateFormatter = [[NSDateFormatter alloc] init];
         self.dateFormatter.dateStyle = NSDateFormatterMediumStyle;
         self.dateFormatter.timeStyle = NSDateFormatterNoStyle;
     }
+    
+    if ([[[[Utilities sharedUtilities] currentUser] wagers] count] == 0) {
+        self.loadingSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [self.view addSubview:self.loadingSpinner];
+        [self.loadingSpinner setCenter:[self.view center]];
+        self.loadingSpinner.hidesWhenStopped = YES;
+        
+        [self.loadingSpinner startAnimating];
+        [[Utilities sharedUtilities] fetchAllUserWagersWithCompletion:^{
+            [self.tableView reloadData];
+            [self.loadingSpinner stopAnimating];
+        }];
+    }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -51,14 +63,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self.currentUser allWagers] count];
+    return [[[[Utilities sharedUtilities] currentUser] allWagers] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //get a new or recycled table cell
     WagerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WagerTableViewCell" forIndexPath:indexPath];
-    NSArray *wagers = [self.currentUser allWagers];
+    NSArray *wagers = [[[Utilities sharedUtilities] currentUser] allWagers];
     Wager *currentWager = wagers[indexPath.row];
     
     //populate with the information in the wager to the cell
@@ -67,7 +79,8 @@
     //get the wager at indexPath.row
     //set the information
     
-    cell.weekOfLabel.text = [self.dateFormatter stringFromDate:[currentWager weekOfDate]];
+    //cell.weekOfLabel.text = [self.dateFormatter stringFromDate:[currentWager weekOfDate]];
+    cell.weekOfLabel.text = [NSString stringWithFormat:@"Session: %i", [currentWager sessionId]];
     cell.wagerAmountLabel.text = [NSString stringWithFormat:@"%i pts", [currentWager wagerAmountPerMeeting]];
     
     return cell;
@@ -77,7 +90,7 @@
 {
     AddWagerViewController *newWagerVC = [[AddWagerViewController alloc] initForNewItem:NO];
     
-    NSArray *wagers = [self.currentUser allWagers];
+    NSArray *wagers = [[[Utilities sharedUtilities] currentUser] allWagers];
     Wager *selectedWager = wagers[indexPath.row];
 
     [newWagerVC setWager:selectedWager];
@@ -95,9 +108,7 @@
     AddWagerViewController *newWagerVC = [[AddWagerViewController alloc] initForNewItem:YES];
     newWagerVC.wager = newWager;
     newWagerVC.dismissCompletionBlock = ^{
-        NSLog(@"entering completion block");
-        [[Utilities sharedUtilities] fetchAllUserWagers];
-        NSLog(@"reloading data");
+        
         [self.tableView reloadData];
     };
     

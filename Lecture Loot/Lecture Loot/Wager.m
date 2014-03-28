@@ -18,7 +18,7 @@
 
 @implementation Wager
 
-- (int)totalWagerAmount
+- (int)calculateTotalWagerAmount
 {
     self.numMeetings = 15;
     // TODO - get the number of meetings that the user has to go to, for now let's call it 15;
