@@ -14,6 +14,7 @@
 #import "AddCourseViewController.h"
 #import "CourseDetailsViewController.h"
 #import "Utilities.h"
+//#import "UILoadingViewWithLabel.h"
 
 @interface ScheduleViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -26,7 +27,8 @@
 @end
 
 @implementation ScheduleViewController
-
+//UILoadingViewWithLabel *progressSpinner;
+UIActivityIndicatorView *loading;
 
 
 - (void)viewDidLoad
@@ -42,6 +44,13 @@
     //self.currentUser.authorizationToken = @"fRkaPSt5JgwjQP7DggybHxZ0J8OLfKo2eLhhEEF6";
     
     self.currentUser.courses = [[NSMutableArray alloc] init];
+    loading = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [self.view addSubview:loading];
+    [loading setCenter:CGPointMake(160,240)];
+    [loading setCenter:[self.view center]];
+    [loading setColor:[UIColor blackColor]];
+    loading.hidesWhenStopped = YES;
+    [loading startAnimating];
     [self loadCourses];
     
     [self.tableView reloadData];
@@ -62,6 +71,11 @@
     [super viewWillAppear:animated];
     NSLog(@"viewWillAppear called");
     
+    
+    
+    
+    
+
     [self.tableView reloadData];
 }
 
@@ -114,7 +128,19 @@
     [self.tableView reloadData];
 }
 
+- (void)startLoadingSpinner{
+//    progressSpinner = [[UILoadingViewWithLabel alloc] initWithFrame:CGRectMake(0, 0, 150, 25) withColor:[UIColor blackColor] andText:@"Loading..."];
+////    progressSpinner = [[UILoadingViewWithLabel alloc] initWithFrame:CGRectMake(0, 0, 150, 25)];
+//    [self.view addSubview:progressSpinner];
+//    [progressSpinner setLabelText:@"Loading..."];
+//    [progressSpinner setColor:[UIColor greenColor]];
+//    [progressSpinner setCenter:self.view.center];
+//    [progressSpinner startAnimating];
+}
+
 - (BOOL)loadCourses{
+     [self startLoadingSpinner];
+
     __block BOOL result= YES;
     if ([self.currentUser.courses count] == 0) {
         NSString *baseURLString = @"http://lectureloot.eu1.frbit.net/api/v1/";
@@ -162,7 +188,7 @@
                                                                                                   timeoutInterval:60.0];
                                        [meetingsRequest setValue:self.currentUser.authorizationToken forHTTPHeaderField:@"Authorization"];
                                        [meetingsRequest setHTTPMethod:@"GET"];
-                                       NSURLResponse *meetingsResponse;
+//                                       NSURLResponse *meetingsResponse;
                                        //                                   NSLog(@"Meeting Synch Request %d",newCourse.courseId);
                                        //            NSData *meetingsData = [NSURLConnection sendSynchronousRequest:meetingsRequest returningResponse:&meetingsResponse error:nil];
                                        //                                   NSLog(@"%@",[[NSString alloc] initWithData:mData encoding:NSUTF8StringEncoding]);
@@ -203,11 +229,15 @@
                                                                                                                                  timeoutInterval:60.0];
                                                                       [buildingRequest setValue:self.currentUser.authorizationToken forHTTPHeaderField:@"Authorization"];
                                                                       [buildingRequest setHTTPMethod:@"GET"];
-                                                                      NSURLResponse *buildingResponse;
-                                                                      NSData *buildingData = [NSURLConnection sendSynchronousRequest:buildingRequest
-                                                                                                                   returningResponse:&buildingResponse
-                                                                                                                               error:nil];
+//                                                                      NSURLResponse *buildingResponse;
+//                                                                      NSData *buildingData = [NSURLConnection sendSynchronousRequest:buildingRequest
+//                                                                                                                   returningResponse:&buildingResponse
+//                                                                                                                               error:nil];
                                                                       
+                                                                      
+                                                                      [NSURLConnection sendAsynchronousRequest:buildingRequest
+                                                                                                         queue:[NSOperationQueue mainQueue]
+                                                                                             completionHandler:^(NSURLResponse *buildingResponse, NSData *buildingData, NSError *buildingConnectionError) {
                                                                       
                                                                       NSMutableArray *buildingArray = [NSJSONSerialization JSONObjectWithData:buildingData
                                                                                                                                       options:0
@@ -221,7 +251,7 @@
                                                                       //                NSLog(@"%@",[buildi objectForKey:@"buildingCode"]);
                                                                       [newMeeting setGPSLongitude:[[[buildingArray objectAtIndex:0] objectForKey:@"gpsLongitude"]floatValue]];
                                                                       [newMeeting setGPSLatitude: [[[buildingArray objectAtIndex:0] objectForKey:@"gpsLatitude"] floatValue]];
-                                                                      
+                                                                                             }];
                                                                       
                                                                       
                                                                       [newCourse.meetings addObject:newMeeting];
@@ -232,6 +262,8 @@
                                    
                                    }
                                [self.tableView reloadData];
+                                   [loading stopAnimating];
+//                                   [progressSpinner stopAnimating];
                                }];
         
 
