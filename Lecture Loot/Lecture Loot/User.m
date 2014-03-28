@@ -142,8 +142,9 @@
                 if (!upcomingMeeting){
                     upcomingMeeting = meeting;
                 }
-                else if (([comparingMeeting hour] < [[upcomingMeeting getDateComponents] hour])
-                         && ([comparingMeeting minute] < [[upcomingMeeting getDateComponents] minute])) {
+                else if (([comparingMeeting hour] < [[upcomingMeeting getDateComponents] hour]) ||
+                         (([comparingMeeting hour] == [[upcomingMeeting getDateComponents] hour]) &&
+                         ([comparingMeeting minute] < [[upcomingMeeting getDateComponents] minute]))) {
                     
                     //if the comparing meeting is less than the upcoming meeting, then set it as the upcoming meeting
                     upcomingMeeting = meeting;

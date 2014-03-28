@@ -15,6 +15,7 @@ typedef void (^DismissBlock)(void);
 @interface Utilities : NSObject
 
 @property (nonatomic, strong) User *currentUser;
+@property (nonatomic, strong) NSMutableArray *sessions;
 
 
 // this is the initialization of the app.
@@ -27,6 +28,7 @@ typedef void (^DismissBlock)(void);
 + (instancetype)sharedUtilities;
 
 - (void)setDefaultUser;
+- (NSArray *)getSessionsWithCompletionBlock:(DismissBlock)completionBlock;
 
 #pragma mark - API calls
 

@@ -11,15 +11,17 @@
 #import "User.h"
 #import "Utilities.h"
 
-@interface AddWagerViewController () <UINavigationControllerDelegate>
+@interface AddWagerViewController () <UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *wagerAmountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *weekOfLabel;
-@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (weak, nonatomic) IBOutlet UIPickerView *sessionPicker;
 @property (weak, nonatomic) IBOutlet UIStepper *stepper;
 @property (weak, nonatomic) IBOutlet UILabel *totalAmountWageringLabel;
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 - (IBAction)wagerValueChanged:(id)sender;
-- (IBAction)dateChanged:(id)sender;
+
+@property (strong, nonatomic) NSArray *sessionCodes;
+@property (nonatomic) UIActivityIndicatorView *loadingSpinner;
 
 @end
 
@@ -51,19 +53,60 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [self initSessionDictionary];
     
     self.stepper.value = self.wager.wagerAmountPerMeeting;
-    self.wager.weekOfDate = self.datePicker.date;
+//    self.wager.weekOfDate = self.datePicker.date;
     
     [self updateUI];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)initSessionDictionary
 {
-    [super viewWillAppear:animated];
-    
-    self.datePicker.minimumDate = [NSDate dateWithTimeIntervalSinceNow:60];
+    if (![[Utilities sharedUtilities] sessions]) {
+        
+        self.loadingSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [self.view addSubview:self.loadingSpinner];
+        [self.loadingSpinner setCenter:[self.view center]];
 
+        [self.loadingSpinner startAnimating];
+        self.loadingSpinner.hidesWhenStopped = YES;
+
+        self.sessionCodes = [[Utilities sharedUtilities] getSessionsWithCompletionBlock:^{
+            [self.loadingSpinner stopAnimating];
+            NSLog(@"reloading all components in picker");
+            [self.sessionPicker reloadAllComponents];
+        }];
+    }
+    else{
+        self.sessionCodes = [[Utilities sharedUtilities] sessions];
+    }
+    
+}
+
+// returns the number of 'columns' to display.
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+// returns the # of rows in each component..
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [self.sessionCodes count]-1;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    //NSLog(@"Month: %@", [self.sessionCodes[row] date]);
+    return [self.dateFormatter stringFromDate:self.sessionCodes[row+1]];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    self.weekOfLabel.text = [self.dateFormatter stringFromDate:self.sessionCodes[row+1]];
+    self.wager.sessionId = row+1;
+    self.wager.weekOfDate = self.sessionCodes[row+1];
 }
 
 - (IBAction)wagerValueChanged:(id)sender {
@@ -74,11 +117,6 @@
     [self updateUI];
 }
 
-- (IBAction)dateChanged:(id)sender {
-    //set the date label to the date that is selected and change the wager to reflect that
-    self.weekOfLabel.text = [self.dateFormatter stringFromDate:self.datePicker.date];
-    self.wager.weekOfDate = self.datePicker.date;
-}
 
 - (void)updateUI
 {
@@ -87,9 +125,12 @@
         self.dateFormatter.dateStyle = NSDateFormatterMediumStyle;
         self.dateFormatter.timeStyle = NSDateFormatterNoStyle;
     }
-    self.weekOfLabel.text = [self.dateFormatter stringFromDate:self.datePicker.date];
-    self.wagerAmountLabel.text = [NSString stringWithFormat:@"%i pts per class", self.wager.wagerAmountPerMeeting];
-    self.totalAmountWageringLabel.text = [NSString stringWithFormat:@"%i points total", self.wager.totalWagerAmount];
+//    self.weekOfLabel.text = [self.dateFormatter stringFromDate:];
+//    if([self.wager sessionId] != 0)
+//        [self.sessionPicker selectRow:[self.wager sessionId] inComponent:1 animated:YES];
+
+    self.wagerAmountLabel.text = [NSString stringWithFormat:@"$%i per class", self.wager.wagerAmountPerMeeting];
+    self.totalAmountWageringLabel.text = [NSString stringWithFormat:@"$%i total", self.wager.calculateTotalWagerAmount];
 }
 
 - (void)save:(id)sender

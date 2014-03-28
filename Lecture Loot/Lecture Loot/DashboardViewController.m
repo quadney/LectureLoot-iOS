@@ -195,6 +195,8 @@ typedef enum  {
     //background red and the countdown label is red bold
     self.checkInStateContainer.backgroundColor = [[UIColor alloc] initWithRed:1.0 green:0.86 blue:0.9137 alpha:1.0];
     [self.checkInButton setHidden:NO];
+    [self.checkInButton setTitle:@"Check In" forState:UIControlStateNormal];
+    [self.checkInButton setBackgroundColor:[[UIColor alloc] initWithRed:.99 green:0.41 blue:0.45 alpha:1.0]];
     [self.countdownLabel setHidden:NO];
     [self.countdownLabel setTextColor:[UIColor redColor]];
     [self.countdownLabel setFont:[UIFont boldSystemFontOfSize:44]];

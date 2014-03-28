@@ -42,8 +42,24 @@ const NSString *baseURLString = @"http://lectureloot.eu1.frbit.net/api/v1/";
                                             lastName:@"black"
                                         emailAddress:@"joshuatblack@ufl.edu"
                                   authorizationToken:@"qqNguwzODzYG3RadBLGTHwZTVddCg6efteMJrpOS"
-                                              points:100
+                                              points:50
                                               userId:1];
+}
+
+- (NSArray *)getSessionsWithCompletionBlock:(DismissBlock)completionBlock
+{
+    if (!self.sessions) {
+        [self fetchAllWagerSessionsWithCompletionBlock:^{
+            NSLog(@"Completed fetching the sessions");
+            if (completionBlock) {
+                completionBlock();
+            }
+        }];
+    }
+    else
+        return self.sessions;
+    return nil;
+    
 }
 
 #pragma mark - API definition goes here
@@ -208,7 +224,10 @@ const NSString *baseURLString = @"http://lectureloot.eu1.frbit.net/api/v1/";
                                
                                NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data
                                                                                               options:0
-                                                                                                error:nil];                               
+                                                                                                error:nil];
+                               
+                               NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                               [formatter setDateFormat:@"YYYY-MM-DD"];
                                
                                for (NSDictionary *wagerDictionary in jsonDictionary) {
                                    Wager *wager = [[Wager alloc] init];
@@ -217,6 +236,7 @@ const NSString *baseURLString = @"http://lectureloot.eu1.frbit.net/api/v1/";
                                    [wager setSessionId:[[wagerDictionary objectForKey:@"session_id"] intValue]];
                                    [wager setTotalWagerAmount:[[wagerDictionary objectForKey:@"wagerTotalValue"] intValue]];
                                    [wager setPointsLost:[[wagerDictionary objectForKey:@"pointsLost"] intValue]];
+                                   [wager setWeekOfDate:[formatter dateFromString:[wagerDictionary objectForKey:@"startDate"]]];
                                    
                                    [self.currentUser addWager:wager];
                                }
@@ -242,10 +262,49 @@ const NSString *baseURLString = @"http://lectureloot.eu1.frbit.net/api/v1/";
     
 }
 
+- (void)fetchAllWagerSessionsWithCompletionBlock:(DismissBlock)completionBlock
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@sessions", baseURLString];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    
+    [request setValue:[self.currentUser authorizationToken] forHTTPHeaderField:@"Authorization"];
+    [request setHTTPMethod:@"GET"];
+    
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               //parse JSON data
+                               
+                               NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                                              options:0
+                                                                                                error:nil];
+                               NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                               [formatter setDateFormat:@"yyyy-MM-dd"];
+                               
+                               self.sessions = [[NSMutableArray alloc] init];
+                               [self.sessions addObject:@"Do not get the 0th object in this array"];
+                               for (NSDictionary *sessionDictionary in jsonDictionary) {
+                                   NSLog(@"Start Date: %@", [sessionDictionary objectForKey:@"startDate"]);
+                                   NSDate *sessionDate = [formatter dateFromString:[sessionDictionary objectForKey:@"startDate"]];
+                                   [self.sessions addObject:sessionDate];
+                               }
+                               
+                               // call the caller's completion block
+                               if(completionBlock)
+                                   completionBlock();
+                               
+                           }
+     ];
+
+}
+
 // create new wager
 - (void)addWagerToUserWithWager:(Wager *)newWager completion:(DismissBlock)completionBlock
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@users/%i/wagers?user_id=%i&session_id=%i&wagerUnitValue=%i&wagerTotalValue=%i&pointsLost=%i", baseURLString, [self.currentUser userId], [self.currentUser userId], 3, newWager.wagerAmountPerMeeting, [newWager totalWagerAmount], 0];
+    NSString *urlString = [NSString stringWithFormat:@"%@users/%i/wagers?user_id=%i&session_id=%i&wagerUnitValue=%i&wagerTotalValue=%i&pointsLost=%i", baseURLString, [self.currentUser userId], [self.currentUser userId], newWager.sessionId, newWager.wagerAmountPerMeeting, [newWager totalWagerAmount], 0];
                                                                                             // TODO what is session id
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
